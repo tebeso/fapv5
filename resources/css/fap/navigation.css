@@ -1,0 +1,56 @@
+#fap-navigation-additional-left {
+    position: relative;
+    top: 45px;
+    left: 29px;
+    width: 115px;
+}
+
+#fap-navigation-additional-right {
+    position: relative;
+    top: -119px;
+    left: 936px;
+    width: 115px;
+}
+
+#fap-navigation {
+    height   : 110px;
+    left     : 170px;
+    position : relative;
+    top      : -35px;
+    width    : 700px;
+}
+
+#fap-navigation-right {
+    position: relative;
+}
+
+#fap-navigation-buttons {
+    left     : 38px;
+    position : relative;
+    top      : 25px;
+}
+
+#fap-navigation-caution {
+    left : 30px;
+    top  : 14px;
+}
+
+#fap-navigation-slider {
+    background : url(/images/fap/slider.png) no-repeat;
+    height     : 10px;
+    width      : 172px;
+    position   : absolute;
+    top        : 3px;
+}
+
+.fap-navigation-slider-pos1 {
+    left : 85px;
+}
+
+.fap-navigation-slider-pos2 {
+    left : 264px;
+}
+
+.fap-navigation-slider-pos3 {
+    left : 429px;
+}

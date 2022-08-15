@@ -1,0 +1,229 @@
+body {
+    -moz-osx-font-smoothing : grayscale;
+    -moz-user-select        : none;
+    -ms-user-select         : none;
+    -webkit-font-smoothing  : antialiased;
+    -webkit-user-select     : none;
+    font-family             : Tahoma, sans-serif;
+    margin                  : 0;
+    overflow                : hidden;
+    padding                 : 0;
+    user-select             : none;
+}
+
+@media (max-width : 1200px) {
+    body {
+        cursor : none !important;
+    }
+}
+
+#fap-main {
+    background : url(/images/fap/background.png) no-repeat;
+    height     : 768px;
+    position   : absolute;
+    width      : 1024px;
+}
+
+
+#fap-page-title {
+    color          : #FFFFFF;
+    font-size      : 26px;
+    left           : 262px;
+    margin         : 0 auto;
+    position       : absolute;
+    text-align     : center;
+    text-transform : uppercase;
+    top            : 32px;
+    width          : 500px;
+}
+
+.fap-arrow {
+    border : 12px solid;
+    height : 0;
+    width  : 0;
+}
+
+.fap-arrow-active {
+    border-color : #3B3B3B #3B3B3B transparent transparent;
+}
+
+.fap-arrow-inactive {
+    border-color : #9FA9AA #9FA9AA transparent transparent;
+}
+
+#fap-right-arrow {
+    -webkit-transform : rotate(45deg);
+    left              : 8px;
+    position          : relative;
+    transform         : rotate(45deg);
+}
+
+#fap-left-arrow {
+    -webkit-transform : rotate(225deg);
+    left              : 23px;
+    position          : relative;
+    transform         : rotate(225deg);
+}
+
+#fap-screen-off {
+    left : 30px;
+    top  : -64px;
+}
+
+#fap-screensaver {
+    background : #000000 url(/images/fap/screensaver.png) no-repeat center;
+    display    : none;
+    height     : 768px;
+    width      : 1024px;
+}
+
+#fap-help {
+    left : 936px;
+    top  : -41px;
+}
+
+#fap-content {
+    font-size    : 14px;
+    font-weight  : 700;
+    height       : 544px;
+    padding-left : 50px;
+    width        : 925px;
+}
+
+.white-text {
+    color : #FFFFFF;
+}
+
+.black-text {
+    color : #000000;
+}
+
+.red-text {
+    color : #E23232 !important;
+}
+
+.red-bg {
+    background : #E23232 !important;
+}
+
+.yellow-text {
+    color : #EAB05C;
+}
+
+.yellow-bg {
+    background : #EAB05C;
+}
+
+.green-text {
+    color : #68B13C;
+}
+
+.green-bg {
+    background : #68B13C;
+}
+/**
+ * FAP-Buttons
+ */
+.fap-button {
+    background     : url(/images/buttons/button.png) no-repeat;
+    color          : #000000;
+    display        : table-cell;
+    font-size      : 9px;
+    height         : 55px;
+    position       : relative;
+    text-align     : center;
+    vertical-align : middle;
+    width          : 55px;
+}
+
+.fap-button-active {
+    background : url(/images/buttons/button_active.png) no-repeat;
+}
+
+.fap-button-group, .fap-button-group-big {
+    left     : 13px;
+    position : relative;
+    top      : 40px;
+}
+
+.fap-button-group-big-title {
+    font-size  : 14px;
+    position   : relative;
+    text-align : center;
+    top        : 5px;
+    width      : 440px;
+}
+
+.fap-button-group-title {
+    font-size  : 14px;
+    position   : relative;
+    text-align : center;
+    top        : 5px;
+    width      : 220px;
+}
+
+.fap-button-inactive {
+    background : url(/images/buttons/button_inactive.png) no-repeat;
+    color      : grey;
+}
+
+.fap-button-navigation {
+    position : static;
+}
+#fap-navigation-additional-left {
+    position: relative;
+    top: 45px;
+    left: 29px;
+    width: 115px;
+}
+
+#fap-navigation-additional-right {
+    position: relative;
+    top: -119px;
+    left: 936px;
+    width: 115px;
+}
+
+#fap-navigation {
+    height   : 110px;
+    left     : 170px;
+    position : relative;
+    top      : -35px;
+    width    : 700px;
+}
+
+#fap-navigation-right {
+    position: relative;
+}
+
+#fap-navigation-buttons {
+    left     : 38px;
+    position : relative;
+    top      : 25px;
+}
+
+#fap-navigation-caution {
+    left : 30px;
+    top  : 14px;
+}
+
+#fap-navigation-slider {
+    background : url(/images/fap/slider.png) no-repeat;
+    height     : 10px;
+    width      : 172px;
+    position   : absolute;
+    top        : 3px;
+}
+
+.fap-navigation-slider-pos1 {
+    left : 85px;
+}
+
+.fap-navigation-slider-pos2 {
+    left : 264px;
+}
+
+.fap-navigation-slider-pos3 {
+    left : 429px;
+}
+

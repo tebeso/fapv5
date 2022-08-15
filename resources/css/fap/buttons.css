@@ -1,0 +1,49 @@
+/**
+ * FAP-Buttons
+ */
+.fap-button {
+    background     : url(/images/buttons/button.png) no-repeat;
+    color          : #000000;
+    display        : table-cell;
+    font-size      : 9px;
+    height         : 55px;
+    position       : relative;
+    text-align     : center;
+    vertical-align : middle;
+    width          : 55px;
+}
+
+.fap-button-active {
+    background : url(/images/buttons/button_active.png) no-repeat;
+}
+
+.fap-button-group, .fap-button-group-big {
+    left     : 13px;
+    position : relative;
+    top      : 40px;
+}
+
+.fap-button-group-big-title {
+    font-size  : 14px;
+    position   : relative;
+    text-align : center;
+    top        : 5px;
+    width      : 440px;
+}
+
+.fap-button-group-title {
+    font-size  : 14px;
+    position   : relative;
+    text-align : center;
+    top        : 5px;
+    width      : 220px;
+}
+
+.fap-button-inactive {
+    background : url(/images/buttons/button_inactive.png) no-repeat;
+    color      : grey;
+}
+
+.fap-button-navigation {
+    position : static;
+}
