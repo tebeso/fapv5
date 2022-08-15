@@ -99,7 +99,37 @@ class FapNavigationController extends Controller
     /**
      * @var array
      */
-    protected array $pageItems3;
+    protected array $pageItems3 = [
+        [
+            'name'   => 'FAP<br /> Control',
+            'menuId' => 'fap-control',
+            'type'   => 'nav-item',
+        ],
+        [
+            'type' => 'nav-item-blank',
+        ],
+        [
+            'type' => 'nav-item-blank',
+        ],
+        [
+            'type' => 'nav-item-blank',
+        ],
+        [
+            'type' => 'nav-item-blank',
+        ],
+        [
+            'type' => 'nav-item-blank',
+        ],
+        [
+            'type' => 'nav-item-blank',
+        ],
+        [
+            'type' => 'nav-item-blank',
+        ],
+        [
+            'type' => 'nav-item-blank',
+        ],
+    ];
 
 
     /**
