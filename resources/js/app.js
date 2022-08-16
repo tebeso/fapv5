@@ -1,2 +1,3 @@
 import './bootstrap';
-import './fap/fap';
+import './fap/main';
+import './fap/audio';

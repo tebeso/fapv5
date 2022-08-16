@@ -11,33 +11,39 @@ class FapNavigationController extends Controller
      */
     protected array $pageItems1 = [
         [
-            'name'   => 'Audio',
+            'button' => 'Audio',
+            'title'  => 'AUDIO',
             'menuId' => 'audio',
             'type'   => 'nav-item',
         ],
         [
-            'name'   => 'Lights',
+            'button' => 'Lights',
+            'title'  => 'LIGHTS',
             'menuId' => 'lights',
             'type'   => 'nav-item',
         ],
         [
-            'name'   => 'Doors/<br />Slides',
+            'button' => 'Doors/<br />Slides',
+            'title'  => 'DOORS/SLIDES',
             'menuId' => 'doors-slides',
             'type'   => 'nav-item',
         ],
         [
-            'name'   => 'Temp.',
-            'menuId' => 'temp',
+            'button' => 'Temp.',
+            'title'  => 'TEMPERATURE',
+            'menuId' => 'temperature',
             'type'   => 'nav-item',
         ],
         [
-            'name'   => 'Water/<br >Waste',
+            'button' => 'Water/<br >Waste',
+            'title'  => 'WATER/WASTE',
             'menuId' => 'water-waste',
             'type'   => 'nav-item',
         ],
         [
-            'name'   => 'Smoke<br />Detect.',
-            'menuId' => 'smoke-detect',
+            'button' => 'Smoke<br />Detect.',
+            'title'  => 'SMOKE DETECTION',
+            'menuId' => 'smoke-detection',
             'type'   => 'nav-item',
         ],
         [
@@ -47,7 +53,8 @@ class FapNavigationController extends Controller
             'type' => 'nav-item-blank',
         ],
         [
-            'name'   => 'System<br />Info',
+            'button' => 'System<br />Info',
+            'title'  => 'SYSTEM INFO',
             'menuId' => 'system-info',
             'type'   => 'nav-item',
         ],
@@ -58,28 +65,33 @@ class FapNavigationController extends Controller
      */
     protected array $pageItems2 = [
         [
-            'name'   => 'Setup<br /> Audio',
-            'menuId' => 'setup-audio',
+            'button' => 'Setup<br /> Audio',
+            'title'  => 'SETUP AUDIO',
+            'menuId' => 'setup/audio',
             'type'   => 'nav-item',
         ],
         [
-            'name'   => 'Setup<br /> Lights',
-            'menuId' => 'setup-lights',
+            'button' => 'Setup<br /> Lights',
+            'title'  => 'SETUP LIGHTS',
+            'menuId' => 'setup/lights',
             'type'   => 'nav-item',
         ],
         [
-            'name'   => 'Setup<br /> Doors',
-            'menuId' => 'setup-doors-slides',
+            'button' => 'Setup<br /> Doors',
+            'title'  => 'SETUP DOORS',
+            'menuId' => 'setup/doors-slides',
             'type'   => 'nav-item',
         ],
         [
-            'name'   => 'Setup<br /> Temp.',
-            'menuId' => 'setup-temp',
+            'button' => 'Setup<br /> Temp.',
+            'title'  => 'SETUP TEMPERATURE',
+            'menuId' => 'setup/temperature',
             'type'   => 'nav-item',
         ],
         [
-            'name'   => 'Setup<br /> Smoke',
-            'menuId' => 'setup-smoke-detect',
+            'button' => 'Setup<br /> Smoke',
+            'title'  => 'SETUP SMOKE DETECTION',
+            'menuId' => 'setup/smoke-detect',
             'type'   => 'nav-item',
         ],
         [
@@ -92,17 +104,21 @@ class FapNavigationController extends Controller
             'type' => 'nav-item-blank',
         ],
         [
-            'type' => 'nav-item-blank',
+            'button' => 'Aircraft<br /> Layout',
+            'title'  => 'SETUP AIRCRAFT LAYOUT',
+            'menuId' => 'setup/aircraft-layout',
+            'type'   => 'nav-item',
         ],
     ];
 
     /**
-     * @var array
+     * @var array|string[][]
      */
     protected array $pageItems3 = [
         [
-            'name'   => 'FAP<br /> Control',
-            'menuId' => 'fap-control',
+            'button' => 'FAP<br /> Control',
+            'title'  => 'FAP CONTROL',
+            'menuId' => 'admin/fap-control',
             'type'   => 'nav-item',
         ],
         [
@@ -144,14 +160,14 @@ class FapNavigationController extends Controller
     {
         $pageItems = 'pageItems' . $pageId;
 
-        $previousPageItems = $pageId - 1;
-        $nextPageItems     = $pageId + 1;
+        $previousPageId = $pageId - 1;
+        $nextPageId     = $pageId + 1;
 
         if (isset($this->$pageItems) === true) {
             $return = [
-                'prev'  => $this->hasItems($previousPageItems),
+                'prev'  => $this->hasItems($previousPageId),
                 'items' => $this->$pageItems,
-                'next'  => $this->hasItems($nextPageItems),
+                'next'  => $this->hasItems($nextPageId),
             ];
         } else {
             $return = false;

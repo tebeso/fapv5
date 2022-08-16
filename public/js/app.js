@@ -2473,8 +2473,11 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var _fap_fap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fap/fap */ "./resources/js/fap/fap.js");
-/* harmony import */ var _fap_fap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fap_fap__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _fap_main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fap/main */ "./resources/js/fap/main.js");
+/* harmony import */ var _fap_main__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fap_main__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _fap_audio__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fap/audio */ "./resources/js/fap/audio.js");
+/* harmony import */ var _fap_audio__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fap_audio__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
@@ -2523,10 +2526,98 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/fap/fap.js":
-/*!*********************************!*\
-  !*** ./resources/js/fap/fap.js ***!
-  \*********************************/
+/***/ "./resources/js/fap/audio.js":
+/*!***********************************!*\
+  !*** ./resources/js/fap/audio.js ***!
+  \***********************************/
+/***/ (() => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+window.FapAudio = /*#__PURE__*/function () {
+  function FapAudio() {
+    _classCallCheck(this, FapAudio);
+
+    var $this = this;
+    $(document).ready(function () {
+      $(document).on('click', '.fap-audio', function () {
+        $this.setAudio($(this).data('audio'));
+        $this.play();
+      });
+    });
+  }
+
+  _createClass(FapAudio, [{
+    key: "setAudio",
+    value: function setAudio(source) {
+      var audio = $('#fap-audio')[0];
+      $('#fap-audio-file').attr('src', source);
+      audio.pause();
+      audio.load();
+    }
+  }, {
+    key: "play",
+    value: function play() {
+      var audio = $('#fap-audio')[0];
+      audio.play();
+    }
+  }, {
+    key: "pause",
+    value: function pause() {
+      var audio = $('#fap-audio')[0];
+
+      if (audio.paused === true) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      var audio = $('#fap-audio')[0];
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }, {
+    key: "volumeUp",
+    value: function volumeUp() {
+      var audioPlayer = $('#fap-audio');
+      var newVolume = audioPlayer.prop('volume') + 0.1;
+
+      if (newVolume > 1.0) {
+        newVolume = 1.0;
+      }
+
+      audioPlayer.prop('volume', newVolume);
+    }
+  }, {
+    key: "volumeDown",
+    value: function volumeDown() {
+      var audioPlayer = $('#fap-audio');
+      var newVolume = audioPlayer.prop('volume') - 0.1;
+
+      if (newVolume < 0.0) {
+        newVolume = 0.0;
+      }
+
+      audioPlayer.prop('volume', newVolume);
+    }
+  }]);
+
+  return FapAudio;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/fap/main.js":
+/*!**********************************!*\
+  !*** ./resources/js/fap/main.js ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2537,9 +2628,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 window.$ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-window.FapNavigation = /*#__PURE__*/function () {
-  function FapNavigation() {
-    _classCallCheck(this, FapNavigation);
+window.FapMain = /*#__PURE__*/function () {
+  function FapMain() {
+    _classCallCheck(this, FapMain);
 
     var $this = this;
     $(document).ready(function () {
@@ -2553,23 +2644,28 @@ window.FapNavigation = /*#__PURE__*/function () {
       $(document).on('click', '.fap-button-navigation', function () {
         $this.loadPageContent($(this));
       });
-      $('#fap-cabinstatus').on('click', function () {
+      $('#fap-cabin-status').on('click', function () {
         $this.loadPageContent($(this));
       });
     });
   }
+  /**
+   * Loads page content, sets button active and sets title.
+   *
+   * @param button
+   */
 
-  _createClass(FapNavigation, [{
+
+  _createClass(FapMain, [{
     key: "loadPageContent",
     value: function loadPageContent(button) {
       var menuId = button.data('menuid');
-      console.log(menuId);
       /**
        * Remove active state from all buttons.
        */
 
       $('.fap-button-navigation').removeClass('fap-button-active');
-      $('#fap-cabinstatus').removeClass('fap-button-active');
+      $('#fap-cabin-status').removeClass('fap-button-active');
       /**
        * Set clicked button to active.
        */
@@ -2585,6 +2681,11 @@ window.FapNavigation = /*#__PURE__*/function () {
        */
 
       $('#fap-content').load('/' + menuId);
+      /**
+       * Set Page title.
+       */
+
+      this.changePageTitle(button.data('title'));
     }
     /**
      * Gets all navigation buttons for the current page.
@@ -2598,7 +2699,7 @@ window.FapNavigation = /*#__PURE__*/function () {
       var $this = this;
       $.ajax({
         type: 'GET',
-        url: '/navigationItems/' + id,
+        url: '/navigation-items/' + id,
         cache: true,
         success: function success(data) {
           var items = data.items;
@@ -2641,6 +2742,11 @@ window.FapNavigation = /*#__PURE__*/function () {
     }
     /**
      * Add buttons for the current page.
+     *
+     * @param {{menuId:string}} item
+     * @param {{type:string}} item
+     * @param {{button:string}} item
+     * @param {{title:string}} item
      */
 
   }, {
@@ -2653,12 +2759,10 @@ window.FapNavigation = /*#__PURE__*/function () {
        */
 
       if (item.type === 'nav-item') {
-        element = $('<div class="fap-button fap-button-navigation">' + item.name + '</div>').data('menuid', item.menuId);
+        element = $('<div class="fap-button fap-button-navigation">' + item.button + '</div>').data('menuid', item.menuId).data('title', item.title);
         /**
          * If the current page has the same id as the button, set the button to active.
          */
-
-        console.log($('#fap-navigation').data('currentMenuId'));
 
         if ($('#fap-navigation').data('currentMenuId') === item.menuId) {
           element.addClass('fap-button-active');
@@ -2685,9 +2789,14 @@ window.FapNavigation = /*#__PURE__*/function () {
         $(elementId).removeData('menuid');
       }
     }
+  }, {
+    key: "changePageTitle",
+    value: function changePageTitle(title) {
+      $('#fap-page-title').text(title);
+    }
   }]);
 
-  return FapNavigation;
+  return FapMain;
 }();
 
 /***/ }),
