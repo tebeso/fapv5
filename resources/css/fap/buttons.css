@@ -18,9 +18,7 @@
 }
 
 .fap-button-group, .fap-button-group-big {
-    left     : 13px;
     position : relative;
-    top      : 40px;
 }
 
 .fap-button-group-big-title {

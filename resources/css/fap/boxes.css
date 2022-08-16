@@ -1,0 +1,54 @@
+.fap-content-box {
+    -moz-box-shadow    : inset 4px 4px 4px 0 #DDDDDD, inset -3px -3px 3px #2F2F2F;
+    -webkit-box-shadow : inset 4px 4px 4px 0 #DDDDDD, inset -3px -3px 3px #2F2F2F;
+    background         : #A8ADB1;
+    border-radius      : 5px;
+    box-shadow         : inset 4px 4px 4px 0 #DDDDDD, inset -3px -3px 3px #2F2F2F;
+    position           : absolute;
+    padding            : 5px;
+}
+
+.fap-display-box {
+    -moz-box-shadow    : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
+    -webkit-box-shadow : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
+    background         : #D9E9F9;
+    border-radius      : 5px;
+    box-shadow         : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
+    position           : absolute;
+    padding            : 5px;
+}
+
+.fap-list-box {
+    -moz-box-shadow    : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
+    -webkit-box-shadow : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
+    background         : #FFFFFF;
+    border-radius      : 5px;
+    box-shadow         : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
+    position           : absolute;
+    padding            : 5px;
+}
+
+.fap-box-tiny {
+    height : 50px;
+    width  : 200px;
+}
+
+.fap-box-small {
+    height : 125px;
+    width  : 200px;
+}
+
+.fap-box-medium {
+    height : 180px;
+    width  : 440px;
+}
+
+.fap-box-large {
+    height : 450px;
+    width  : 585px;
+}
+
+.fap-box-title {
+    text-align : center;
+}
+

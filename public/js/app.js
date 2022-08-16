@@ -2477,6 +2477,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fap_main__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fap_main__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _fap_audio__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fap/audio */ "./resources/js/fap/audio.js");
 /* harmony import */ var _fap_audio__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fap_audio__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _fap_setup_audio__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fap-setup/audio */ "./resources/js/fap-setup/audio.js");
+/* harmony import */ var _fap_setup_audio__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fap_setup_audio__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -2523,6 +2526,60 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+/***/ }),
+
+/***/ "./resources/js/fap-setup/audio.js":
+/*!*****************************************!*\
+  !*** ./resources/js/fap-setup/audio.js ***!
+  \*****************************************/
+/***/ (() => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+window.SetupAudio = /*#__PURE__*/function () {
+  function SetupAudio() {
+    _classCallCheck(this, SetupAudio);
+
+    $('#upload-audio-form').submit(function (e) {
+      e.preventDefault(); // avoid to execute the actual submit of the form.
+
+      $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: new FormData(this),
+        // serializes the form's elements.
+        processData: false,
+        contentType: false,
+        success: function success() {
+          $('#upload-audio-form')[0].reset();
+        }
+      });
+    });
+    window.fileList = this.getFileList();
+  }
+
+  _createClass(SetupAudio, [{
+    key: "getFileList",
+    value: function getFileList() {
+      return $.ajax({
+        type: 'GET',
+        url: 'setup/audio/get-file-list',
+        processData: false,
+        contentType: false,
+        success: function success(_index, data) {
+          console.log(_index);
+        }
+      });
+    }
+  }]);
+
+  return SetupAudio;
+}();
 
 /***/ }),
 

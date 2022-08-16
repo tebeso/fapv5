@@ -6,6 +6,7 @@ use App\Http\Controllers\FapController;
 use App\Http\Controllers\FapDoorSlideController;
 use App\Http\Controllers\FapLightsController;
 use App\Http\Controllers\FapNavigationController;
+use App\Http\Controllers\FapSetupAudioController;
 use App\Http\Controllers\FapSetupController;
 use App\Http\Controllers\FapSmokeDetectionController;
 use App\Http\Controllers\FapSystemInfoController;
@@ -44,7 +45,10 @@ Route::group(
     ['prefix' => 'setup'],
     static function () {
         Route::get('/aircraft-layout', [FapSetupController::class, 'setupAircraftLayout']);
-        Route::get('/audio', [FapSetupController::class, 'setupAudio']);
+        Route::get('/audio', [FapSetupAudioController::class, 'index']);
+        Route::any('/audio/upload', [FapSetupAudioController::class, 'uploadAudio']);
+        Route::any('/audio/get-file-list', [FapSetupAudioController::class, 'getFileList']);
+
         Route::get('/lights', [FapSetupController::class, 'setupLights']);
         Route::get('/doors-slides', [FapSetupController::class, 'setupDoorsSlides']);
         Route::get('/temperature', [FapSetupController::class, 'setupTemperature']);

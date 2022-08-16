@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 class FapSetupController extends Controller
 {
-    public function setupAudio()
-    {
-        return view('setup/audio');
-    }
+
 
     public function setupLights()
     {
@@ -33,4 +30,6 @@ class FapSetupController extends Controller
     {
         return view('setup/aircraft-layout');
     }
+
+
 }
