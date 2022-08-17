@@ -21,6 +21,16 @@
     position : relative;
 }
 
+.fap-button-group-3-horizontal {
+    width  : 165px;
+    height : 55px;
+}
+
+.fap-button-group-4-vertical {
+    width  : 55px;
+    height : 220px;
+}
+
 .fap-button-group-big-title {
     font-size  : 14px;
     position   : relative;

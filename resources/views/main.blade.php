@@ -14,6 +14,7 @@
     fapMain.getNavigationItems(1);
 
     window.fapAudio = new FapAudio();
+    window.SetupAudio = new SetupAudio();
 </script>
 
 <audio id="fap-audio">
@@ -52,14 +53,14 @@
 
             <div id="fap-navigation-left"
                  class="fap-button fap-button-navigation-arrow">
-                <div id="fap-left-arrow" class="fap-arrow"></div>
+                <div id="fap-menu-left-arrow" class="fap-arrow  fap-left-arrow"></div>
             </div>
 
             <!-- Button are inserted here dynamically. -->
 
             <div id="fap-navigation-right"
                  class="fap-button fap-button-navigation-arrow">
-                <div id="fap-right-arrow" class="fap-arrow"></div>
+                <div id="fap-menu-right-arrow" class="fap-arrow fap-right-arrow"></div>
             </div>
 
         </div>

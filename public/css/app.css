@@ -38,32 +38,41 @@ body {
 }
 
 .fap-arrow {
-    border : 12px solid;
-    height : 0;
-    width  : 0;
-}
-
-.fap-arrow-active {
-    border-color : #3B3B3B #3B3B3B transparent transparent;
+    border-top    : 15px solid transparent;
+    border-bottom : 15px solid transparent;
+    border-right  : 30px solid #333333;
+    position      : relative;
+    width         : 0;
+    height        : 0;
 }
 
 .fap-arrow-inactive {
-    border-color : #9FA9AA #9FA9AA transparent transparent;
+    border-right : 30px solid #9F9F9F;
 }
 
-#fap-right-arrow {
-    -webkit-transform : rotate(45deg);
-    left              : 8px;
-    position          : relative;
-    transform         : rotate(45deg);
+.fap-right-arrow {
+    transform : rotate(180deg);
+    left      : 14px;
 }
 
-#fap-left-arrow {
-    -webkit-transform : rotate(225deg);
-    left              : 23px;
-    position          : relative;
-    transform         : rotate(225deg);
+
+.fap-left-arrow {
+    left : 10px;
 }
+
+
+.fap-down-arrow {
+    transform : rotate(270deg);
+    left      : 12px;
+    top       : 14px;
+}
+
+
+.fap-up-arrow {
+    transform : rotate(90deg);
+    left      : 12px;
+}
+
 
 #fap-screen-off {
     left : 30px;
@@ -142,6 +151,16 @@ body {
 
 .fap-button-group, .fap-button-group-big {
     position : relative;
+}
+
+.fap-button-group-3-horizontal {
+    width  : 165px;
+    height : 55px;
+}
+
+.fap-button-group-4-vertical {
+    width  : 55px;
+    height : 220px;
 }
 
 .fap-button-group-big-title {
@@ -225,33 +244,53 @@ body {
     left : 429px;
 }
 .fap-content-box {
-    -moz-box-shadow    : inset 4px 4px 4px 0 #DDDDDD, inset -3px -3px 3px #2F2F2F;
-    -webkit-box-shadow : inset 4px 4px 4px 0 #DDDDDD, inset -3px -3px 3px #2F2F2F;
+    box-shadow         : inset 4px 4px 4px 0 #DDDDDD, inset -3px -3px 3px #2F2F2F;
     background         : #A8ADB1;
     border-radius      : 5px;
-    box-shadow         : inset 4px 4px 4px 0 #DDDDDD, inset -3px -3px 3px #2F2F2F;
-    position           : absolute;
     padding            : 5px;
+    position           : absolute;
 }
 
 .fap-display-box {
-    -moz-box-shadow    : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
-    -webkit-box-shadow : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
-    background         : #D9E9F9;
-    border-radius      : 5px;
     box-shadow         : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
-    position           : absolute;
+    background         : #D9E9F9;
+    color              : #000000;
+    border-radius      : 5px;
     padding            : 5px;
+    position           : absolute;
 }
 
 .fap-list-box {
-    -moz-box-shadow    : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
-    -webkit-box-shadow : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
-    background         : #FFFFFF;
-    border-radius      : 5px;
     box-shadow         : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
+    background         : #FFFFFF;
+    color              : #000000;
     position           : absolute;
+    border-radius      : 5px;
     padding            : 5px;
+    margin             : 0;
+    list-style         : none;
+}
+
+
+.fap-list-box li {
+    width         : 180px;
+    height        : 32px;
+    line-height   : 30px;
+    font-weight   : 400;
+    border-bottom : 1px solid #000000;
+}
+
+.fap-list-box li.active {
+    background-color : #D9E9F9;
+}
+
+.fap-list-box li:nth-child(5) {
+    border-bottom : none;
+}
+
+
+.fap-list-box li:nth-child(n+6) {
+    display : none;
 }
 
 .fap-box-tiny {

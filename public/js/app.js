@@ -2545,34 +2545,176 @@ window.SetupAudio = /*#__PURE__*/function () {
   function SetupAudio() {
     _classCallCheck(this, SetupAudio);
 
-    $('#upload-audio-form').submit(function (e) {
-      e.preventDefault(); // avoid to execute the actual submit of the form.
-
-      $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: new FormData(this),
-        // serializes the form's elements.
-        processData: false,
-        contentType: false,
-        success: function success() {
-          $('#upload-audio-form')[0].reset();
-        }
+    var $this = this;
+    $(document).ready(function () {
+      $(document).on('click', '#audio-file-list li', function () {
+        $this.selectFileListItem($(this));
+      });
+      $(document).on('click', '#audio-file-list-down', function () {
+        $this.nextFileListItemPage();
+      });
+      $(document).on('click', '#audio-file-list-up', function () {
+        $this.prevFileListItemPage();
+      });
+      $(document).on('click', '.audio-storage-numpad', function () {
+        $this.keypadWrite($(this).text());
+      });
+      $(document).on('click', '#audio-storage-numpad-enter', function () {
+        $this.storeAudioByNumber();
+      });
+      $(document).on('click', '#audio-storage-numpad-clear', function () {
+        $this.keypadClear();
+      });
+      $(document).on('click', '#audio-file-clear-all', function () {
+        $this.clearAll();
       });
     });
-    window.fileList = this.getFileList();
   }
 
   _createClass(SetupAudio, [{
     key: "getFileList",
     value: function getFileList() {
+      var $this = this;
       return $.ajax({
         type: 'GET',
         url: 'setup/audio/get-file-list',
         processData: false,
         contentType: false,
-        success: function success(_index, data) {
-          console.log(_index);
+        success: function success(files) {
+          window.fileList = files;
+          $this.makeFileListTable(files);
+        }
+      });
+    }
+  }, {
+    key: "makeFileListTable",
+    value: function makeFileListTable() {
+      var audioFileList = $('#audio-file-list');
+      audioFileList.empty();
+      $(window.fileList).each(function (_index, filename) {
+        $('#audio-file-list').append('<li class="audio-file-list-item" id="audio-file-list-' + _index + '" data-id="' + _index + '">' + filename + '</li>');
+      });
+      this.selectFileListItem(audioFileList.children(':first'));
+    }
+  }, {
+    key: "selectFileListItem",
+    value: function selectFileListItem(item) {
+      $('.audio-file-list-item').removeClass('active');
+      $(item).addClass('active');
+    }
+  }, {
+    key: "nextFileListItemPage",
+    value: function nextFileListItemPage() {
+      var hiddenItems = $('#audio-file-list li:hidden');
+      var visibleItems = $('#audio-file-list li:visible');
+      var nextPageItems = [];
+      hiddenItems.each(function (_index, _data) {
+        var hiddenItemId = $(_data).data('id');
+        var lastVisibleItemId = visibleItems.last().data('id');
+
+        if (hiddenItemId > lastVisibleItemId && nextPageItems.length < 6) {
+          nextPageItems.push(_data);
+        }
+      });
+
+      if (nextPageItems.length !== 0) {
+        visibleItems.hide();
+        $(nextPageItems).each(function (_index, _data) {
+          $(_data).show();
+        });
+      }
+    }
+  }, {
+    key: "prevFileListItemPage",
+    value: function prevFileListItemPage() {
+      var hiddenItems = $('#audio-file-list li:hidden');
+      var visibleItems = $('#audio-file-list li:visible');
+      var prevPageItems = [];
+      hiddenItems.each(function (_index, _data) {
+        var hiddenItemId = $(_data).data('id');
+        var firstVisibleItemId = visibleItems.first().data('id');
+
+        if (hiddenItemId < firstVisibleItemId) {
+          prevPageItems.push(_data);
+        }
+      });
+
+      if (prevPageItems.length !== 0) {
+        visibleItems.hide();
+        $(prevPageItems).slice(-5).each(function (_index, _data) {
+          $(_data).show();
+        });
+      }
+    }
+  }, {
+    key: "keypadWrite",
+    value: function keypadWrite(string) {
+      var keypadDisplay = $('#audio-file-keypad-display');
+
+      if (keypadDisplay.text().length < 4) {
+        keypadDisplay.text(keypadDisplay.text() + string);
+        this.getAudioByNumber();
+      }
+    }
+  }, {
+    key: "keypadClear",
+    value: function keypadClear() {
+      var keypadDisplay = $('#audio-file-keypad-display');
+      keypadDisplay.empty();
+    }
+  }, {
+    key: "getAudioByNumber",
+    value: function getAudioByNumber() {
+      var keypadDisplay = $('#audio-file-keypad-display');
+      return $.ajax({
+        type: 'GET',
+        url: 'setup/audio/get-audio-by-number',
+        data: {
+          storageNumber: keypadDisplay.text()
+        },
+        error: function error(message) {
+          $('#message').text(JSON.parse(message.responseText)).addClass('red-text');
+        }
+      });
+    }
+  }, {
+    key: "storeAudioByNumber",
+    value: function storeAudioByNumber() {
+      var keypadDisplay = $('#audio-file-keypad-display');
+      var selectedAudio = $('.audio-file-list-item.active');
+
+      if (keypadDisplay.text().trim() === '') {
+        return;
+      }
+
+      return $.ajax({
+        type: 'GET',
+        url: 'setup/audio/store-audio-by-number',
+        data: {
+          storageNumber: keypadDisplay.text(),
+          selectedAudio: selectedAudio.text()
+        },
+        success: function success(message) {
+          $('#message').text(message).removeClass('red-text');
+        },
+        error: function error(message) {
+          $('#message').text(JSON.parse(message.responseText)).addClass('red-text');
+        }
+      });
+    }
+  }, {
+    key: "clearAll",
+    value: function clearAll() {
+      var $this = this;
+      return $.ajax({
+        type: 'GET',
+        url: 'setup/audio/clear-all',
+        success: function success(message) {
+          $('#message').text(message).removeClass('red-text');
+          $this.getFileList();
+        },
+        error: function error(message) {
+          $('#message').text(JSON.parse(message.responseText)).addClass('red-text');
         }
       });
     }
@@ -2691,8 +2833,8 @@ window.FapMain = /*#__PURE__*/function () {
 
     var $this = this;
     $(document).ready(function () {
-      $('.fap-arrow').parent().on('click', function () {
-        var menuId = $(this).find('.fap-arrow').data('menuid');
+      $('.fap-button-navigation-arrow').on('click', function () {
+        var menuId = $(this).children(':first').data('menuid');
 
         if (menuId) {
           $this.getNavigationItems(menuId);
@@ -2769,8 +2911,8 @@ window.FapMain = /*#__PURE__*/function () {
            * Change the state of the left and right arrows.
            */
 
-          $this.changeArrowState('#fap-left-arrow', data.prev, id - 1);
-          $this.changeArrowState('#fap-right-arrow', data.next, id + 1);
+          $this.changeArrowState('#fap-menu-left-arrow', data.prev, id - 1);
+          $this.changeArrowState('#fap-menu-right-arrow', data.next, id + 1);
           /**
            * Add buttons for the current page.
            */
@@ -2837,13 +2979,9 @@ window.FapMain = /*#__PURE__*/function () {
     key: "changeArrowState",
     value: function changeArrowState(elementId, state, idOnPush) {
       if (state === true) {
-        $(elementId).removeClass('fap-arrow-inactive').addClass('fap-arrow-active');
-        $(elementId).parent().removeClass('fap-button-inactive');
-        $(elementId).data('menuid', idOnPush);
+        $(elementId).removeClass('fap-arrow-inactive').data('menuid', idOnPush).parent().removeClass('fap-button-inactive');
       } else {
-        $(elementId).addClass('fap-arrow-inactive').removeClass('fap-arrow-active');
-        $(elementId).parent().addClass('fap-button-inactive');
-        $(elementId).removeData('menuid');
+        $(elementId).addClass('fap-arrow-inactive').removeData('menuid').parent().addClass('fap-button-inactive');
       }
     }
   }, {

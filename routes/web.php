@@ -48,6 +48,9 @@ Route::group(
         Route::get('/audio', [FapSetupAudioController::class, 'index']);
         Route::any('/audio/upload', [FapSetupAudioController::class, 'uploadAudio']);
         Route::any('/audio/get-file-list', [FapSetupAudioController::class, 'getFileList']);
+        Route::any('/audio/get-audio-by-number', [FapSetupAudioController::class, 'getAudioByNumber']);
+        Route::any('/audio/store-audio-by-number', [FapSetupAudioController::class, 'storeAudioByNumber']);
+        Route::any('/audio/clear-all', [FapSetupAudioController::class, 'clearAll']);
 
         Route::get('/lights', [FapSetupController::class, 'setupLights']);
         Route::get('/doors-slides', [FapSetupController::class, 'setupDoorsSlides']);

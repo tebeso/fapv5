@@ -4,8 +4,8 @@ window.FapMain = class FapMain {
     constructor() {
         let $this = this;
         $(document).ready(function () {
-            $('.fap-arrow').parent().on('click', function () {
-                let menuId = $(this).find('.fap-arrow').data('menuid');
+            $('.fap-button-navigation-arrow').on('click', function () {
+                let menuId = $(this).children(':first').data('menuid');
 
                 if (menuId) {
                     $this.getNavigationItems(menuId);
@@ -82,8 +82,8 @@ window.FapMain = class FapMain {
                 /**
                  * Change the state of the left and right arrows.
                  */
-                $this.changeArrowState('#fap-left-arrow', data.prev, id - 1);
-                $this.changeArrowState('#fap-right-arrow', data.next, id + 1);
+                $this.changeArrowState('#fap-menu-left-arrow', data.prev, id - 1);
+                $this.changeArrowState('#fap-menu-right-arrow', data.next, id + 1);
 
                 /**
                  * Add buttons for the current page.
@@ -144,13 +144,13 @@ window.FapMain = class FapMain {
      */
     changeArrowState(elementId, state, idOnPush) {
         if (state === true) {
-            $(elementId).removeClass('fap-arrow-inactive').addClass('fap-arrow-active');
-            $(elementId).parent().removeClass('fap-button-inactive');
-            $(elementId).data('menuid', idOnPush);
+            $(elementId).removeClass('fap-arrow-inactive')
+                        .data('menuid', idOnPush)
+                        .parent().removeClass('fap-button-inactive');
         } else {
-            $(elementId).addClass('fap-arrow-inactive').removeClass('fap-arrow-active');
-            $(elementId).parent().addClass('fap-button-inactive');
-            $(elementId).removeData('menuid');
+            $(elementId).addClass('fap-arrow-inactive')
+                        .removeData('menuid')
+                        .parent().addClass('fap-button-inactive');
         }
     }
 
