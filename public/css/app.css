@@ -1,20 +1,20 @@
+@media (max-width : 1200px) {
+    body {
+        cursor : none !important;
+    }
+}
+
 body {
     -moz-osx-font-smoothing : grayscale;
     -moz-user-select        : none;
     -ms-user-select         : none;
     -webkit-font-smoothing  : antialiased;
     -webkit-user-select     : none;
-    font-family             : Tahoma, sans-serif;
+    font-family             : Arial, sans-serif;
     margin                  : 0;
     overflow                : hidden;
     padding                 : 0;
     user-select             : none;
-}
-
-@media (max-width : 1200px) {
-    body {
-        cursor : none !important;
-    }
 }
 
 #fap-main {
@@ -37,42 +37,6 @@ body {
     width          : 500px;
 }
 
-.fap-arrow {
-    border-top    : 15px solid transparent;
-    border-bottom : 15px solid transparent;
-    border-right  : 30px solid #333333;
-    position      : relative;
-    width         : 0;
-    height        : 0;
-}
-
-.fap-arrow-inactive {
-    border-right : 30px solid #9F9F9F;
-}
-
-.fap-right-arrow {
-    transform : rotate(180deg);
-    left      : 14px;
-}
-
-
-.fap-left-arrow {
-    left : 10px;
-}
-
-
-.fap-down-arrow {
-    transform : rotate(270deg);
-    left      : 12px;
-    top       : 14px;
-}
-
-
-.fap-up-arrow {
-    transform : rotate(90deg);
-    left      : 12px;
-}
-
 
 #fap-screen-off {
     left : 30px;
@@ -91,12 +55,19 @@ body {
     top  : -41px;
 }
 
+#fap-top {
+    height : 80px;
+}
+
 #fap-content {
     font-size    : 14px;
-    font-weight  : 700;
-    height       : 544px;
+    height       : 574px;
     padding-left : 50px;
     width        : 925px;
+}
+
+.bold-text {
+    font-weight : bold;
 }
 
 .white-text {
@@ -130,6 +101,22 @@ body {
 .green-bg {
     background : #68B13C;
 }
+
+#message-popup {
+    position         : relative;
+    top              : 330px;
+    left             : 180px;
+    background-color : #DDDDDD;
+    width            : 655px;
+    height           : 130px;
+    text-align       : center;
+    line-height      : 75px;
+    padding          : 10px;
+}
+
+#message {
+    font-weight : bold;
+}
 /**
  * FAP-Buttons
  */
@@ -137,12 +124,13 @@ body {
     background     : url(/images/buttons/button.png) no-repeat;
     color          : #000000;
     display        : table-cell;
-    font-size      : 9px;
+    font-size      : 11px;
     height         : 55px;
     position       : relative;
     text-align     : center;
     vertical-align : middle;
     width          : 55px;
+    font-weight    : bold;
 }
 
 .fap-button-active {
@@ -158,10 +146,16 @@ body {
     height : 55px;
 }
 
+.fap-button-group-2-horizontal {
+    width  : 110px;
+    height : 55px;
+}
+
 .fap-button-group-4-vertical {
     width  : 55px;
     height : 220px;
 }
+
 
 .fap-button-group-big-title {
     font-size  : 14px;
@@ -318,4 +312,354 @@ body {
 }
 
 
+.fap-aircraft {
+    background : url(/images/pages/aircraft.png) no-repeat;
+    height     : 570px;
+    position   : relative;
+    width      : 82px;
+}
+
+.door {
+    border      : solid 2px #000000;
+    margin-left : -10px;
+    position    : absolute;
+}
+
+.door-overwing {
+    height : 16px;
+    width  : 5px;
+}
+
+.door-generic, .door-front-rear {
+    height : 19px;
+    width  : 5px;
+}
+
+.door-open-entry {
+    background : #FFFFFF !important;
+    border     : solid 2px #FFFFFF !important;
+}
+
+#door-label {
+    height   : 600px;
+    left     : -230px;
+    position : relative;
+    top      : -215px;
+    width    : 800px;
+}
+
+#door-label div {
+    height   : 20px;
+    position : relative;
+    width    : 215px;
+}
+
+.door-one {
+    top : 70px;
+}
+
+.door-one-open {
+    top : 70px;
+}
+
+#door-one-left {
+    left      : 16px;
+    transform : skew(-7deg);
+}
+
+#door-one-left-open {
+    left       : 10px;
+    visibility : hidden;
+}
+
+#door-one-right {
+    left      : 76px;
+    transform : skew(7deg);
+}
+
+.door-two {
+    top : 175px;
+}
+
+.door-two-open {
+    top : 153px;
+}
+
+#door-two-left {
+    left : 13px;
+}
+
+#door-two-right {
+    left : 81px;
+}
+
+.door-three {
+    top : 290px;
+}
+
+.door-three-open {
+    top : 190px;
+}
+
+#door-three-left {
+    left : 13px;
+}
+
+#door-three-right {
+    left : 81px;
+}
+
+.door-four {
+    top : 400px;
+}
+
+.door-four-open {
+    top : 260px;
+}
+
+#door-four-left {
+    left : 13px;
+}
+
+#door-four-right {
+    left : 81px;
+}
+
+.door-five {
+    top : 510px;
+}
+
+.door-five-open {
+    top : 326px;
+}
+
+#door-five-left {
+    left      : 20px;
+    transform : skew(7deg);
+}
+
+#door-five-left-open {
+    left       : 9px;
+    visibility : hidden;
+}
+
+#door-five-right {
+    left      : 73px;
+    transform : skew(-7deg);
+}
+
+#door-five-right-open {
+    left       : 84px;
+    visibility : hidden;
+}
+.fap-arrow {
+    border-top    : 15px solid transparent;
+    border-bottom : 15px solid transparent;
+    border-right  : 30px solid #333333;
+    position      : relative;
+    width         : 0;
+    height        : 0;
+}
+
+.fap-arrow-inactive {
+    border-right : 30px solid #9F9F9F;
+}
+
+.fap-right-arrow {
+    transform : rotate(180deg);
+    left      : 14px;
+}
+
+
+.fap-left-arrow {
+    left : 10px;
+}
+
+
+.fap-down-arrow {
+    transform : rotate(270deg);
+    left      : 13px;
+}
+
+
+.fap-up-arrow {
+    transform : rotate(90deg);
+    left      : 12px;
+}
+#audio-volume-state {
+    list-style : none;
+}
+
+#audio-volume-state li {
+    border-bottom : 1px solid #000000;
+    height        : 7.6px;
+    box-shadow    : inset 2px 2px 2px 0 #2F2F2F, inset 0px 0px 1px #DDDDDD
+}
+
+#audio-volume-state li:first-child {
+    border-top-right-radius : 5px;
+    border-top-left-radius  : 5px;
+}
+
+#audio-volume-state li:last-child {
+    border-bottom              : none;
+    border-bottom-right-radius : 5px;
+    border-bottom-left-radius  : 5px;
+}
+
+#audio-volume-state li.active {
+    background-color : #333487;
+}
+
+.audio-file-list-item {
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+}
+
+#audio-current-file {
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+}
+.aircraft-module {
+    width: 82px;
+    position: absolute;
+}
+
+.aircraft-module-audio {
+    left:75px;
+}
+
+.aircraft-module-lights {
+    left:275px;
+}
+
+.aircraft-module-doors {
+    left:475px;
+}
+
+.aircraft-module-temp {
+    left:675px;
+}
+
+.aircraft-module-smoke {
+    left:875px;
+}
+.lights {
+    width    : 38px;
+    border   : 2px solid #151A1E;
+    position : absolute;
+    left     : 20px;
+}
+
+.lights-entry {
+    height : 12px;
+}
+
+#lights-320-346-fwd-entry {
+    top : 74px;
+}
+
+#lights-320-business {
+    height : 105px;
+    top    : 98px;
+}
+
+#lights-320-economy {
+    height : 285px;
+    top    : 215px;
+}
+
+#lights-320-346-aft-entry {
+    top   : 512px;
+    width : 36px;
+    left  : 21px;
+}
+
+
+#lights-346-first {
+    top    : 98px;
+    height : 68px;
+}
+
+#lights-346-fwd-galley {
+    top : 178px;
+}
+
+#lights-346-business {
+    top    : 202px;
+    height : 90px;
+}
+
+#lights-346-fwd-economy {
+    top    : 303px;
+    height : 88px;
+}
+
+#lights-346-rear-galley {
+    top : 403px;
+}
+
+#lights-346-rear-economy {
+    top    : 427px;
+    height : 73px;
+
+}
+
+.lights-label {
+    font-size   : 13px;
+    text-align  : center;
+    width       : 38px;
+    left        : 21px;
+    position    : relative;
+    font-weight : bold;
+}
+
+#lights-320-business-label {
+    top : 105px;
+}
+
+#lights-320-economy-label {
+    top : 207px;
+}
+
+#lights-346-first-label {
+    top : 105px;
+}
+
+#lights-346-business-label {
+    top : 194px;
+}
+
+#lights-346-economy-label {
+    top : 280px;
+}
+
+.lights-select-box {
+    width    : 400px;
+    position : relative;
+}
+
+.lights-select-box label {
+    width   : 150px;
+    display : inline-block;
+}
+
+.lights-select {
+    display  : block;
+    position : relative;
+}
+
+.lights-dim2 {
+    background-color : #8C8B14;
+}
+
+.lights-dim1 {
+    background-color : #B5B315;
+}
+
+.lights-brt {
+    background-color : #E0DE1A;
+}
 

@@ -1,20 +1,20 @@
+@media (max-width : 1200px) {
+    body {
+        cursor : none !important;
+    }
+}
+
 body {
     -moz-osx-font-smoothing : grayscale;
     -moz-user-select        : none;
     -ms-user-select         : none;
     -webkit-font-smoothing  : antialiased;
     -webkit-user-select     : none;
-    font-family             : Tahoma, sans-serif;
+    font-family             : Arial, sans-serif;
     margin                  : 0;
     overflow                : hidden;
     padding                 : 0;
     user-select             : none;
-}
-
-@media (max-width : 1200px) {
-    body {
-        cursor : none !important;
-    }
 }
 
 #fap-main {
@@ -37,42 +37,6 @@ body {
     width          : 500px;
 }
 
-.fap-arrow {
-    border-top    : 15px solid transparent;
-    border-bottom : 15px solid transparent;
-    border-right  : 30px solid #333333;
-    position      : relative;
-    width         : 0;
-    height        : 0;
-}
-
-.fap-arrow-inactive {
-    border-right : 30px solid #9F9F9F;
-}
-
-.fap-right-arrow {
-    transform : rotate(180deg);
-    left      : 14px;
-}
-
-
-.fap-left-arrow {
-    left : 10px;
-}
-
-
-.fap-down-arrow {
-    transform : rotate(270deg);
-    left      : 12px;
-    top       : 14px;
-}
-
-
-.fap-up-arrow {
-    transform : rotate(90deg);
-    left      : 12px;
-}
-
 
 #fap-screen-off {
     left : 30px;
@@ -91,12 +55,19 @@ body {
     top  : -41px;
 }
 
+#fap-top {
+    height : 80px;
+}
+
 #fap-content {
     font-size    : 14px;
-    font-weight  : 700;
-    height       : 544px;
+    height       : 574px;
     padding-left : 50px;
     width        : 925px;
+}
+
+.bold-text {
+    font-weight : bold;
 }
 
 .white-text {
@@ -129,4 +100,20 @@ body {
 
 .green-bg {
     background : #68B13C;
+}
+
+#message-popup {
+    position         : relative;
+    top              : 330px;
+    left             : 180px;
+    background-color : #DDDDDD;
+    width            : 655px;
+    height           : 130px;
+    text-align       : center;
+    line-height      : 75px;
+    padding          : 10px;
+}
+
+#message {
+    font-weight : bold;
 }

@@ -8,10 +8,19 @@
 3. npm install
 4. php:artisan key:generate
 5. edit apache2 sites-enabled config
+6. php artisan storage:link
 
 
 # Setup FAP
 1. Install Ubuntu 22.04
 2. Install Firefox, git, composer, apache2, php8.1, nodejs, npm, teamviewer
 3. Allow media to be played in Firefox
-4. 
+4. change upload_max_filesize = 20m post_max_size = 20m in php.ini
+5. sudo apt-get install ttf-mscorefonts-installer
+
+# Notes
+- this project is using https://github.com/Lazer-Database/Lazer-Database as a database.
+- this project is using https://github.com/neoteknic/Phue for the philips hue connection.
+
+# TODO
+- Bootup check (are all env vars set correctly)

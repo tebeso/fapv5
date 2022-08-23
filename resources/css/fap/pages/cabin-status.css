@@ -1,0 +1,24 @@
+.aircraft-module {
+    width: 82px;
+    position: absolute;
+}
+
+.aircraft-module-audio {
+    left:75px;
+}
+
+.aircraft-module-lights {
+    left:275px;
+}
+
+.aircraft-module-doors {
+    left:475px;
+}
+
+.aircraft-module-temp {
+    left:675px;
+}
+
+.aircraft-module-smoke {
+    left:875px;
+}

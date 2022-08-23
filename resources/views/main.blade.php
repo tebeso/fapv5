@@ -7,16 +7,15 @@
     <title>FAPv5</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ mix('js/app.js') }}"></script>
+    <script>
+        window.fapMain  = new FapMain();
+        window.fapAudio = new FapAudio();
+        window.fapLight = new FapLight();
+
+        window.fapMain.getNavigationItems(1);
+    </script>
 </head>
 <body class="antialiased">
-<script>
-    let fapMain = new FapMain();
-    fapMain.getNavigationItems(1);
-
-    window.fapAudio = new FapAudio();
-    window.SetupAudio = new SetupAudio();
-</script>
-
 <audio id="fap-audio">
     <source id="fap-audio-file" src="" type="audio/mpeg">
 </audio>
@@ -35,7 +34,7 @@
 
     </div>
     <div id="fap-content" class="white-text">
-        @yield('content')
+
     </div>
     <div id="fap-navigation-additional-left">
         <div id="fap-screenoff" class="fap-button fap-button-function" data-menuid="screenoff">
@@ -72,5 +71,15 @@
     </div>
 </div>
 
+<div id="message-popup" class="fap-content-box" style="display: none;">
+    <div id="message">
+
+    </div>
+    <div class="fap-button" style="line-height: 55px; float: right;" onclick="fapMain.hidePopup();">OK</div>
+</div>
+
+<script>
+    fapMain.loadPageContent($('#fap-cabin-status'));
+</script>
 </body>
 </html>

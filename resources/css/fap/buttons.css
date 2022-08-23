@@ -5,12 +5,13 @@
     background     : url(/images/buttons/button.png) no-repeat;
     color          : #000000;
     display        : table-cell;
-    font-size      : 9px;
+    font-size      : 11px;
     height         : 55px;
     position       : relative;
     text-align     : center;
     vertical-align : middle;
     width          : 55px;
+    font-weight    : bold;
 }
 
 .fap-button-active {
@@ -26,10 +27,16 @@
     height : 55px;
 }
 
+.fap-button-group-2-horizontal {
+    width  : 110px;
+    height : 55px;
+}
+
 .fap-button-group-4-vertical {
     width  : 55px;
     height : 220px;
 }
+
 
 .fap-button-group-big-title {
     font-size  : 14px;

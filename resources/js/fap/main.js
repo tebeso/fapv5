@@ -157,4 +157,13 @@ window.FapMain = class FapMain {
     changePageTitle(title) {
         $('#fap-page-title').text(title);
     }
+
+    showPopup(message, addClass = '') {
+        $('#message-popup').show();
+        $('#message').text(message).addClass(addClass);
+    }
+
+    hidePopup() {
+        $('#message-popup').hide();
+    }
 };

@@ -28,12 +28,16 @@ class FapSetupAudioController extends Controller
      */
     public function uploadAudio(Request $request): JsonResponse
     {
-        if (str_contains($_FILES['audio-file']['type'], 'audio')) {
-            Storage::disk('local')->putFileAs('audio-files', $request->file('audio-file'), $_FILES['audio-file']['name']);
-            return Response()->json('File uploaded.');
-        }
+        try {
+            if (str_contains($_FILES['audio-file']['type'], 'audio')) {
+                Storage::disk('public')->putFileAs('audio-files', $request->file('audio-file'), $_FILES['audio-file']['name']);
+                return Response()->json('File uploaded.');
+            }
 
-        return Response()->json('File is not an audio file. Upload unsuccessful.', 500);
+            return Response()->json('File is not an audio file. Upload unsuccessful.', 500);
+        } catch (Throwable $e) {
+            return Response()->json($e->getMessage(), 500);
+        }
     }
 
     /**
@@ -41,7 +45,7 @@ class FapSetupAudioController extends Controller
      */
     public function getFileList(): JsonResponse
     {
-        $files = Storage::disk('local')->files('audio-files');
+        $files = Storage::disk('public')->files('audio-files');
 
         foreach ($files as &$file) {
             $file = str_replace('audio-files/', '', $file);
@@ -77,7 +81,7 @@ class FapSetupAudioController extends Controller
                 }
             }
 
-            return Response()->json('Audio stored.');
+            return Response()->json('Audio stored under key ' . $storageNumber . '.');
         } catch (Throwable $e) {
             return Response()->json($e->getMessage(), 500);
         }
@@ -112,16 +116,36 @@ class FapSetupAudioController extends Controller
         try {
             Lazer::table('audio-storage')->delete();
 
-            foreach (Storage::disk('local')->allFiles() as $file) {
+            foreach (Storage::disk('public')->allFiles() as $file) {
                 if (str_contains($file, 'audio-files/')) {
-                    Storage::disk('local')->delete($file);
+                    Storage::disk('public')->delete($file);
                 }
             }
             return Response()->json('All audio files and database records related to audio-storage deleted.');
 
         } catch (Throwable $e) {
-            $response = $e->getMessage();
-            Response()->json($e->getMessage(), 500);
+            return Response()->json($e->getMessage(), 500);
+        }
+    }
+
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function clearFile(Request $request): JsonResponse
+    {
+        try {
+            $filename = $request->get('filename');
+
+            Lazer::table('audio-storage')->where('filename', 'eq', $filename);
+            Storage::disk('public')->delete('audio-files/' . $filename);
+
+            return Response()->json($filename . ' and all stored keys have been deleted.');
+
+        } catch (Throwable $e) {
+            return Response()->json($e->getMessage(), 500);
         }
     }
 }

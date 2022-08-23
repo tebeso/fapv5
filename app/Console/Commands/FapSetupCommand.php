@@ -17,6 +17,8 @@ class FapSetupCommand extends Command
         try {
             try {
                 Lazer::remove('audio-storage');
+                Lazer::remove('lights-storage');
+                Lazer::remove('sensors-storage');
             } catch (Throwable $e) {
                 echo $e->getMessage();
             }
@@ -27,6 +29,20 @@ class FapSetupCommand extends Command
                 'filename'       => 'string',
             ]);
 
+
+            Lazer::create('lights-storage', [
+                'id'       => 'integer',
+                'light_id' => 'string',
+                'type'     => 'string',
+                'position' => 'string',
+            ]);
+
+            Lazer::create('sensors-storage', [
+                'id'        => 'integer',
+                'sensor_id' => 'integer',
+                'type'     => 'string',
+                'position'  => 'string',
+            ]);
 
         } catch (Throwable $e) {
             echo $e->getMessage();

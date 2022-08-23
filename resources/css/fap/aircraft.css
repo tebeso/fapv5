@@ -1,0 +1,140 @@
+.fap-aircraft {
+    background : url(/images/pages/aircraft.png) no-repeat;
+    height     : 570px;
+    position   : relative;
+    width      : 82px;
+}
+
+.door {
+    border      : solid 2px #000000;
+    margin-left : -10px;
+    position    : absolute;
+}
+
+.door-overwing {
+    height : 16px;
+    width  : 5px;
+}
+
+.door-generic, .door-front-rear {
+    height : 19px;
+    width  : 5px;
+}
+
+.door-open-entry {
+    background : #FFFFFF !important;
+    border     : solid 2px #FFFFFF !important;
+}
+
+#door-label {
+    height   : 600px;
+    left     : -230px;
+    position : relative;
+    top      : -215px;
+    width    : 800px;
+}
+
+#door-label div {
+    height   : 20px;
+    position : relative;
+    width    : 215px;
+}
+
+.door-one {
+    top : 70px;
+}
+
+.door-one-open {
+    top : 70px;
+}
+
+#door-one-left {
+    left      : 16px;
+    transform : skew(-7deg);
+}
+
+#door-one-left-open {
+    left       : 10px;
+    visibility : hidden;
+}
+
+#door-one-right {
+    left      : 76px;
+    transform : skew(7deg);
+}
+
+.door-two {
+    top : 175px;
+}
+
+.door-two-open {
+    top : 153px;
+}
+
+#door-two-left {
+    left : 13px;
+}
+
+#door-two-right {
+    left : 81px;
+}
+
+.door-three {
+    top : 290px;
+}
+
+.door-three-open {
+    top : 190px;
+}
+
+#door-three-left {
+    left : 13px;
+}
+
+#door-three-right {
+    left : 81px;
+}
+
+.door-four {
+    top : 400px;
+}
+
+.door-four-open {
+    top : 260px;
+}
+
+#door-four-left {
+    left : 13px;
+}
+
+#door-four-right {
+    left : 81px;
+}
+
+.door-five {
+    top : 510px;
+}
+
+.door-five-open {
+    top : 326px;
+}
+
+#door-five-left {
+    left      : 20px;
+    transform : skew(7deg);
+}
+
+#door-five-left-open {
+    left       : 9px;
+    visibility : hidden;
+}
+
+#door-five-right {
+    left      : 73px;
+    transform : skew(-7deg);
+}
+
+#door-five-right-open {
+    left       : 84px;
+    visibility : hidden;
+}

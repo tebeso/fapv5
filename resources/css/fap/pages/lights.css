@@ -1,0 +1,116 @@
+.lights {
+    width    : 38px;
+    border   : 2px solid #151A1E;
+    position : absolute;
+    left     : 20px;
+}
+
+.lights-entry {
+    height : 12px;
+}
+
+#lights-320-346-fwd-entry {
+    top : 74px;
+}
+
+#lights-320-business {
+    height : 105px;
+    top    : 98px;
+}
+
+#lights-320-economy {
+    height : 285px;
+    top    : 215px;
+}
+
+#lights-320-346-aft-entry {
+    top   : 512px;
+    width : 36px;
+    left  : 21px;
+}
+
+
+#lights-346-first {
+    top    : 98px;
+    height : 68px;
+}
+
+#lights-346-fwd-galley {
+    top : 178px;
+}
+
+#lights-346-business {
+    top    : 202px;
+    height : 90px;
+}
+
+#lights-346-fwd-economy {
+    top    : 303px;
+    height : 88px;
+}
+
+#lights-346-rear-galley {
+    top : 403px;
+}
+
+#lights-346-rear-economy {
+    top    : 427px;
+    height : 73px;
+
+}
+
+.lights-label {
+    font-size   : 13px;
+    text-align  : center;
+    width       : 38px;
+    left        : 21px;
+    position    : relative;
+    font-weight : bold;
+}
+
+#lights-320-business-label {
+    top : 105px;
+}
+
+#lights-320-economy-label {
+    top : 207px;
+}
+
+#lights-346-first-label {
+    top : 105px;
+}
+
+#lights-346-business-label {
+    top : 194px;
+}
+
+#lights-346-economy-label {
+    top : 280px;
+}
+
+.lights-select-box {
+    width    : 400px;
+    position : relative;
+}
+
+.lights-select-box label {
+    width   : 150px;
+    display : inline-block;
+}
+
+.lights-select {
+    display  : block;
+    position : relative;
+}
+
+.lights-dim2 {
+    background-color : #8C8B14;
+}
+
+.lights-dim1 {
+    background-color : #B5B315;
+}
+
+.lights-brt {
+    background-color : #E0DE1A;
+}

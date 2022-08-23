@@ -4,13 +4,6 @@ namespace App\Http\Controllers;
 
 class FapSetupController extends Controller
 {
-
-
-    public function setupLights()
-    {
-        return view('setup/lights');
-    }
-
     public function setupDoorsSlides()
     {
         return view('setup/doors-slides');
@@ -25,11 +18,4 @@ class FapSetupController extends Controller
     {
         return view('setup/smoke-detect');
     }
-
-    public function setupAircraftLayout()
-    {
-        return view('setup/aircraft-layout');
-    }
-
-
 }

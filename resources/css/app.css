@@ -2,3 +2,9 @@
 @import 'fap/buttons.css';
 @import 'fap/navigation.css';
 @import 'fap/boxes.css';
+@import 'fap/aircraft.css';
+@import 'fap/arrows.css';
+
+@import 'fap/pages/audio.css';
+@import 'fap/pages/cabin-status.css';
+@import 'fap/pages/lights.css';

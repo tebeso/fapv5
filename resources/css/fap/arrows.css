@@ -1,0 +1,34 @@
+.fap-arrow {
+    border-top    : 15px solid transparent;
+    border-bottom : 15px solid transparent;
+    border-right  : 30px solid #333333;
+    position      : relative;
+    width         : 0;
+    height        : 0;
+}
+
+.fap-arrow-inactive {
+    border-right : 30px solid #9F9F9F;
+}
+
+.fap-right-arrow {
+    transform : rotate(180deg);
+    left      : 14px;
+}
+
+
+.fap-left-arrow {
+    left : 10px;
+}
+
+
+.fap-down-arrow {
+    transform : rotate(270deg);
+    left      : 13px;
+}
+
+
+.fap-up-arrow {
+    transform : rotate(90deg);
+    left      : 12px;
+}

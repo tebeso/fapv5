@@ -2477,8 +2477,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fap_main__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fap_main__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _fap_audio__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fap/audio */ "./resources/js/fap/audio.js");
 /* harmony import */ var _fap_audio__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fap_audio__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _fap_setup_audio__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fap-setup/audio */ "./resources/js/fap-setup/audio.js");
-/* harmony import */ var _fap_setup_audio__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fap_setup_audio__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fap_light__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fap/light */ "./resources/js/fap/light.js");
+/* harmony import */ var _fap_light__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fap_light__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -2529,10 +2529,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/fap-setup/audio.js":
-/*!*****************************************!*\
-  !*** ./resources/js/fap-setup/audio.js ***!
-  \*****************************************/
+/***/ "./resources/js/fap/audio.js":
+/*!***********************************!*\
+  !*** ./resources/js/fap/audio.js ***!
+  \***********************************/
 /***/ (() => {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2541,9 +2541,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-window.SetupAudio = /*#__PURE__*/function () {
-  function SetupAudio() {
-    _classCallCheck(this, SetupAudio);
+window.FapAudio = /*#__PURE__*/function () {
+  function FapAudio() {
+    _classCallCheck(this, FapAudio);
 
     var $this = this;
     $(document).ready(function () {
@@ -2560,18 +2560,27 @@ window.SetupAudio = /*#__PURE__*/function () {
         $this.keypadWrite($(this).text());
       });
       $(document).on('click', '#audio-storage-numpad-enter', function () {
-        $this.storeAudioByNumber();
+        if ($(this).hasClass('fap-button-inactive') === false) {
+          $this.storeAudioByNumber();
+        }
       });
       $(document).on('click', '#audio-storage-numpad-clear', function () {
         $this.keypadClear();
       });
       $(document).on('click', '#audio-file-clear-all', function () {
-        $this.clearAll();
+        if ($(this).hasClass('fap-button-inactive') === false) {
+          $this.clearAll();
+        }
       });
+      $(document).on('click', '#audio-file-clear-file', function () {
+        if ($(this).hasClass('fap-button-inactive') === false) {
+          $this.clearFile();
+        }
+      }); //audio-current-file
     });
   }
 
-  _createClass(SetupAudio, [{
+  _createClass(FapAudio, [{
     key: "getFileList",
     value: function getFileList() {
       var $this = this;
@@ -2599,8 +2608,13 @@ window.SetupAudio = /*#__PURE__*/function () {
   }, {
     key: "selectFileListItem",
     value: function selectFileListItem(item) {
+      var $this = this;
       $('.audio-file-list-item').removeClass('active');
       $(item).addClass('active');
+      $(document).ready(function () {
+        var source = 'audio-files/' + $(item).text();
+        $this.setAudio(source);
+      });
     }
   }, {
     key: "nextFileListItemPage",
@@ -2666,14 +2680,21 @@ window.SetupAudio = /*#__PURE__*/function () {
     key: "getAudioByNumber",
     value: function getAudioByNumber() {
       var keypadDisplay = $('#audio-file-keypad-display');
+      var $this = this;
       return $.ajax({
         type: 'GET',
         url: 'setup/audio/get-audio-by-number',
         data: {
           storageNumber: keypadDisplay.text()
         },
+        success: function success(data) {
+          if (data !== false) {
+            var source = 'audio-files/' + data;
+            $this.setAudio(source);
+          }
+        },
         error: function error(message) {
-          $('#message').text(JSON.parse(message.responseText)).addClass('red-text');
+          window.fapMain.showPopup(JSON.parse(message.responseText));
         }
       });
     }
@@ -2696,9 +2717,10 @@ window.SetupAudio = /*#__PURE__*/function () {
         },
         success: function success(message) {
           $('#message').text(message).removeClass('red-text');
+          window.fapMain.showPopup(message);
         },
         error: function error(message) {
-          $('#message').text(JSON.parse(message.responseText)).addClass('red-text');
+          window.fapMain.showPopup(JSON.parse(message.responseText));
         }
       });
     }
@@ -2710,53 +2732,47 @@ window.SetupAudio = /*#__PURE__*/function () {
         type: 'GET',
         url: 'setup/audio/clear-all',
         success: function success(message) {
-          $('#message').text(message).removeClass('red-text');
           $this.getFileList();
+          window.fapMain.showPopup(message);
         },
         error: function error(message) {
-          $('#message').text(JSON.parse(message.responseText)).addClass('red-text');
+          window.fapMain.showPopup(JSON.parse(message.responseText));
         }
       });
     }
-  }]);
-
-  return SetupAudio;
-}();
-
-/***/ }),
-
-/***/ "./resources/js/fap/audio.js":
-/*!***********************************!*\
-  !*** ./resources/js/fap/audio.js ***!
-  \***********************************/
-/***/ (() => {
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-window.FapAudio = /*#__PURE__*/function () {
-  function FapAudio() {
-    _classCallCheck(this, FapAudio);
-
-    var $this = this;
-    $(document).ready(function () {
-      $(document).on('click', '.fap-audio', function () {
-        $this.setAudio($(this).data('audio'));
-        $this.play();
+  }, {
+    key: "clearFile",
+    value: function clearFile() {
+      var $this = this;
+      return $.ajax({
+        type: 'GET',
+        data: {
+          filename: $('#audio-file-list').find('.active').text()
+        },
+        url: 'setup/audio/clear-file',
+        success: function success(message) {
+          $this.getFileList();
+          window.fapMain.showPopup(message);
+        },
+        error: function error(message) {
+          window.fapMain.showPopup(JSON.parse(message.responseText));
+        }
       });
-    });
-  }
-
-  _createClass(FapAudio, [{
+    }
+  }, {
     key: "setAudio",
     value: function setAudio(source) {
       var audio = $('#fap-audio')[0];
-      $('#fap-audio-file').attr('src', source);
+      var audioFile = $('#fap-audio-file');
+      audioFile.attr('src', source);
       audio.pause();
       audio.load();
+      this.setAudioDisplay(audioFile.attr('src'));
+    }
+  }, {
+    key: "setAudioDisplay",
+    value: function setAudioDisplay(text) {
+      $('#audio-current-file').text(text.replace('audio-files/', '').replace(/\.[^/.]+$/, ""));
     }
   }, {
     key: "play",
@@ -2781,6 +2797,27 @@ window.FapAudio = /*#__PURE__*/function () {
       var audio = $('#fap-audio')[0];
       audio.pause();
       audio.currentTime = 0;
+    }
+  }, {
+    key: "getVolume",
+    value: function getVolume() {
+      var audioPlayer = $('#fap-audio');
+      return audioPlayer.prop('volume') * 10;
+    }
+  }, {
+    key: "setVolumeState",
+    value: function setVolumeState() {
+      var volume = Math.round(this.getVolume());
+      var audioVolumeState = $('#audio-volume-state');
+      var audioVolumeStateItems = audioVolumeState.children('li');
+      var activeVolElem = audioVolumeStateItems.slice(-volume);
+      audioVolumeStateItems.removeClass('active');
+
+      if (volume !== 0) {
+        activeVolElem.each(function () {
+          $(this).addClass('active');
+        });
+      }
     }
   }, {
     key: "volumeUp",
@@ -2809,6 +2846,94 @@ window.FapAudio = /*#__PURE__*/function () {
   }]);
 
   return FapAudio;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/fap/light.js":
+/*!***********************************!*\
+  !*** ./resources/js/fap/light.js ***!
+  \***********************************/
+/***/ (() => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+window.FapLight = /*#__PURE__*/function () {
+  function FapLight() {
+    _classCallCheck(this, FapLight);
+
+    var $this = this;
+    setInterval(function () {
+      var title = $('#fap-page-title').text().trim();
+
+      if (title === 'LIGHTS' || title === 'SETUP LIGHTS' || title === 'CABIN STATUS') {
+        $this.getLightState();
+      }
+    }, 500);
+    $(document).on('click', '.light-button', function () {
+      $this.setLightState($(this).parent().parent().attr('id').replace('button-', ''), $(this).parent().find('.fap-button-active').text(), $(this).text());
+    });
+  }
+
+  _createClass(FapLight, [{
+    key: "setLightState",
+    value: function setLightState(position, currentLevel, newLevel) {
+      $.ajax({
+        type: 'GET',
+        data: {
+          currentLevel: currentLevel,
+          newLevel: newLevel,
+          position: position
+        },
+        url: 'lights/set-state'
+      });
+    }
+  }, {
+    key: "getLightState",
+    value: function getLightState() {
+      $.ajax({
+        type: 'GET',
+        url: 'lights/get-state-assigned',
+        success: function success(message) {
+          $.each(message, function (position, attributes) {
+            var buttonBox = $('#button-' + position);
+            var areaBox = $('#lights-' + position);
+            var state = attributes.state;
+            var bri = attributes.brightness;
+            buttonBox.find('.light-button').removeClass('fap-button-active');
+            areaBox.removeClass('lights-brt').removeClass('lights-dim1').removeClass('lights-dim2');
+
+            if (state === true) {
+              var level = 'BRT';
+              var css = 'lights-brt';
+
+              if (bri <= 50) {
+                level = 'DIM 2';
+                css = 'lights-dim2';
+              }
+
+              if (bri > 51 && bri <= 125) {
+                level = 'DIM 1';
+                css = 'lights-dim1';
+              }
+
+              console.log('#light-' + position);
+              console.log(css);
+              console.log(areaBox);
+              areaBox.addClass(css);
+              buttonBox.find('.fap-button:contains(\'' + level + '\')').addClass('fap-button-active');
+            }
+          });
+        }
+      });
+    }
+  }]);
+
+  return FapLight;
 }();
 
 /***/ }),
@@ -2988,6 +3113,18 @@ window.FapMain = /*#__PURE__*/function () {
     key: "changePageTitle",
     value: function changePageTitle(title) {
       $('#fap-page-title').text(title);
+    }
+  }, {
+    key: "showPopup",
+    value: function showPopup(message) {
+      var addClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      $('#message-popup').show();
+      $('#message').text(message).addClass(addClass);
+    }
+  }, {
+    key: "hidePopup",
+    value: function hidePopup() {
+      $('#message-popup').hide();
     }
   }]);
 
