@@ -131,7 +131,7 @@ class LightHelper
             $row->save();
         } else {
             $lightsStorage->setField('light_id', $lightsId);
-            $row->setField('type', $lightType);
+            $lightsStorage->setField('type', $lightType);
             $lightsStorage->setField('position', $position);
             $lightsStorage->save();
         }

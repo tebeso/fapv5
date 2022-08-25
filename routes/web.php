@@ -1,10 +1,11 @@
 <?php
 
 use App\Helper\LightHelper;
+use App\Helper\SensorHelper;
 use App\Http\Controllers\FapAdminBridgeController;
+use App\Http\Controllers\FapAdminControlController;
 use App\Http\Controllers\FapAudioController;
 use App\Http\Controllers\FapCabinStatusController;
-use App\Http\Controllers\FapController;
 use App\Http\Controllers\FapDoorSlideController;
 use App\Http\Controllers\FapLightsController;
 use App\Http\Controllers\FapNavigationController;
@@ -40,6 +41,7 @@ Route::get('/lights/get-state-assigned', [LightHelper::class, 'getStateAssigned'
 Route::get('/lights/set-state', [LightHelper::class, 'setState']);
 Route::get('/doors-slides', [FapDoorSlideController::class, 'index']);
 Route::get('/temperature', [FapTemperatureController::class, 'index']);
+Route::get('/temperature/get-state-assigned', [FapTemperatureController::class, 'getStateAssigned']);
 Route::get('/water-waste', [FapWaterWasteController::class, 'index']);
 Route::get('/smoke-detection', [FapSmokeDetectionController::class, 'index']);
 Route::get('/system-info', [FapSystemInfoController::class, 'index']);
@@ -53,7 +55,6 @@ Route::group(
     static function () {
         Route::get('/aircraft-layout', [FapSetupAircraftLayout::class, 'index']);
         Route::get('/aircraft-layout/change', [FapSetupAircraftLayout::class, 'changeAircraftLayout']);
-
         Route::get('/audio', [FapSetupAudioController::class, 'index']);
         Route::any('/audio/upload', [FapSetupAudioController::class, 'uploadAudio']);
         Route::any('/audio/get-file-list', [FapSetupAudioController::class, 'getFileList']);
@@ -61,18 +62,17 @@ Route::group(
         Route::any('/audio/store-audio-by-number', [FapSetupAudioController::class, 'storeAudioByNumber']);
         Route::any('/audio/clear-all', [FapSetupAudioController::class, 'clearAll']);
         Route::any('/audio/clear-file', [FapSetupAudioController::class, 'clearFile']);
-
         Route::get('/lights', [FapSetupLightsController::class, 'index']);
         Route::get('/lights/assign', [LightHelper::class, 'assignLight']);
         Route::get('/lights/get-assigned-lights', [LightHelper::class, 'getAssignedLights']);
-
         Route::get('/doors-slides', [FapSetupController::class, 'setupDoorsSlides']);
-
         Route::get('/temperature', [FapSetupTemperatureController::class, 'index']);
-        Route::get('/temperature/get-assigned-temperature', [FapSetupTemperatureController::class, 'getAssignedTemperatureSensors']);
+        Route::get('/sensors/get-assigned-sensors', [SensorHelper::class, 'getAssignedSensors']);
+        Route::get('/sensors/assign', [SensorHelper::class, 'assignSensor']);
         Route::get('/smoke-detect', [FapSetupController::class, 'setupSmokeDetect']);
     }
 );
 
-Route::get('/admin/fap-control', [FapController::class, 'index']);
+Route::get('/admin/fap-control', [FapAdminControlController::class, 'index']);
+Route::get('/admin/fap-control/send-command', [FapAdminControlController::class, 'sendCommand']);
 Route::get('/admin/bridge-setup', [FapAdminBridgeController::class, 'index']);

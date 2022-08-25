@@ -26,11 +26,10 @@ body {
 
 #fap-main {
     background : url(/images/fap/background.png) no-repeat;
+    width      : 1024px;
     height     : 768px;
     position   : absolute;
-    width      : 1024px;
 }
-
 
 #fap-page-title {
     color          : #FFFFFF;
@@ -44,11 +43,11 @@ body {
     width          : 500px;
 }
 
-#fap-screensaver {
-    background : #000000 url(/images/fap/screensaver.png) no-repeat center;
+#fap-maintenance-mode {
+    background : #000000 url(/images/fap/maintenance.png) no-repeat center;
     display    : none;
-    height     : 768px;
     width      : 1024px;
+    height     : 768px;
 }
 
 #fap-help {

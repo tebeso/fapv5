@@ -2479,6 +2479,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fap_audio__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fap_audio__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _fap_light__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./fap/light */ "./resources/js/fap/light.js");
 /* harmony import */ var _fap_light__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fap_light__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fap_sensor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./fap/sensor */ "./resources/js/fap/sensor.js");
+/* harmony import */ var _fap_sensor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fap_sensor__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -3148,6 +3151,52 @@ window.FapMain = /*#__PURE__*/function () {
   }]);
 
   return FapMain;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/fap/sensor.js":
+/*!************************************!*\
+  !*** ./resources/js/fap/sensor.js ***!
+  \************************************/
+/***/ (() => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+window.FapSensor = /*#__PURE__*/function () {
+  function FapSensor() {
+    _classCallCheck(this, FapSensor);
+
+    var $this = this;
+    setInterval(function () {
+      var title = $('#fap-page-title').text().trim();
+
+      if (title === 'TEMPERATURE' || title === 'SETUP TEMPERATURE' || title === 'CABIN STATUS') {
+        $this.getTemperatureState();
+      }
+    }, 500);
+  }
+
+  _createClass(FapSensor, [{
+    key: "getTemperatureState",
+    value: function getTemperatureState() {
+      $.ajax({
+        type: 'GET',
+        url: 'temperature/get-state-assigned',
+        success: function success(message) {
+          $.each(message, function (position, attributes) {
+            $('#temperature-' + position).text(attributes.state);
+          });
+        }
+      });
+    }
+  }]);
+
+  return FapSensor;
 }();
 
 /***/ }),

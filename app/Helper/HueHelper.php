@@ -90,7 +90,7 @@ class HueHelper implements HubInterface
             $id = (string)$hueLight->getId();
 
             $lights[$id] = [
-                'name'       => 'HUE-' . ucfirst($type) . ' ' . $hueLight->getName(),
+                'name'       => '(HUE-' . ucfirst($type) . ') ' . $hueLight->getName(),
                 'light_id'   => $id,
                 'type'       => 'hue-' . $type,
                 'state'      => $hueLight->isOn(),
@@ -136,7 +136,7 @@ class HueHelper implements HubInterface
      *
      * @return array
      */
-    public function getSensors(string $type = 'temperature'): array
+    public function getSensors(string $type = 'temp'): array
     {
         $sensors = [];
 
@@ -150,12 +150,13 @@ class HueHelper implements HubInterface
             return [];
         }
         foreach ($sensorCollection as $id => $sensor) {
-            if ($type === 'temperature' && isset($sensor->getState()->temperature) === true) {
+            if ($type === 'temp' && isset($sensor->getState()->temperature) === true) {
                 $sensors[$id] = [
-                    'name'  => $sensor->getName(),
-                    'type'  => 'sensor-temp',
-                    'hub'   => 'hue',
-                    'state' => $this->formatTemperature($sensor->getState()->temperature),
+                    'sensor_id' => $id,
+                    'name'      => '(Hue) ' . $sensor->getName() . ' (' . $sensor->getManufacturerName() . ' ' . $sensor->getModelId() . ')',
+                    'type'      => 'temp',
+                    'hub'       => 'hue',
+                    'state'     => MiscHelper::formatTemperature($sensor->getState()->temperature),
                 ];
             }
         }
@@ -163,15 +164,6 @@ class HueHelper implements HubInterface
         return $sensors;
     }
 
-    /**
-     * @param $temperature
-     *
-     * @return string
-     */
-    protected function formatTemperature($temperature): string
-    {
-        return substr($temperature, 0, 2) . '.' . substr($temperature, 2, 1);
-    }
 
     /**
      * @return Client|null

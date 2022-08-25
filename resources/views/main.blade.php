@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ mix('js/app.js') }}"></script>
     <script>
-        window.fapMain  = new FapMain();
-        window.fapAudio = new FapAudio();
-        window.fapLight = new FapLight();
+        window.fapMain   = new FapMain();
+        window.fapAudio  = new FapAudio();
+        window.fapLight  = new FapLight();
+        window.fapSensor = new FapSensor();
 
         window.fapMain.getNavigationItems(1);
     </script>
@@ -20,6 +21,7 @@
     <source id="fap-audio-file" src="" type="audio/mpeg">
 </audio>
 <div id="fap-screensaver" class="no-select"></div>
+<div id="fap-maintenance-mode" class="no-select"></div>
 <div id="fap-main">
     <div id="fap-top">
         <div id="fap-navigation-caution" class="fap-button fap-button-inactive" data-menuid="caution">

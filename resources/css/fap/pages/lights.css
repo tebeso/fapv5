@@ -91,11 +91,11 @@
 .lights-select-box {
     width    : 400px;
     position : relative;
+    display  : flex;
 }
 
 .lights-select-box label {
-    width   : 150px;
-    display : inline-block;
+    width : 150px;
 }
 
 .lights-select {

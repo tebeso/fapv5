@@ -26,11 +26,10 @@ body {
 
 #fap-main {
     background : url(/images/fap/background.png) no-repeat;
+    width      : 1024px;
     height     : 768px;
     position   : absolute;
-    width      : 1024px;
 }
-
 
 #fap-page-title {
     color          : #FFFFFF;
@@ -44,11 +43,11 @@ body {
     width          : 500px;
 }
 
-#fap-screensaver {
-    background : #000000 url(/images/fap/screensaver.png) no-repeat center;
+#fap-maintenance-mode {
+    background : #000000 url(/images/fap/maintenance.png) no-repeat center;
     display    : none;
-    height     : 768px;
     width      : 1024px;
+    height     : 768px;
 }
 
 #fap-help {
@@ -299,6 +298,11 @@ body {
 
 .fap-box-tiny {
     height : 50px;
+    width  : 200px;
+}
+
+.fap-box-smaller {
+    height : 75px;
     width  : 200px;
 }
 
@@ -651,11 +655,11 @@ body {
 .lights-select-box {
     width    : 400px;
     position : relative;
+    display  : flex;
 }
 
 .lights-select-box label {
-    width   : 150px;
-    display : inline-block;
+    width : 150px;
 }
 
 .lights-select {
@@ -694,7 +698,12 @@ body {
     line-height : 280px;
 }
 
-.temperature-select-box{
-    position: relative;
+.temperature-select-box {
+    position : relative;
+    display  : flex;
+}
+
+.temperature-select-box select {
+    width : 300px;
 }
 

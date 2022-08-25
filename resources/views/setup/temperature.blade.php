@@ -1,50 +1,50 @@
 @extends('general.aircraft')
 @section('module')
     @if(\Illuminate\Support\Env::get('AIRCRAFT') === 'A320')
-        <div class="temperature-block temperature-block-320">1</div>
-        <div class="temperature-block temperature-block-320">2</div>
+        <div id="temperature-320-zone-1" class="temperature-block temperature-block-320" style="top:80px;">X.X</div>
+        <div id="temperature-320-zone-2" class="temperature-block temperature-block-320" style="top:110px;">X.X</div>
     @elseif(\Illuminate\Support\Env::get('AIRCRAFT') === 'A346')
-        <div id="temperature-346-zone-1" class="temperature-block temperature-block-346" style="top:80px;">23.0</div>
-        <div id="temperature-346-zone-2" class="temperature-block temperature-block-346" style="top:90px;">24.0</div>
-        <div id="temperature-346-zone-3" class="temperature-block temperature-block-346" style="top:100px;">25.0</div>
-        <div id="temperature-346-zone-4" class="temperature-block temperature-block-346" style="top:110px;">24.0</div>
+        <div id="temperature-346-zone-1" class="temperature-block temperature-block-346" style="top:80px;">X.X</div>
+        <div id="temperature-346-zone-2" class="temperature-block temperature-block-346" style="top:90px;">X.X</div>
+        <div id="temperature-346-zone-3" class="temperature-block temperature-block-346" style="top:100px;">X.X</div>
+        <div id="temperature-346-zone-4" class="temperature-block temperature-block-346" style="top:110px;">X.X</div>
 
         <div class="temperature-select-box" style="top: -278px; left: 140px;">
-            <label for="346-zone-1">Zone 1</label>
+            <label for="346-zone-1"></label>
             <select name="346-zone-1" id="346-zone-1" class="sensor-select">
                 <option></option>
-                @foreach($sensors as $id => $sensor)
-                    <option value="{{ $id }}|{{ $sensor['hub'] }}">{{ $sensor['name'] }}</option>
+                @foreach($sensors as $sensor)
+                    <option value="{{ $sensor['sensor_id'] }}|temp|{{ $sensor['hub'] }}">{{ $sensor['name'] }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="temperature-select-box" style="top: -191px; left: 140px;">
-            <label for="346-zone-1">Zone 2</label>
-            <select name="346-zone-1" id="346-zone-1" class="sensor-select">
+            <label for="346-zone-2"></label>
+            <select name="346-zone-2" id="346-zone-2" class="sensor-select">
                 <option></option>
-                @foreach($sensors as $id => $sensor)
-                    <option value="{{ $id }}|{{ $sensor['hub'] }}">{{ $sensor['name'] }}</option>
+                @foreach($sensors as $sensor)
+                    <option value="{{ $sensor['sensor_id'] }}|temp|{{ $sensor['hub'] }}">{{ $sensor['name'] }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="temperature-select-box" style="top: -100px; left: 140px;">
-            <label for="346-zone-1">Zone 3</label>
-            <select name="346-zone-1" id="346-zone-1" class="sensor-select">
+            <label for="346-zone-3"></label>
+            <select name="346-zone-3" id="346-zone-3" class="sensor-select">
                 <option></option>
                 @foreach($sensors as $id => $sensor)
-                    <option value="{{ $id }}|{{ $sensor['hub'] }}">{{ $sensor['name'] }}</option>
+                    <option value="{{ $sensor['sensor_id'] }}|temp|{{ $sensor['hub'] }}">{{ $sensor['name'] }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="temperature-select-box" style="top: -13px; left: 140px;">
-            <label for="346-zone-1">Zone 4</label>
-            <select name="346-zone-1" id="346-zone-1" class="sensor-select">
+            <label for="346-zone-4"></label>
+            <select name="346-zone-4" id="346-zone-4" class="sensor-select">
                 <option></option>
                 @foreach($sensors as $id => $sensor)
-                    <option value="{{ $id }}|{{ $sensor['hub'] }}">{{ $sensor['name'] }}</option>
+                    <option value="{{ $sensor['sensor_id'] }}|temp|{{ $sensor['hub'] }}">{{ $sensor['name'] }}</option>
                 @endforeach
             </select>
         </div>
@@ -56,17 +56,32 @@
         function getAssignedSensors() {
             $.ajax({
                 type:    'GET',
-                url:     'setup/temperature/get-assigned-temperature',
+                url:     'setup/sensors/get-assigned-sensors',
+                data:    {type: 'temp'},
                 success: function (message) {
-                    console.log(message);
-                    //$.each(JSON.parse(message), function (position, light) {
-                    //$('#' + position).val(light);
-                    //});
+                    $.each(JSON.parse(message), function (position, sensor) {
+                        $('#' + position).val(sensor);
+                    });
                 },
                 error:   function (message) {
                 },
             });
         }
+
+        $('.sensor-select').on('change', function () {
+            $.ajax({
+                type:    'GET',
+                url:     'setup/sensors/assign',
+                data:    {
+                    id:            $(this).attr('id'),
+                    selectedValue: $(this).children('option:selected').val(),
+                },
+                success: function (message) {
+                },
+                error:   function (message) {
+                },
+            });
+        });
 
         $(document).ready(function () {
             $('.fap-aircraft').css('left', '275px');

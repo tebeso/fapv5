@@ -67,7 +67,7 @@ class RaspbeeHelper implements HubInterface
             }
 
             $lights[$id] = [
-                'name'       => 'FAP-Light ' . $raspbeeLight['name'],
+                'name'       => '(FAP-Light) ' . $raspbeeLight['name'],
                 'light_id'   => $id,
                 'type'       => 'raspbee-light',
                 'state'      => $raspbeeLight['state']['on'],
@@ -88,7 +88,7 @@ class RaspbeeHelper implements HubInterface
 
             if (empty($lights) === false) {
                 $groups[$id] = [
-                    'name'       => 'FAP-Group ' . $group['name'],
+                    'name'       => '(FAP-Group) ' . $group['name'],
                     'light_id'   => $id,
                     'type'       => 'raspbee-group',
                     'state'      => $group['state']['any_on'],
@@ -100,10 +100,26 @@ class RaspbeeHelper implements HubInterface
         return $groups;
     }
 
-    public function getSensors($type = 'temperature'): array
+    public function getSensors($type = 'temp'): array
     {
+        $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/sensors');
+        $sensors  = [];
 
-        return [];
+
+        foreach ($response->json() as $id => $sensor) {
+
+            if ($type === 'temp' && $sensor['type'] === 'ZHATemperature') {
+                $sensors[$id] = [
+                    'sensor_id' => $id,
+                    'name'      => '(FAP) ' . $sensor['name'] . ' (' . $sensor['manufacturername'] . ' ' . $sensor['modelid'] . ')',
+                    'type'      => 'temp',
+                    'hub'       => 'raspbee',
+                    'state'     => MiscHelper::formatTemperature($sensor['state']['temperature']),
+                ];
+            }
+        }
+
+        return $sensors;
     }
 
     public function getClient()

@@ -18,6 +18,11 @@
     line-height : 280px;
 }
 
-.temperature-select-box{
-    position: relative;
+.temperature-select-box {
+    position : relative;
+    display  : flex;
+}
+
+.temperature-select-box select {
+    width : 300px;
 }

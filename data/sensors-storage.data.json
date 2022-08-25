@@ -1,1 +1,1 @@
-[]
+[{"id":13,"sensor_id":23,"type":"temp","hub":"hue","position":"346-zone-1"},{"id":14,"sensor_id":5,"type":"temp","hub":"raspbee","position":"346-zone-2"},{"id":15,"sensor_id":3,"type":"temp","hub":"raspbee","position":"346-zone-3"},{"id":16,"sensor_id":23,"type":"temp","hub":"hue","position":"346-zone-4"}]

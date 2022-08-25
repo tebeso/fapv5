@@ -18,6 +18,7 @@
 11. php artisan storage:link
 12. sudo service deconz-gui stop && sudo service deconz start
 13. set zigbee channel to 25 and leave/rejoin network
+14. setup cronjobs in /cronjobs folder
 
 # Notes
 - this project is using https://github.com/Lazer-Database/Lazer-Database as a database.
@@ -26,7 +27,9 @@
 # TODO
 - Bootup check (are all env vars set correctly)
 - Screen off images of different airlines
-- Light groups are not yet being handled by the deconz and phue integration of the FAP
-- make sure all ids are ints
 - implement throttle for get lights and groups
 - manual showing the bluetooth speaker connection
+- thermostats need this: https://github.com/dresden-elektronik/deconz-rest-plugin/blob/master/thermostat.cpp
+- add reinstall databases button
+- check every few minutes if hub still paired. If not, remove data from .env file and show message (be aware, could also just be no wifi)
+- test bluetooth speaker and device coupling
