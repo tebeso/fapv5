@@ -55,9 +55,6 @@ window.FapLight = class FapLight {
                             css   = 'lights-dim1';
                         }
 
-                        console.log('#light-' + position);
-                        console.log(css);
-                        console.log(areaBox);
                         areaBox.addClass(css);
                         buttonBox.find('.fap-button:contains(\'' + level + '\')').addClass('fap-button-active');
                     }

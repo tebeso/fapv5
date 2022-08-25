@@ -9,11 +9,6 @@ class FapSetupController extends Controller
         return view('setup/doors-slides');
     }
 
-    public function setupTemperature()
-    {
-        return view('setup/temperature');
-    }
-
     public function setupSmokeDetect()
     {
         return view('setup/smoke-detect');

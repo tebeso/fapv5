@@ -73,23 +73,26 @@ class HueHelper implements HubInterface
     }
 
     /**
-     * @return array|null
+     * @param $source
+     * @param $type
+     *
+     * @return array
      */
-    public function getLights(): ?array
+    public function getEntities($source, $type): array
     {
         if ($this->checkConnection() === false) {
-            return null;
+            return [];
         }
 
         $lights = [];
 
-        foreach ($this->getClient()?->getLights() as $hueLight) {
+        foreach ($source as $hueLight) {
             $id = (string)$hueLight->getId();
 
             $lights[$id] = [
-                'name'       => $hueLight->getName(),
+                'name'       => 'HUE-' . ucfirst($type) . ' ' . $hueLight->getName(),
                 'light_id'   => $id,
-                'type'       => 'hue',
+                'type'       => 'hue-' . $type,
                 'state'      => $hueLight->isOn(),
                 'brightness' => $hueLight->getBrightness(),
             ];
@@ -98,20 +101,76 @@ class HueHelper implements HubInterface
         return $lights;
     }
 
+
     /**
-     * Currently only supports temperature sensors.
-     *
-     * @param string $type
-     *
-     * @return array|null
+     * @return array
      */
-    public function getSensors(string $type = 'temperature'): ?array
+    public function getLights(): array
     {
-        if ($this->checkConnection() === false) {
-            return null;
+        $source = $this->getClient()?->getLights();
+
+        if ($source === null) {
+            return [];
         }
 
-        return $this->getClient()?->getSensors();
+        return $this->getEntities($source, 'light');
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getGroups(): array
+    {
+        $source = $this->getClient()?->getGroups();
+
+        if ($source === null) {
+            return [];
+        }
+
+        return $this->getEntities($source, 'group');
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return array
+     */
+    public function getSensors(string $type = 'temperature'): array
+    {
+        $sensors = [];
+
+        if ($this->checkConnection() === false) {
+            return [];
+        }
+
+        $sensorCollection = $this->getClient()?->getSensors();
+
+        if ($sensorCollection === null) {
+            return [];
+        }
+        foreach ($sensorCollection as $id => $sensor) {
+            if ($type === 'temperature' && isset($sensor->getState()->temperature) === true) {
+                $sensors[$id] = [
+                    'name'  => $sensor->getName(),
+                    'type'  => 'sensor-temp',
+                    'hub'   => 'hue',
+                    'state' => $this->formatTemperature($sensor->getState()->temperature),
+                ];
+            }
+        }
+
+        return $sensors;
+    }
+
+    /**
+     * @param $temperature
+     *
+     * @return string
+     */
+    protected function formatTemperature($temperature): string
+    {
+        return substr($temperature, 0, 2) . '.' . substr($temperature, 2, 1);
     }
 
     /**
@@ -138,7 +197,18 @@ class HueHelper implements HubInterface
         return !($this->getClient() === null || Env::get('HUE_IP') === '' || Env::get('HUE_USER') === '');
     }
 
-    public function setState(string $id, string $level, bool $on): void
+    public function setState(string $id, string $type, string $level, bool $on): void
+    {
+        if ($type === 'hue-group') {
+            $this->setStateGroup($id, $level, $on);
+        } elseif ($type === 'hue-light') {
+            $this->setStateLight($id, $level, $on);
+        }
+
+
+    }
+
+    public function setStateLight(string $id, string $level, bool $on): void
     {
         $lights = $this->getClient()?->getLights();
         if ($lights === null) {
@@ -152,6 +222,23 @@ class HueHelper implements HubInterface
             $lights[$id]->setSaturation(0);
         } else {
             $lights[$id]->setOn(false);
+        }
+    }
+
+    public function setStateGroup(string $id, string $level, bool $on): void
+    {
+        $groups = $this->getClient()?->getGroups();
+        if ($groups === null) {
+            return;
+        }
+
+        $groups[$id]->setOn($on);
+
+        if ($on) {
+            $groups[$id]->setBrightness($level);
+            $groups[$id]->setSaturation(0);
+        } else {
+            $groups[$id]->setOn(false);
         }
     }
 }

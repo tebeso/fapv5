@@ -32,15 +32,17 @@ class FapSetupCommand extends Command
 
             Lazer::create('lights-storage', [
                 'id'       => 'integer',
-                'light_id' => 'string',
+                'light_id' => 'integer',
                 'type'     => 'string',
+                'hub'      => 'string',
                 'position' => 'string',
             ]);
 
             Lazer::create('sensors-storage', [
                 'id'        => 'integer',
                 'sensor_id' => 'integer',
-                'type'     => 'string',
+                'type'      => 'string',
+                'hub'       => 'string',
                 'position'  => 'string',
             ]);
 

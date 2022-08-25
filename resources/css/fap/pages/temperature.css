@@ -1,0 +1,23 @@
+.temperature-block {
+    background-color : #82C7E9;
+    width            : 42px;
+    position         : relative;
+    left             : 19px;
+    text-align       : center;
+    color            : #000000;
+    font-weight      : bold;
+}
+
+.temperature-block-346 {
+    height      : 100px;
+    line-height : 100px;
+}
+
+.temperature-block-320 {
+    height      : 280px;
+    line-height : 280px;
+}
+
+.temperature-select-box{
+    position: relative;
+}

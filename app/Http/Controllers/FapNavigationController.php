@@ -38,7 +38,7 @@ class FapNavigationController extends Controller
             'button' => 'Water/<br >Waste',
             'title'  => 'WATER/WASTE',
             'menuId' => 'water-waste',
-            'type'   => 'nav-item',
+            'type'   => 'nav-item-disabled',
         ],
         [
             'button' => 'Smoke<br />Detect.',
@@ -122,7 +122,10 @@ class FapNavigationController extends Controller
             'type'   => 'nav-item',
         ],
         [
-            'type' => 'nav-item-blank',
+            'button' => 'Bridge<br /> Setup',
+            'title'  => 'BRIDGE SETUP',
+            'menuId' => 'admin/bridge-setup',
+            'type'   => 'nav-item',
         ],
         [
             'type' => 'nav-item-blank',

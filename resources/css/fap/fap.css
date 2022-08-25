@@ -17,6 +17,13 @@ body {
     user-select             : none;
 }
 
+#fap-screensaver {
+    background : #000000 url(/images/screensaver/screensaver.png) no-repeat center;
+    display    : none;
+    width      : 1024px;
+    height     : 768px;
+}
+
 #fap-main {
     background : url(/images/fap/background.png) no-repeat;
     height     : 768px;
@@ -35,12 +42,6 @@ body {
     text-transform : uppercase;
     top            : 32px;
     width          : 500px;
-}
-
-
-#fap-screen-off {
-    left : 30px;
-    top  : -64px;
 }
 
 #fap-screensaver {
@@ -116,4 +117,13 @@ body {
 
 #message {
     font-weight : bold;
+}
+
+.no-select {
+    -khtml-user-select    : none;
+    -moz-user-select      : none;
+    -ms-user-select       : none;
+    -webkit-touch-callout : none;
+    -webkit-user-select   : none;
+    user-select           : none;
 }

@@ -19,10 +19,10 @@
 <audio id="fap-audio">
     <source id="fap-audio-file" src="" type="audio/mpeg">
 </audio>
-
+<div id="fap-screensaver" class="no-select"></div>
 <div id="fap-main">
     <div id="fap-top">
-        <div id="fap-navigation-caution" class="fap-button" data-menuid="caution">
+        <div id="fap-navigation-caution" class="fap-button fap-button-inactive" data-menuid="caution">
             CAUT
         </div>
         <div id="fap-page-title" data-menuid="cabinstatus">
@@ -37,10 +37,10 @@
 
     </div>
     <div id="fap-navigation-additional-left">
-        <div id="fap-screenoff" class="fap-button fap-button-function" data-menuid="screenoff">
+        <div id="fap-screen-off" class="fap-button fap-button-function">
             Screen<br />Off
         </div>
-        <div id="fap-cabinready" class="fap-button fap-button-toggle" data-menuid="cabinready">
+        <div id="fap-cabin-ready" class="fap-button fap-button-toggle">
             Cabin<br />Ready
         </div>
     </div>

@@ -17,6 +17,13 @@ body {
     user-select             : none;
 }
 
+#fap-screensaver {
+    background : #000000 url(/images/screensaver/screensaver.png) no-repeat center;
+    display    : none;
+    width      : 1024px;
+    height     : 768px;
+}
+
 #fap-main {
     background : url(/images/fap/background.png) no-repeat;
     height     : 768px;
@@ -35,12 +42,6 @@ body {
     text-transform : uppercase;
     top            : 32px;
     width          : 500px;
-}
-
-
-#fap-screen-off {
-    left : 30px;
-    top  : -64px;
 }
 
 #fap-screensaver {
@@ -116,6 +117,15 @@ body {
 
 #message {
     font-weight : bold;
+}
+
+.no-select {
+    -khtml-user-select    : none;
+    -moz-user-select      : none;
+    -ms-user-select       : none;
+    -webkit-touch-callout : none;
+    -webkit-user-select   : none;
+    user-select           : none;
 }
 /**
  * FAP-Buttons
@@ -309,6 +319,8 @@ body {
 
 .fap-box-title {
     text-align : center;
+    font-weight: bold;
+    font-size: 13px !important;
 }
 
 
@@ -597,7 +609,7 @@ body {
     height : 88px;
 }
 
-#lights-346-rear-galley {
+#lights-346-aft-galley {
     top : 403px;
 }
 
@@ -661,5 +673,28 @@ body {
 
 .lights-brt {
     background-color : #E0DE1A;
+}
+.temperature-block {
+    background-color : #82C7E9;
+    width            : 42px;
+    position         : relative;
+    left             : 19px;
+    text-align       : center;
+    color            : #000000;
+    font-weight      : bold;
+}
+
+.temperature-block-346 {
+    height      : 100px;
+    line-height : 100px;
+}
+
+.temperature-block-320 {
+    height      : 280px;
+    line-height : 280px;
+}
+
+.temperature-select-box{
+    position: relative;
 }
 

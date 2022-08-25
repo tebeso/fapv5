@@ -76,5 +76,7 @@
 
 .fap-box-title {
     text-align : center;
+    font-weight: bold;
+    font-size: 13px !important;
 }
 

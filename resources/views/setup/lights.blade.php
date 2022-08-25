@@ -42,8 +42,8 @@
 
 
         <div class="lights-select-box" style="top: 345px; left: 140px;">
-            <label for="320-346-rear-entry">Forward Entry</label>
-            <select name="320-346-rear-entry" id="320-346-rear-entry" class="lights-select">
+            <label for="320-346-aft-entry">Forward Entry</label>
+            <select name="320-346-aft-entry" id="320-346-aft-entry" class="lights-select">
                 <option></option>
                 @foreach($lights as $light)
                     <option value="{{ $light['light_id'] }}|{{ $light['type'] }}">{{ $light['name'] }}</option>
@@ -51,14 +51,13 @@
             </select>
         </div>
 
-
     @elseif(\Illuminate\Support\Env::get('AIRCRAFT') === 'A346')
         <div id="lights-320-346-fwd-entry" class="lights lights-entry"></div>
         <div id="lights-346-first" class="lights"></div>
         <div id="lights-346-fwd-galley" class="lights lights-entry"></div>
         <div id="lights-346-business" class="lights"></div>
         <div id="lights-346-fwd-economy" class="lights"></div>
-        <div id="lights-346-rear-galley" class="lights lights-entry"></div>
+        <div id="lights-346-aft-galley" class="lights lights-entry"></div>
         <div id="lights-346-rear-economy" class="lights"></div>
         <div id="lights-320-346-aft-entry" class="lights lights-entry"></div>
 
@@ -86,7 +85,7 @@
             </select>
         </div>
 
-        <div class="lights-select-box" style="top: 38px; left: 140px;">
+        <div class="lights-select-box" style="top: 33px; left: 140px;">
             <label for="346-fwd-galley">Forward Galley</label>
             <select name="346-fwd-galley" id="346-fwd-galley" class="lights-select">
                 <option></option>
@@ -106,7 +105,7 @@
             </select>
         </div>
 
-        <div class="lights-select-box" style="top: 125px; left: 140px;">
+        <div class="lights-select-box" style="top: 120px; left: 140px;">
             <label for="346-fwd-economy">Economy Front</label>
             <select name="346-fwd-economy" id="346-fwd-economy" class="lights-select">
                 <option></option>
@@ -117,8 +116,8 @@
         </div>
 
         <div class="lights-select-box" style="top: 149px; left: 140px;">
-            <label for="346-rear-galley">Rear Galley</label>
-            <select name="346-rear-galley" id="346-rear-galley" class="lights-select">
+            <label for="346-aft-galley">Rear Galley</label>
+            <select name="346-aft-galley" id="346-aft-galley" class="lights-select">
                 <option></option>
                 @foreach($lights as $light)
                     <option value="{{ $light['light_id'] }}|{{ $light['type'] }}">{{ $light['name'] }}</option>
@@ -136,8 +135,8 @@
             </select>
         </div>
         <div class="lights-select-box" style="top: 183px; left: 140px;">
-            <label for="320-346-rear-entry">Forward Entry</label>
-            <select name="320-346-rear-entry" id="320-346-rear-entry" class="lights-select">
+            <label for="320-346-aft-entry">Aft Entry</label>
+            <select name="320-346-aft-entry" id="320-346-aft-entry" class="lights-select">
                 <option></option>
                 @foreach($lights as $light)
                     <option value="{{ $light['light_id'] }}|{{ $light['type'] }}">{{ $light['name'] }}</option>
@@ -177,6 +176,7 @@
         }
 
         $(document).ready(function () {
+            $('.fap-aircraft').css('left','275px');
             getAssignedLights();
         });
     </script>

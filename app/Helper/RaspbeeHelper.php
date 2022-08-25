@@ -61,16 +61,15 @@ class RaspbeeHelper implements HubInterface
         $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/lights');
         $lights   = [];
 
-        foreach ($response->json() as $raspbeeLight) {
+        foreach ($response->json() as $id => $raspbeeLight) {
             if ($raspbeeLight['modelid'] === 'RaspBee II') {
                 continue;
             }
 
-            $id          = $raspbeeLight['uniqueid'];
             $lights[$id] = [
-                'name'       => $raspbeeLight['name'],
+                'name'       => 'FAP-Light ' . $raspbeeLight['name'],
                 'light_id'   => $id,
-                'type'       => 'raspbee',
+                'type'       => 'raspbee-light',
                 'state'      => $raspbeeLight['state']['on'],
                 'brightness' => $raspbeeLight['state']['bri'],
             ];
@@ -78,9 +77,33 @@ class RaspbeeHelper implements HubInterface
         return $lights;
     }
 
-    public function getSensors()
+    public function getGroups(): array
     {
-        // TODO: Implement getSensors() method.
+        $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/groups');
+        $groups   = [];
+
+        foreach ($response->json() as $group) {
+            $id     = $group['id'];
+            $lights = $this->getLights();
+
+            if (empty($lights) === false) {
+                $groups[$id] = [
+                    'name'       => 'FAP-Group ' . $group['name'],
+                    'light_id'   => $id,
+                    'type'       => 'raspbee-group',
+                    'state'      => $group['state']['any_on'],
+                    'brightness' => $lights[$group['lights'][0]]['brightness'],
+                ];
+            }
+        }
+
+        return $groups;
+    }
+
+    public function getSensors($type = 'temperature'): array
+    {
+
+        return [];
     }
 
     public function getClient()
@@ -93,13 +116,34 @@ class RaspbeeHelper implements HubInterface
         // TODO: Implement checkConnection() method.
     }
 
-    public function setState(string $id, string $level, bool $on): void
+    public function setState(string $id, string $type, string $level, bool $on): void
     {
-        Http::put(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/lights/state', [
+        if ($type === 'raspbee-group') {
+            $this->setStateGroup($id, $level, $on);
+        } elseif ($type === 'raspbee-light') {
+            $this->setStateLight($id, $level, $on);
+        }
+    }
+
+    public function setStateLight(string $id, string $level, bool $on): void
+    {
+        $url = 'http://' . Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/lights/' . $id . '/state';
+
+        Http::put($url, [
             'on'             => $on,
-            'bri'            => $level,
+            'bri'            => (int)$level,
             'transitiontime' => 0,
-            'sat'            => 0,
+        ]);
+    }
+
+    public function setStateGroup(string $id, string $level, bool $on): void
+    {
+        $url = 'http://' . Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/groups/' . $id . '/action';
+
+        Http::put($url, [
+            'on'             => $on,
+            'bri'            => (int)$level,
+            'transitiontime' => 0,
         ]);
     }
 }

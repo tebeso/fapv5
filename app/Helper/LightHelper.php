@@ -7,6 +7,7 @@ use JsonException;
 use Lazer\Classes\Database as Lazer;
 use Lazer\Classes\LazerException;
 use Illuminate\Http\Request;
+use Throwable;
 
 class LightHelper
 {
@@ -22,9 +23,12 @@ class LightHelper
 
         $light = self::getAssignedLightByPosition($position);
 
-        if ($light['type'] === 'hue') {
-            $bridge = new HueHelper();
+        if ($light === false) {
+            return;
+        }
 
+        if (in_array($light['type'], ['hue-group', 'hue-light'])) {
+            $bridge = new HueHelper();
         } else {
             $bridge = new RaspbeeHelper();
         }
@@ -37,7 +41,7 @@ class LightHelper
             $newLevel = '50';
         }
 
-        $bridge->setState($light['light_id'], $newLevel, $on);
+        $bridge->setState($light['light_id'], $light['type'], $newLevel, $on);
     }
 
     /**
@@ -48,10 +52,13 @@ class LightHelper
         $hue     = new HueHelper();
         $raspbee = new RaspbeeHelper();
 
-        $hueLights     = $hue->getLights();
-        $raspbeeLights = $raspbee->getLights();
+        $hueLights = $hue->getLights();
+        $hueGroups = $hue->getGroups();
 
-        return [...$hueLights, ...$raspbeeLights];
+        $raspbeeLights = $raspbee->getLights();
+        $raspbeeGroups = $raspbee->getGroups();
+
+        return [...$hueLights, ...$hueGroups, ...$raspbeeLights, $raspbeeGroups];
     }
 
 
@@ -61,20 +68,37 @@ class LightHelper
      */
     public static function getStateAssigned(): JsonResponse
     {
-        $hue     = new HueHelper();
-        $raspbee = new RaspbeeHelper();
+        try {
+            $hue       = new HueHelper();
+            $hueLights = $hue->getLights();
+            $hueGroups = $hue->getGroups();
+        } catch (Throwable $e) {
+            $hueLights = [];
+            $hueGroups = [];
+        }
 
-        $hueLights     = $hue->getLights();
-        $raspbeeLights = $raspbee->getLights();
+        try {
+            $raspbee       = new RaspbeeHelper();
+            $raspbeeLights = $raspbee->getLights();
+            $raspbeeGroups = $raspbee->getGroups();
+        } catch (Throwable $e) {
+            $raspbeeLights = [];
+            $raspbeeGroups = [];
+        }
 
-        $allLights      = array_replace($hueLights, $raspbeeLights);
+
+        $allLights      = [...$hueLights, ...$hueGroups, ...$raspbeeLights, ...$raspbeeGroups];
         $assignedLights = [];
 
         foreach (json_decode(self::getAssignedLights(), true, 512, JSON_THROW_ON_ERROR) as $position => $assignedLight) {
 
             $light = explode('|', $assignedLight);
 
-            $assignedLights[$position] = $allLights[$light[0]];
+            foreach ($allLights as $allLight) {
+                if ((int)$allLight['light_id'] === (int)$light[0] && $allLight['type'] === $light[1]) {
+                    $assignedLights[$position] = $allLight;
+                }
+            }
         }
 
         return Response()->json($assignedLights);
@@ -83,7 +107,7 @@ class LightHelper
     /**
      * @throws LazerException
      */
-    public static function assignLight(\Illuminate\Http\Request $request): void
+    public static function assignLight(Request $request): void
     {
         $position      = $request->get('id');
         $lightsStorage = Lazer::table('lights-storage');
@@ -95,10 +119,10 @@ class LightHelper
 
         $values = explode('|', $request->get('selectedValue'));
 
-        $lightsId  = $values[0];
+        $lightsId  = (int)$values[0];
         $lightType = $values[1];
 
-        $row = $lightsStorage->where('light_id', '=', $lightsId)->find();
+        $row = $lightsStorage->where('position', '=', $position)->find();
 
         if ($row->count() > 0) {
             $row->setField('light_id', $lightsId);

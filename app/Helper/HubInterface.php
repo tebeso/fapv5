@@ -21,5 +21,5 @@ interface HubInterface
 
     public function checkConnection();
 
-    public function setState(string $id, string $level, bool $on): void;
+    public function setState(string $id, string $type, string $level, bool $on): void;
 }

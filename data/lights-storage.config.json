@@ -1,1 +1,1 @@
-{"last_id":23,"schema":{"id":"integer","light_id":"string","type":"string","position":"string"},"relations":{}}
+{"last_id":18,"schema":{"id":"integer","light_id":"integer","type":"string","hub":"string","position":"string"},"relations":{}}

@@ -13,11 +13,32 @@ window.FapMain = class FapMain {
             });
 
             $(document).on('click', '.fap-button-navigation', function () {
-                $this.loadPageContent($(this));
+                if (!$(this).hasClass('fap-button-inactive')) {
+                    $this.loadPageContent($(this));
+                }
             });
 
             $('#fap-cabin-status').on('click', function () {
                 $this.loadPageContent($(this));
+            });
+
+            $('#fap-screen-off').on('click', function () {
+                /** active screensaver */
+                setTimeout(function () {
+                    $('#fap-main').hide();
+                    $('#fap-screensaver').show();
+                }, 200);
+            });
+
+            $('#fap-screensaver').on('click', function () {
+                setTimeout(function () {
+                    $('#fap-screensaver').hide();
+                    $('#fap-main').show();
+                }, 200);
+            });
+
+            $('.fap-button-toggle').on('click', function () {
+                $(this).toggleClass('fap-button-active');
             });
         });
     }
@@ -133,6 +154,10 @@ window.FapMain = class FapMain {
             if ($('#fap-navigation').data('currentMenuId') === item.menuId) {
                 element.addClass('fap-button-active');
             }
+        }
+
+        if (item.type === 'nav-item-disabled') {
+            element = $('<div class="fap-button fap-button-inactive fap-button-navigation">' + item.button + '</div>');
         }
 
         element.insertBefore(lastArrow);
