@@ -116,6 +116,8 @@ body {
 
 #message {
     font-weight : bold;
+    height      : 75px;
+    line-height : 20px;
 }
 
 .no-select {

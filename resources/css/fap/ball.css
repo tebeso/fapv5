@@ -1,0 +1,117 @@
+.ball {
+    display          : inline-block;
+    width            : 100%;
+    height           : 100%;
+    border-radius    : 100%;
+    position         : relative;
+    background-color : #4964A3;
+
+}
+
+.ball:before {
+    content        : '';
+    position       : absolute;
+    top            : 1%;
+    left           : 5%;
+    width          : 90%;
+    height         : 90%;
+    border-radius  : 100%;
+    background     : radial-gradient(circle at top, white, rgba(255, 255, 255, 0) 30%);
+    -webkit-filter : blur(10px);
+    filter         : blur(10px);
+    z-index        : 2;
+}
+
+
+.ball:after {
+    content           : '';
+    position          : absolute;
+    display           : none;
+    top               : 4%;
+    left              : 4%;
+    width             : 82%;
+    height            : 80%;
+    border-radius     : 100%;
+    z-index           : 2;
+    -webkit-transform : rotateZ(-30deg);
+    transform         : rotateZ(-30deg);
+}
+
+
+.ball .shadow {
+    position          : absolute;
+    width             : 100%;
+    height            : 100%;
+    background        : radial-gradient(circle, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);
+    -webkit-transform : rotateX(90deg) translateZ(-160px);
+    transform         : rotateX(90deg) translateZ(-160px);
+    z-index           : 1;
+}
+
+.ball.plain {
+    background : black;
+}
+
+.ball.plain:before, .ball.plain:after {
+    display : none;
+}
+
+.ball.bubble {
+    width  : 60px;
+    height : 60px;
+    left   : 60px;
+    top    : 6px;
+    border : 1px solid #FFFFFF;
+}
+
+.ball.bubble:after {
+    display    : block;
+    background : radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 74%, white 80%, white 84%, rgba(255, 255, 255, 0) 100%);
+}
+
+.pipe {
+    height           : 250px;
+    width            : 24px;
+    position         : relative;
+    background-color : #4964A3;
+    z-index          : 2;
+    left             : 78px;
+    top              : 9px;
+    border-left      : 1px solid #A0A5A9;
+    border-right     : 1px solid #A0A5A9;
+}
+
+.white-line {
+    background : linear-gradient(to right, rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+    height     : 250px;
+    width      : 7px;
+}
+
+.temp-test {
+    background      : linear-gradient(#A8ADB1 50%, #4964A3 50%);
+    background-size : 30% 170%;
+}
+
+.pipe-top {
+    width                   : 24px;
+    height                  : 12px; /* as the half of the width */
+    border-top-left-radius  : 21px; /* 100px of height + 10px of border */
+    border-top-right-radius : 21px; /* 100px of height + 10px of border */
+    border                  : 1px solid #A0A5A9;
+    border-bottom           : 0;
+    position                : relative;
+    top                     : 10px;
+    left                    : 78px;
+}
+
+.pipe-scale {
+    position : relative;
+    right    : -53px;
+    top      : -295px;
+}
+
+.pipe-scale div {
+    font-weight : bold;
+    position    : absolute;
+}

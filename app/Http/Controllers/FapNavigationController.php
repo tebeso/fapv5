@@ -128,7 +128,10 @@ class FapNavigationController extends Controller
             'type'   => 'nav-item',
         ],
         [
-            'type' => 'nav-item-blank',
+            'button' => 'Sreen<br /> Saver',
+            'title'  => 'SCREENSAVER',
+            'menuId' => 'admin/screensaver',
+            'type'   => 'nav-item',
         ],
         [
             'type' => 'nav-item-blank',

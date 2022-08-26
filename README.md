@@ -26,8 +26,6 @@
 
 # TODO
 - Bootup check (are all env vars set correctly)
-- Screen off images of different airlines
-- implement throttle for get lights and groups
 - manual showing the bluetooth speaker connection
 - thermostats need this: https://github.com/dresden-elektronik/deconz-rest-plugin/blob/master/thermostat.cpp
 - add reinstall databases button

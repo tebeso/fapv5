@@ -26,3 +26,11 @@
 .temperature-select-box select {
     width : 300px;
 }
+
+#temperature-scale {
+    width : 60%;
+}
+
+#temperature-setter {
+    width : 40%;
+}

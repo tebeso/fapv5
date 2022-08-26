@@ -4,6 +4,7 @@ use App\Helper\LightHelper;
 use App\Helper\SensorHelper;
 use App\Http\Controllers\FapAdminBridgeController;
 use App\Http\Controllers\FapAdminControlController;
+use App\Http\Controllers\FapAdminScreensaver;
 use App\Http\Controllers\FapAudioController;
 use App\Http\Controllers\FapCabinStatusController;
 use App\Http\Controllers\FapDoorSlideController;
@@ -76,3 +77,6 @@ Route::group(
 Route::get('/admin/fap-control', [FapAdminControlController::class, 'index']);
 Route::get('/admin/fap-control/send-command', [FapAdminControlController::class, 'sendCommand']);
 Route::get('/admin/bridge-setup', [FapAdminBridgeController::class, 'index']);
+Route::get('/admin/screensaver', [FapAdminScreensaver::class, 'index']);
+Route::get('/admin/screensaver/change', [FapAdminScreensaver::class, 'changeScreensaver']);
+
