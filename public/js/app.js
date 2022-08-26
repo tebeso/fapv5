@@ -3177,7 +3177,7 @@ window.FapSensor = /*#__PURE__*/function () {
     setInterval(function () {
       var title = $('#fap-page-title').text().trim();
 
-      if (title === 'TEMPERATURE' || title === 'SETUP TEMPERATURE' || title === 'CABIN STATUS') {
+      if (title === 'CABIN TEMPERATURE' || title === 'SETUP CABIN TEMPERATURE' || title === 'CABIN STATUS') {
         $this.getTemperatureState();
         $this.loadTempScale();
       }

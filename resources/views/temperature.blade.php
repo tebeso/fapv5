@@ -37,7 +37,7 @@
             <div style="display:flex;">
                 <div id="temperature-scale">
                     <div class="pipe-top"></div>
-                    <div class="pipe bubble temp-test">
+                    <div class="pipe bubble">
                         <div class="white-line"></div>
                     </div>
                     <div class="ball bubble"></div>

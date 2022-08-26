@@ -5,12 +5,11 @@ window.FapSensor = class FapSensor {
 
         let $this = this;
 
-
         setInterval(
             function () {
                 let title = $('#fap-page-title').text().trim();
 
-                if (title === 'TEMPERATURE' || title === 'SETUP TEMPERATURE' || title === 'CABIN STATUS') {
+                if (title === 'CABIN TEMPERATURE' || title === 'SETUP CABIN TEMPERATURE' || title === 'CABIN STATUS') {
                     $this.getTemperatureState();
                     $this.loadTempScale();
                 }

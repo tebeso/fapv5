@@ -30,7 +30,7 @@ class FapNavigationController extends Controller
         ],
         [
             'button' => 'Temp.',
-            'title'  => 'TEMPERATURE',
+            'title'  => 'CABIN TEMPERATURE',
             'menuId' => 'temperature',
             'type'   => 'nav-item',
         ],
@@ -84,7 +84,7 @@ class FapNavigationController extends Controller
         ],
         [
             'button' => 'Setup<br /> Temp.',
-            'title'  => 'SETUP TEMPERATURE',
+            'title'  => 'SETUP CABIN TEMPERATURE',
             'menuId' => 'setup/temperature',
             'type'   => 'nav-item',
         ],

@@ -73,12 +73,13 @@
     height           : 250px;
     width            : 24px;
     position         : relative;
-    background-color : #4964A3;
     z-index          : 2;
     left             : 78px;
     top              : 9px;
     border-left      : 1px solid #A0A5A9;
     border-right     : 1px solid #A0A5A9;
+    background      : linear-gradient(#A8ADB1 50%, #4964A3 50%);
+    background-size : 200% 0%;
 }
 
 .white-line {
@@ -86,11 +87,6 @@
     rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
     height     : 250px;
     width      : 7px;
-}
-
-.temp-test {
-    background      : linear-gradient(#A8ADB1 50%, #4964A3 50%);
-    background-size : 30% 170%;
 }
 
 .pipe-top {
