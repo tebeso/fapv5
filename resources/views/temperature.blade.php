@@ -8,25 +8,25 @@
              style="top:110px;">X.X
         </div>
     @elseif(\Illuminate\Support\Env::get('AIRCRAFT') === 'A346')
-        <div id="temperature-346-zone-1" data-zone="1" class="temperature-block temperature-block-346"
+        <div id="temperature-346-zone-1" data-zone="Zone 1" class="temperature-block temperature-block-346"
              style="top:80px;">X.X
         </div>
-        <div id="temperature-346-zone-2" data-zone="2" class="temperature-block temperature-block-346"
+        <div id="temperature-346-zone-2" data-zone="Zone 2" class="temperature-block temperature-block-346"
              style="top:90px;">X.X
         </div>
-        <div id="temperature-346-zone-3" data-zone="3" class="temperature-block temperature-block-346"
+        <div id="temperature-346-zone-3" data-zone="Zone 3" class="temperature-block temperature-block-346"
              style="top:100px;">X.X
         </div>
-        <div id="temperature-346-zone-4" data-zone="4" class="temperature-block temperature-block-346"
+        <div id="temperature-346-zone-4" data-zone="Zone 4" class="temperature-block temperature-block-346"
              style="top:110px;">X.X
         </div>
 
         <div id="fap-zone-switcher-box"
              style="position: relative; top:-400px; left:-200px; width: 460px; height:550px;">
-            <div class="fap-button fap-zone-switcher" style="top:100px; left:130px;" data-zone="1">Zone 1</div>
-            <div class="fap-button fap-zone-switcher" style="top:215px; left:240px;" data-zone="2">Zone 2</div>
-            <div class="fap-button fap-zone-switcher" style="top:322px; left: 21px;" data-zone="3">Zone 3</div>
-            <div class="fap-button fap-zone-switcher" style="top:435px; left:131px;" data-zone="4">Zone 4</div>
+            <div class="fap-button fap-zone-switcher fap-button-active" style="top:100px; left:130px;" data-zone="Zone 1">Zone 1</div>
+            <div class="fap-button fap-zone-switcher" style="top:215px; left:240px;" data-zone="Zone 2">Zone 2</div>
+            <div class="fap-button fap-zone-switcher" style="top:322px; left: 21px;" data-zone="Zone 3">Zone 3</div>
+            <div class="fap-button fap-zone-switcher" style="top:435px; left:131px;" data-zone="Zone 4">Zone 4</div>
         </div>
     @else
         NO AIRCRAFT SELECTED
@@ -41,6 +41,7 @@
                         <div class="white-line"></div>
                     </div>
                     <div class="ball bubble"></div>
+                    <div id="ball-temp" class="bold-text" style="position: relative;top: -37px; left:70px;">X.X°C</div>
 
                     <div class="pipe-scale">
                         <div>30 -</div>
@@ -79,42 +80,5 @@
     </div>
     <script>
         $('.fap-aircraft').css('left', '663px');
-
-        zoneSwitcher = $('.fap-zone-switcher');
-
-        function getAssignedSensors() {
-            $.ajax({
-                type:    'GET',
-                url:     'setup/sensors/get-assigned-sensors',
-                data:    {type: 'temp'},
-                success: function (message) {
-                    $.each(JSON.parse(message), function (position, sensor) {
-                        $('#' + position).val(sensor);
-                    });
-
-                    loadTempScale();
-                },
-            });
-        }
-
-        function loadTempScale() {
-            let activeZoneButton = $('#fap-zone-switcher-box').find('.fap-button-active');
-            let activeZone       = activeZoneButton.data('zone');
-            let activeZoneTemp   = $('.temperature-block[data-zone=' + activeZone + ']').text();
-
-            console.log(activeZoneTemp);
-        }
-
-        getAssignedSensors();
-
-        $(document).ready(function () {
-            $(document).on('click', '.fap-zone-switcher', function () {
-                $('#fap-zone-switcher-box').find('.fap-button-active').removeClass('fap-button-active');
-                $(this).addClass('fap-button-active');
-                loadTempScale();
-            });
-
-            zoneSwitcher.first().addClass('fap-button-active');
-        });
     </script>
 @endsection
