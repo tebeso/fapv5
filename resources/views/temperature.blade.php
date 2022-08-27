@@ -23,7 +23,9 @@
 
         <div id="fap-zone-switcher-box"
              style="position: relative; top:-400px; left:-200px; width: 460px; height:550px;">
-            <div class="fap-button fap-zone-switcher fap-button-active" style="top:100px; left:130px;" data-zone="Zone 1">Zone 1</div>
+            <div class="fap-button fap-zone-switcher fap-button-active" style="top:100px; left:130px;"
+                 data-zone="Zone 1">Zone 1
+            </div>
             <div class="fap-button fap-zone-switcher" style="top:215px; left:240px;" data-zone="Zone 2">Zone 2</div>
             <div class="fap-button fap-zone-switcher" style="top:322px; left: 21px;" data-zone="Zone 3">Zone 3</div>
             <div class="fap-button fap-zone-switcher" style="top:435px; left:131px;" data-zone="Zone 4">Zone 4</div>
@@ -33,11 +35,12 @@
     @endif
     <div style="left:-522px; width:276px; top:0; position: absolute;">
         <div class="fap-content-box fap-box-medium" style="top:20px; width:276px; height:360px;">
-            <div class="fap-box-title">FWD</div>
+            <div class="fap-box-title"></div>
             <div style="display:flex;">
                 <div id="temperature-scale">
                     <div class="pipe-top"></div>
                     <div class="pipe bubble">
+                        <div class="pipe-progress"></div>
                         <div class="white-line"></div>
                     </div>
                     <div class="ball bubble"></div>
@@ -52,6 +55,10 @@
                         <div style="top:150px;">20 -</div>
                         <div style="top:180px;">18 -</div>
                         <div style="top:210px;">16 -</div>
+                    </div>
+
+                    <div class="pipe-range" style="background-color:#BFE4E4">
+
                     </div>
                 </div>
                 <div id="temperature-setter">
@@ -70,8 +77,8 @@
                 </div>
             </div>
             <div class="fap-content-box fap-box-medium bold-text"
-                 style="top:420px; width:276px; height:125px; text-align: center; padding-top:15px;">
-                <div class="fap-button" style="left:107px;">Reset</div>
+                 style="top:400px; width:276px; height:125px; text-align: center; padding-top:15px; left:0;">
+                <div class="fap-button fap-button-inactive" style="left:107px;">Reset</div>
                 <div style="margin-top:5px;">
                     RESET TO COCKPIT<br />SELECTED TEMPERATURE<br />(ALL AREAS)
                 </div>

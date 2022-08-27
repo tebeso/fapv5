@@ -14,7 +14,7 @@ window.FapSensor = class FapSensor {
                     $this.loadTempScale();
                 }
             },
-            500,
+            1000,
         );
 
         $(document).on('click', '.fap-zone-switcher', function () {
@@ -30,40 +30,40 @@ window.FapSensor = class FapSensor {
         let activeZoneTemp   = $('.temperature-block[data-zone="' + activeZone + '"]').text().trim();
         let scaleTemp        = this.roundHalf(activeZoneTemp);
         $('#ball-temp').text(activeZoneTemp + '°C');
+        $('.fap-box-title').first().text(activeZone)
 
-        let scaleValue = 200;
+        let scaleValue = 246;
         if (scaleTemp === 17) {
-            scaleValue = 187;
+            scaleValue = 215;
         } else if (scaleTemp === 18) {
-            scaleValue = 177;
+            scaleValue = 200;
         } else if (scaleTemp === 19) {
-            scaleValue = 164;
+            scaleValue = 185;
         } else if (scaleTemp === 20) {
-            scaleValue = 153;
+            scaleValue = 170;
         } else if (scaleTemp === 21) {
-            scaleValue = 131;
+            scaleValue = 155;
         } else if (scaleTemp === 22) {
-            scaleValue = 129;
+            scaleValue = 140;
         } else if (scaleTemp === 23) {
-            scaleValue = 116;
+            scaleValue = 125;
         } else if (scaleTemp === 24) {
-            scaleValue = 104;
+            scaleValue = 110;
         } else if (scaleTemp === 25) {
-            scaleValue = 92;
+            scaleValue = 95;
         } else if (scaleTemp === 26) {
             scaleValue = 80;
         } else if (scaleTemp === 27) {
-            scaleValue = 68;
+            scaleValue = 65;
         } else if (scaleTemp === 28) {
-            scaleValue = 56;
+            scaleValue = 50;
         } else if (scaleTemp === 29) {
-            scaleValue = 44;
+            scaleValue = 35;
         } else if (scaleTemp === 30) {
-            scaleValue = 32;
+            scaleValue = 20;
         }
 
-        let scaleSecondaryValue = 200 - scaleValue;
-        $('.pipe').css('background-size', scaleSecondaryValue + '% ' + scaleValue + '%');
+        $('.pipe-progress').css('height', scaleValue + 'px');
     }
 
     getAssignedSensors() {

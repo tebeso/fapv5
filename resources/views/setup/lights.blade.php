@@ -167,8 +167,6 @@
                 url:     'setup/lights/get-assigned-lights',
                 success: function (message) {
                     $.each(JSON.parse(message), function (position, light) {
-                        console.log(position);
-                        console.log(light);
                         $('#' + position).val(light);
                     });
                 },

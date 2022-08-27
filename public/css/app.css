@@ -258,7 +258,7 @@ body {
 
 .fap-display-box {
     box-shadow         : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
-    background         : #D9E9F9;
+    background         : #BFE4E4;
     color              : #000000;
     border-radius      : 5px;
     padding            : 5px;
@@ -324,9 +324,9 @@ body {
 }
 
 .fap-box-title {
-    text-align : center;
-    font-weight: bold;
-    font-size: 13px !important;
+    text-align  : center;
+    font-weight : bold;
+    font-size   : 13px !important;
 }
 
 
@@ -581,8 +581,16 @@ body {
     top              : 9px;
     border-left      : 1px solid #A0A5A9;
     border-right     : 1px solid #A0A5A9;
-    background      : linear-gradient(#A8ADB1 50%, #4964A3 50%);
-    background-size : 200% 0%;
+    background-color : #4964A3;
+    background-size  : 100%;
+}
+
+.pipe-progress {
+    background-color: #A8ADB1;
+    height:0;
+    width:24px;
+    position:absolute;
+    z-index: 1;
 }
 
 .white-line {
@@ -590,6 +598,8 @@ body {
     rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
     height     : 250px;
     width      : 7px;
+    position:absolute;
+    z-index: 2;
 }
 
 .pipe-top {
@@ -607,7 +617,7 @@ body {
 .pipe-scale {
     position : relative;
     right    : -53px;
-    top      : -295px;
+    top      : -310px;
 }
 
 .pipe-scale div {

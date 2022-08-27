@@ -12,7 +12,7 @@
     -moz-box-shadow    : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
     -webkit-box-shadow : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
     box-shadow         : inset 2px 2px 2px 0 #2F2F2F, inset -2px -2px 2px #DDDDDD;
-    background         : #D9E9F9;
+    background         : #BFE4E4;
     color              : #000000;
     border-radius      : 5px;
     padding            : 5px;
@@ -80,8 +80,8 @@
 }
 
 .fap-box-title {
-    text-align : center;
-    font-weight: bold;
-    font-size: 13px !important;
+    text-align  : center;
+    font-weight : bold;
+    font-size   : 13px !important;
 }
 
