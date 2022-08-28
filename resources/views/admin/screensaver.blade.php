@@ -23,7 +23,8 @@
             data:    {file: file},
             success: function () {
                 // show popup with notice, that a restart might be required if the image doesnt change
-                window.fapMain.showPopup('Screensaver has been changed. A restart might be required, if the old image still appears.');
+                window.fapMain.showPopup('Screensaver has been changed.');
+                $('#fap-screensaver').css('background-image', 'url(images/screensaver/'+file+')');
             },
         });
     });
