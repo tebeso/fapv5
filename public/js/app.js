@@ -2481,6 +2481,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fap_light__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fap_light__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _fap_sensor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./fap/sensor */ "./resources/js/fap/sensor.js");
 /* harmony import */ var _fap_sensor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fap_sensor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _fap_temperature__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./fap/temperature */ "./resources/js/fap/temperature.js");
+/* harmony import */ var _fap_temperature__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fap_temperature__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -3170,8 +3173,62 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 window.FapSensor = /*#__PURE__*/function () {
   function FapSensor() {
     _classCallCheck(this, FapSensor);
+  }
 
-    this.getAssignedSensors();
+  _createClass(FapSensor, [{
+    key: "loadEvents",
+    value: function loadEvents() {
+      $('.sensor-select').on('change', function () {
+        console.log('change');
+        $.ajax({
+          type: 'GET',
+          url: 'setup/sensors/assign',
+          data: {
+            id: $(this).attr('id'),
+            selectedValue: $(this).children('option:selected').val()
+          }
+        });
+      });
+    }
+  }, {
+    key: "getAssignedSensors",
+    value: function getAssignedSensors(type) {
+      $.ajax({
+        type: 'GET',
+        url: 'setup/sensors/get-assigned-sensors',
+        data: {
+          type: type
+        },
+        success: function success(message) {
+          $.each(JSON.parse(message), function (position, sensor) {
+            $('#' + position).val(sensor);
+          });
+        }
+      });
+    }
+  }]);
+
+  return FapSensor;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/fap/temperature.js":
+/*!*****************************************!*\
+  !*** ./resources/js/fap/temperature.js ***!
+  \*****************************************/
+/***/ (() => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+window.FapTemperature = /*#__PURE__*/function () {
+  function FapTemperature() {
+    _classCallCheck(this, FapTemperature);
+
     this.getTemperatureState();
     var $this = this;
     setInterval(function () {
@@ -3189,68 +3246,66 @@ window.FapSensor = /*#__PURE__*/function () {
     });
   }
 
-  _createClass(FapSensor, [{
+  _createClass(FapTemperature, [{
     key: "loadTempScale",
     value: function loadTempScale() {
       var activeZoneButton = $('#fap-zone-switcher-box').find('.fap-button-active');
       var activeZone = activeZoneButton.data('zone');
-      var activeZoneTemp = $('.temperature-block[data-zone="' + activeZone + '"]').text().trim();
-      var scaleTemp = this.roundHalf(activeZoneTemp);
+      var activeZoneBlock = $('.temperature-block[data-zone="' + activeZone + '"]');
+      var activeZoneTemp = activeZoneBlock.text().trim();
+      var activeZoneTarget = this.formatTemperature(activeZoneBlock.data('target'));
       $('#ball-temp').text(activeZoneTemp + '°C');
       $('.fap-box-title').first().text(activeZone);
+
+      if (activeZoneTarget === false) {
+        $('.fap-display-box').text('-');
+        $('.fap-up-arrow').addClass('fap-arrow-inactive').parent().addClass('fap-button-inactive');
+        $('.fap-down-arrow').addClass('fap-arrow-inactive').parent().addClass('fap-button-inactive');
+      } else {
+        $('.fap-display-box').text(activeZoneTarget + '°C');
+        $('.fap-up-arrow').removeClass('fap-arrow-inactive').parent().removeClass('fap-button-inactive');
+        $('.fap-down-arrow').removeClass('fap-arrow-inactive').parent().removeClass('fap-button-inactive');
+      }
+
+      var scaleTemp = this.revertFormatTemperature(activeZoneTemp);
       var scaleValue = 246;
 
-      if (scaleTemp === 17) {
+      if (scaleTemp === 1700) {
         scaleValue = 215;
-      } else if (scaleTemp === 18) {
+      } else if (scaleTemp === 1800) {
         scaleValue = 200;
-      } else if (scaleTemp === 19) {
+      } else if (scaleTemp === 1900) {
         scaleValue = 185;
-      } else if (scaleTemp === 20) {
+      } else if (scaleTemp === 2000) {
         scaleValue = 170;
-      } else if (scaleTemp === 21) {
+      } else if (scaleTemp === 2100) {
         scaleValue = 155;
-      } else if (scaleTemp === 22) {
+      } else if (scaleTemp === 2200) {
         scaleValue = 140;
-      } else if (scaleTemp === 23) {
+      } else if (scaleTemp === 2300) {
         scaleValue = 125;
-      } else if (scaleTemp === 24) {
+      } else if (scaleTemp === 2400) {
         scaleValue = 110;
-      } else if (scaleTemp === 25) {
+      } else if (scaleTemp === 2500) {
         scaleValue = 95;
-      } else if (scaleTemp === 26) {
+      } else if (scaleTemp === 2600) {
         scaleValue = 80;
-      } else if (scaleTemp === 27) {
+      } else if (scaleTemp === 2700) {
         scaleValue = 65;
-      } else if (scaleTemp === 28) {
+      } else if (scaleTemp === 2800) {
         scaleValue = 50;
-      } else if (scaleTemp === 29) {
+      } else if (scaleTemp === 2900) {
         scaleValue = 35;
-      } else if (scaleTemp === 30) {
+      } else if (scaleTemp === 3000) {
         scaleValue = 20;
       }
 
       $('.pipe-progress').css('height', scaleValue + 'px');
     }
   }, {
-    key: "getAssignedSensors",
-    value: function getAssignedSensors() {
-      $.ajax({
-        type: 'GET',
-        url: 'setup/sensors/get-assigned-sensors',
-        data: {
-          type: 'temp'
-        },
-        success: function success(message) {
-          $.each(JSON.parse(message), function (position, sensor) {
-            $('#' + position).val(sensor);
-          });
-        }
-      });
-    }
-  }, {
     key: "getTemperatureState",
     value: function getTemperatureState() {
+      var $this = this;
       $.ajax({
         type: 'GET',
         url: 'temperature/get-state-assigned',
@@ -3259,7 +3314,8 @@ window.FapSensor = /*#__PURE__*/function () {
             var positionBlock = $('#temperature-' + position);
 
             if (positionBlock.text() !== attributes.state) {
-              positionBlock.text(attributes.state);
+              positionBlock.text($this.formatTemperature(attributes.state));
+              positionBlock.data('target', attributes.target);
             }
           });
         }
@@ -3268,11 +3324,32 @@ window.FapSensor = /*#__PURE__*/function () {
   }, {
     key: "roundHalf",
     value: function roundHalf(num) {
-      return Math.round(num);
+      return Math.round(num / 100) * 100;
+    }
+  }, {
+    key: "formatTemperature",
+    value: function formatTemperature(temperature) {
+      if (temperature === null || typeof temperature === 'undefined') {
+        return false;
+      }
+
+      temperature = temperature.toString();
+
+      if (temperature.length === 4) {
+        return temperature.substring(0, 2) + '.' + temperature.substring(2, 1);
+      } else {
+        return temperature.substring(0, 1) + '.' + temperature.substring(1, 1);
+      }
+    }
+  }, {
+    key: "revertFormatTemperature",
+    value: function revertFormatTemperature(temperature) {
+      temperature = temperature.toString();
+      return this.roundHalf(temperature[0] + temperature[1] + '00');
     }
   }]);
 
-  return FapSensor;
+  return FapTemperature;
 }();
 
 /***/ }),

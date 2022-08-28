@@ -108,13 +108,14 @@ class RaspbeeHelper implements HubInterface
 
         foreach ($response->json() as $id => $sensor) {
 
-            if ($type === 'temp' && $sensor['type'] === 'ZHATemperature') {
+            if ($type === 'temp' && ($sensor['type'] === 'ZHATemperature' || $sensor['type'] === 'ZHAThermostat')) {
                 $sensors[$id] = [
                     'sensor_id' => $id,
                     'name'      => '(FAP) ' . $sensor['name'] . ' (' . $sensor['manufacturername'] . ' ' . $sensor['modelid'] . ')',
                     'type'      => 'temp',
                     'hub'       => 'raspbee',
-                    'state'     => MiscHelper::formatTemperature($sensor['state']['temperature']),
+                    'state'     => $sensor['state']['temperature'],
+                    'target'    => isset($sensor['config']['heatsetpoint']) === true ? $sensor['config']['heatsetpoint'] : null,
                 ];
             }
         }

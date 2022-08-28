@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ mix('js/app.js') }}"></script>
     <script>
-        window.fapMain   = new FapMain();
-        window.fapAudio  = new FapAudio();
-        window.fapLight  = new FapLight();
-        window.fapSensor = new FapSensor();
+        window.fapMain        = new FapMain();
+        window.fapAudio       = new FapAudio();
+        window.fapLight       = new FapLight();
+        window.fapSensor      = new FapSensor();
+        window.fapTemperature = new FapTemperature();
 
         window.fapMain.getNavigationItems(1);
     </script>

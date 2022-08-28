@@ -1,1 +1,1 @@
-{"last_id":16,"schema":{"id":"integer","sensor_id":"integer","type":"string","hub":"string","position":"string"},"relations":{}}
+{"last_id":20,"schema":{"id":"integer","sensor_id":"integer","type":"string","hub":"string","position":"string"},"relations":{}}

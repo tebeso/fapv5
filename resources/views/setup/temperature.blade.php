@@ -53,39 +53,11 @@
     @endif
 
     <script>
-        function getAssignedSensors() {
-            $.ajax({
-                type:    'GET',
-                url:     'setup/sensors/get-assigned-sensors',
-                data:    {type: 'temp'},
-                success: function (message) {
-                    $.each(JSON.parse(message), function (position, sensor) {
-                        $('#' + position).val(sensor);
-                    });
-                },
-                error:   function (message) {
-                },
-            });
-        }
-
-        $('.sensor-select').on('change', function () {
-            $.ajax({
-                type:    'GET',
-                url:     'setup/sensors/assign',
-                data:    {
-                    id:            $(this).attr('id'),
-                    selectedValue: $(this).children('option:selected').val(),
-                },
-                success: function (message) {
-                },
-                error:   function (message) {
-                },
-            });
-        });
-
         $(document).ready(function () {
             $('.fap-aircraft').css('left', '275px');
-            getAssignedSensors();
+
+            window.fapSensor.loadEvents();
+            window.fapSensor.getAssignedSensors('temp');
         });
     </script>
 @endsection

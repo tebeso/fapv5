@@ -67,8 +67,8 @@
                     <div class="bold-text" style="font-size: 13px; text-align: center; position: absolute; top:65px;">
                         SELECTED<br />TEMPERATURE
                     </div>
-                    <div class="fap-display-box" style="position: absolute; top:110px; left:185px; padding: 10px;">
-                        23.0°C
+                    <div class="fap-display-box" style="position: absolute; top:110px; left:185px; padding: 10px; width:40px; text-align: center;">
+                        -
                     </div>
                     <div class="fap-button" style="top:140px; left:17px;">
                         <div class="fap-arrow fap-up-arrow"></div>

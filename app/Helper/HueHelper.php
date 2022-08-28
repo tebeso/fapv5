@@ -151,12 +151,14 @@ class HueHelper implements HubInterface
         }
         foreach ($sensorCollection as $id => $sensor) {
             if ($type === 'temp' && isset($sensor->getState()->temperature) === true) {
+
                 $sensors[$id] = [
                     'sensor_id' => $id,
                     'name'      => '(Hue) ' . $sensor->getName() . ' (' . $sensor->getManufacturerName() . ' ' . $sensor->getModelId() . ')',
                     'type'      => 'temp',
                     'hub'       => 'hue',
-                    'state'     => MiscHelper::formatTemperature($sensor->getState()->temperature),
+                    'state'     => $sensor->getState()->temperature,
+                    'target'    => null,
                 ];
             }
         }

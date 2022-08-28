@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use JsonException;
 use Lazer\Classes\Database as Lazer;
 use Lazer\Classes\LazerException;
+use Throwable;
 
 class SensorHelper
 {
@@ -15,17 +16,16 @@ class SensorHelper
      *
      * @return JsonResponse
      * @throws JsonException
-     * @throws LazerException
      */
     public static function getStateAssigned(string $type): JsonResponse
     {
         $hue     = new HueHelper();
         $raspbee = new RaspbeeHelper();
 
-        $hueSensors      = $hue->getSensors($type);
-        $raspbeeSeonsors = $raspbee->getSensors($type);
+        $hueSensors     = $hue->getSensors($type);
+        $raspbeeSensors = $raspbee->getSensors($type);
 
-        $allSensors      = [...$hueSensors, ...$raspbeeSeonsors];
+        $allSensors      = [...$hueSensors, ...$raspbeeSensors];
         $assignedSensors = [];
 
         $request = Request::create('', 'GET', ['type' => $type]);
@@ -51,7 +51,7 @@ class SensorHelper
      */
     public static function assignSensor(Request $request): void
     {
-        $position   = $request->get('id');
+        $position = $request->get('id');
 
         $sensorStorage = Lazer::table('sensors-storage');
 
@@ -94,8 +94,13 @@ class SensorHelper
     {
         $sensorType = $request->get('type');
 
+        if ($sensorType === null) {
+            return false;
+        }
+
         $sensors = [];
         $rows    = Lazer::table('sensors-storage')->where('type', '=', $sensorType)->findAll();
+
 
         foreach ($rows as $row) {
             $sensors[$row->position] = $row->sensor_id . '|' . $row->type . '|' . $row->hub;
