@@ -89,24 +89,24 @@
 
             <div style="top: 115px; left: 65px; position: relative;">
                 <div class="fap-button-group" style="width: 170px;">
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">1</div>
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">2</div>
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">3</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">1</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">2</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">3</div>
                 </div>
                 <div class="fap-button-group" style="width: 170px;">
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">4</div>
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">5</div>
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">6</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">4</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">5</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">6</div>
                 </div>
                 <div class="fap-button-group" style="width: 170px;">
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">7</div>
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">8</div>
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">9</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">7</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">8</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">9</div>
                 </div>
                 <div class="fap-button-group" style="width: 170px;">
-                    <div class="fap-button" id="audio-storage-numpad-clear">Clear</div>
-                    <div class="fap-button audio-storage-numpad" style="font-size: 19px;">0</div>
-                    <div class="fap-button fap-button-inactive" id="audio-storage-numpad-enter">Enter</div>
+                    <div class="fap-button fap-button-function" id="audio-storage-numpad-clear">Clear</div>
+                    <div class="fap-button audio-storage-numpad fap-button-function" style="font-size: 19px;">0</div>
+                    <div class="fap-button fap-button-inactive fap-button-function" id="audio-storage-numpad-enter">Enter</div>
                 </div>
             </div>
         </div>

@@ -2961,49 +2961,62 @@ window.FapMain = /*#__PURE__*/function () {
   function FapMain() {
     _classCallCheck(this, FapMain);
 
-    var $this = this;
-    $(document).ready(function () {
-      $('.fap-button-navigation-arrow').on('click', function () {
-        var menuId = $(this).children(':first').data('menuid');
-
-        if (menuId) {
-          $this.getNavigationItems(menuId);
-        }
-      });
-      $(document).on('click', '.fap-button-navigation', function () {
-        if (!$(this).hasClass('fap-button-inactive')) {
-          $this.loadPageContent($(this));
-        }
-      });
-      $('#fap-cabin-status').on('click', function () {
-        $this.loadPageContent($(this));
-      });
-      $('#fap-screen-off').on('click', function () {
-        /** active screensaver */
-        setTimeout(function () {
-          $('#fap-main').hide();
-          $('#fap-screensaver').show();
-        }, 200);
-      });
-      $('#fap-screensaver').on('click', function () {
-        setTimeout(function () {
-          $('#fap-screensaver').hide();
-          $('#fap-main').show();
-        }, 200);
-      });
-      $('.fap-button-toggle').on('click', function () {
-        $(this).toggleClass('fap-button-active');
-      });
-    });
+    this.loadEvents();
   }
-  /**
-   * Loads page content, sets button active and sets title.
-   *
-   * @param button
-   */
-
 
   _createClass(FapMain, [{
+    key: "loadEvents",
+    value: function loadEvents() {
+      var $this = this;
+      $(document).on('mousedown', '.fap-button-function', function () {
+        if (!$(this).hasClass('fap-button-active')) {
+          $(this).addClass('fap-button-active');
+        }
+      });
+      window.addEventListener('mouseup', function () {
+        $('.fap-button-function').removeClass('fap-button-active');
+      });
+      $(document).ready(function () {
+        $('.fap-button-navigation-arrow').on('click', function () {
+          var menuId = $(this).children(':first').data('menuid');
+
+          if (menuId) {
+            $this.getNavigationItems(menuId);
+          }
+        });
+        $(document).on('click', '.fap-button-navigation', function () {
+          if (!$(this).hasClass('fap-button-inactive')) {
+            $this.loadPageContent($(this));
+          }
+        });
+        $('#fap-cabin-status').on('click', function () {
+          $this.loadPageContent($(this));
+        });
+        $('#fap-screen-off').on('click', function () {
+          /** active screensaver */
+          setTimeout(function () {
+            $('#fap-main').hide();
+            $('#fap-screensaver').show();
+          }, 200);
+        });
+        $('#fap-screensaver').on('click', function () {
+          setTimeout(function () {
+            $('#fap-screensaver').hide();
+            $('#fap-main').show();
+          }, 200);
+        });
+        $('.fap-button-toggle').on('click', function () {
+          $(this).toggleClass('fap-button-active');
+        });
+      });
+    }
+    /**
+     * Loads page content, sets button active and sets title.
+     *
+     * @param button
+     */
+
+  }, {
     key: "loadPageContent",
     value: function loadPageContent(button) {
       var menuId = button.data('menuid');

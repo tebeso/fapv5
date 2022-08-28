@@ -46,16 +46,16 @@
             </div>
         </div>
 
-        <div class="fap-content-box fap-box-medium" style="position: relative; top:-420px; left:180px; width:400px;">
+        <div class="fap-content-box fap-box-medium" style="position: relative; top:-420px; left:180px; width:400px; height:130px;">
             <div class="fap-box-title bold-text" style="font-size: 17px;">
                 GENERAL CABIN SETTINGS
             </div>
-            <div class="fap-button-group-3-horizontal" style="position: absolute; top:70px; left:23px;">
+            <div class="fap-button-group-3-horizontal" style="position: absolute; left:23px;">
                 <div class="fap-button">BRT</div>
                 <div class="fap-button">DIM 1</div>
                 <div class="fap-button">DIM 2</div>
             </div>
-            <div class="fap-button-group-3-horizontal" style="position: absolute; top:126px; left:23px;">
+            <div class="fap-button-group-3-horizontal" style="position: absolute; top:77px; left:23px;">
                 <div class="fap-button light-button">BRT</div>
                 <div class="fap-button light-button">DIM 1</div>
                 <div class="fap-button light-button">DIM 2</div>
@@ -136,16 +136,16 @@
             </div>
         </div>
 
-        <div class="fap-content-box fap-box-medium" style="position: relative; top:-420px; left:180px; width:400px;">
+        <div class="fap-content-box fap-box-medium" style="position: relative; top:-420px; left:180px; width:400px; height:130px;">
             <div class="fap-box-title bold-text" style="font-size: 17px;">
                 GENERAL CABIN SETTINGS
             </div>
-            <div class="fap-button-group-3-horizontal" style="position: absolute; top:70px; left:23px;">
+            <div class="fap-button-group-3-horizontal" style="position: absolute; left:23px;">
                 <div class="fap-button">BRT</div>
                 <div class="fap-button">DIM 1</div>
                 <div class="fap-button">DIM 2</div>
             </div>
-            <div class="fap-button-group-3-horizontal" style="position: absolute; top:126px; left:23px;">
+            <div class="fap-button-group-3-horizontal" style="position: absolute; top:77px; left:23px;">
                 <div class="fap-button light-button">BRT</div>
                 <div class="fap-button light-button">DIM 1</div>
                 <div class="fap-button light-button">DIM 2</div>

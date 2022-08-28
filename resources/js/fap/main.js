@@ -2,7 +2,22 @@ window.$ = require('jquery');
 
 window.FapMain = class FapMain {
     constructor() {
+        this.loadEvents();
+    }
+
+    loadEvents() {
         let $this = this;
+
+        $(document).on('mousedown', '.fap-button-function', function(){
+            if(!$(this).hasClass('fap-button-active')){
+                $(this).addClass('fap-button-active');
+            }
+        })
+
+        window.addEventListener('mouseup', function () {
+            $('.fap-button-function').removeClass('fap-button-active');
+        });
+
         $(document).ready(function () {
             $('.fap-button-navigation-arrow').on('click', function () {
                 let menuId = $(this).children(':first').data('menuid');
