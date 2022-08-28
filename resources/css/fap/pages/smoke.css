@@ -1,0 +1,12 @@
+.smoke-detector {
+    border           : solid 1px #000000;
+    position         : relative;
+    height           : 10px;
+    width            : 10px;
+    background-color : #C2C7CA;
+}
+
+
+.smoke-detected {
+    background-color : #E23232 !important;
+}

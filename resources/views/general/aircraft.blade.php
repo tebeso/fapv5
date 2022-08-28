@@ -22,3 +22,5 @@
     @endif
     @yield('module')
 </div>
+
+@yield('module-js')

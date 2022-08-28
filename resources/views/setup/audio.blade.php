@@ -2,11 +2,11 @@
 
 @section('audio-upload-form')
     <form action="setup/audio/upload" class="fap-content-box fap-box-small"
-          style="top:400px; left: 165px; height:100px; line-height:50px; padding-left:10px" method="post"
+          style="top:330px; left: 115px; height:100px; line-height:50px; padding-left:10px; width:195px;" method="post"
           enctype="multipart/form-data" id="upload-audio-form">
         @csrf
         <input type="file" id="audio-file" name="audio-file"
-               style="width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+               style="width: 195px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
         <div class="fap-button" onclick="$('#upload-audio-form').submit()"
              style="position: absolute; top:45px; left:150px;line-height: 55px;">Upload
         </div>

@@ -35,7 +35,7 @@
     @endif
     <div style="left:-522px; width:276px; top:0; position: absolute;">
         <div class="fap-content-box fap-box-medium" style="top:20px; width:276px; height:360px;">
-            <div class="fap-box-title"></div>
+            <div class="fap-box-title">PLEASE WAIT</div>
             <div style="display:flex;">
                 <div id="temperature-scale">
                     <div class="pipe-top"></div>
@@ -44,7 +44,9 @@
                         <div class="white-line"></div>
                     </div>
                     <div class="ball bubble"></div>
-                    <div id="ball-temp" class="bold-text" style="position: relative;top: -37px; left:70px;">X.X°C</div>
+                    <div id="ball-temp" class="bold-text"
+                         style="position: relative;top: -37px; left:70px;text-align: center; width:45px;">X.X°C
+                    </div>
 
                     <div class="pipe-scale">
                         <div>30 -</div>
@@ -85,6 +87,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('module-js')
     <script>
         $('.fap-aircraft').css('left', '663px');
     </script>

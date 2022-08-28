@@ -187,12 +187,12 @@
                 <div class="fap-button light-button">DIM 2</div>
             </div>
         </div>
-
-
     @else
         NO AIRCRAFT SELECTED
     @endif
+@endsection
 
+@section('module-js')
     <script>
         $('.fap-aircraft').css('left', '320px');
     </script>
