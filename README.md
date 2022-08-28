@@ -31,3 +31,4 @@
 - add reinstall databases button
 - check every few minutes if hub still paired. If not, remove data from .env file and show message (be aware, could also just be no wifi)
 - test bluetooth speaker and device coupling
+- temperature rewrite -> alles in invisible ids packen und die target temp nur einmal lesen und dann per ui verändern

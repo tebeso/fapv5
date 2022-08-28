@@ -16,10 +16,30 @@ window.FapTemperature = class FapTemperature {
             1000,
         );
 
+        this.loadEvents();
+    }
+
+    loadEvents() {
+        let $this = this;
+
         $(document).on('click', '.fap-zone-switcher', function () {
             $('#fap-zone-switcher-box').find('.fap-button-active').removeClass('fap-button-active');
             $(this).addClass('fap-button-active');
             $this.loadTempScale();
+        });
+
+        $(document).on('click', '.temperature-setter-button', function () {
+            if (!$(this).hasClass('fap-button-inactive')) {
+                let sensorId = $(this).find('.fap-arrow').data('sensor-id');
+                let mode     = $(this).data('mode');
+
+                $.ajax({
+                    type:    'GET',
+                    data:    {mode: mode, sensorId: sensorId},
+                    url:     'temperature/set-state',
+                    timeout: 3000,
+                });
+            }
         });
     }
 
@@ -31,6 +51,7 @@ window.FapTemperature = class FapTemperature {
         let activeZoneTarget = this.formatTemperature(activeZoneBlock.data('target'));
         $('#ball-temp').text(activeZoneTemp + '°C');
         $('.fap-box-title').first().text(activeZone);
+        $('.fap-arrow').data('sensor-id', activeZoneBlock.data('sensor-id'));
 
         if (activeZoneTarget === false) {
             $('.fap-display-box').text('-');
@@ -84,6 +105,7 @@ window.FapTemperature = class FapTemperature {
         $.ajax({
             type:    'GET',
             url:     'temperature/get-state-assigned',
+            timeout: 3000,
             success: function (message) {
 
                 $.each(message, function (position, attributes) {
@@ -91,6 +113,7 @@ window.FapTemperature = class FapTemperature {
                     if (positionBlock.text() !== attributes.state) {
                         positionBlock.text($this.formatTemperature(attributes.state));
                         positionBlock.data('target', attributes.target);
+                        positionBlock.data('sensor-id', attributes.sensor_id);
                     }
                 });
             },
@@ -109,9 +132,9 @@ window.FapTemperature = class FapTemperature {
         temperature = temperature.toString();
 
         if (temperature.length === 4) {
-            return temperature.substring(0, 2) + '.' + temperature.substring(2, 1);
+            return temperature.substring(0, 2) + '.' + temperature.substring(3, 4);
         } else {
-            return temperature.substring(0, 1) + '.' + temperature.substring(1, 1);
+            return temperature.substring(0, 1) + '.' + temperature.substring(2, 3);
         }
     }
 

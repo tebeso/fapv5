@@ -7,7 +7,7 @@ class FapCabinStatusController extends Controller
     public function index()
     {
         $therm = new FapTemperatureController();
-        $therm->setTemperature(7,2600);
+        $therm->setTemperature(7,2000);
 
         return view('cabin-status');
     }

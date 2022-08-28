@@ -20,15 +20,17 @@ window.FapLight = class FapLight {
 
     setLightState(position, currentLevel, newLevel) {
         $.ajax({
-            type: 'GET',
-            data: {currentLevel: currentLevel, newLevel: newLevel, position: position},
-            url:  'lights/set-state',
+            type:    'GET',
+            timeout: 3000,
+            data:    {currentLevel: currentLevel, newLevel: newLevel, position: position},
+            url:     'lights/set-state',
         });
     }
 
     getLightState() {
         $.ajax({
             type:    'GET',
+            timeout: 3000,
             url:     'lights/get-state-assigned',
             success: function (message) {
 

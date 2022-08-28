@@ -100,6 +100,7 @@ class RaspbeeHelper implements HubInterface
         return $groups;
     }
 
+
     public function getSensors($type = 'temp'): array
     {
         $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/sensors');

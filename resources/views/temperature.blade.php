@@ -70,10 +70,10 @@
                     <div class="fap-display-box" style="position: absolute; top:110px; left:185px; padding: 10px; width:40px; text-align: center;">
                         -
                     </div>
-                    <div class="fap-button" style="top:140px; left:17px;">
+                    <div class="fap-button temperature-setter-button" data-mode="up" style="top:140px; left:17px;">
                         <div class="fap-arrow fap-up-arrow"></div>
                     </div>
-                    <div class="fap-button" style="top:195px; left: -38px;">
+                    <div class="fap-button temperature-setter-button" data-mode="down" style="top:195px; left: -38px;">
                         <div class="fap-arrow fap-down-arrow"></div>
                     </div>
                 </div>

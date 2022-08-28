@@ -42,6 +42,7 @@ Route::get('/lights/get-state-assigned', [LightHelper::class, 'getStateAssigned'
 Route::get('/lights/set-state', [LightHelper::class, 'setState']);
 Route::get('/doors-slides', [FapDoorSlideController::class, 'index']);
 Route::get('/temperature', [FapTemperatureController::class, 'index']);
+Route::get('/temperature/set-state', [FapTemperatureController::class, 'setState']);
 Route::get('/temperature/get-state-assigned', [FapTemperatureController::class, 'getStateAssigned']);
 Route::get('/water-waste', [FapWaterWasteController::class, 'index']);
 Route::get('/smoke-detection', [FapSmokeDetectionController::class, 'index']);

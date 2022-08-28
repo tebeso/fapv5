@@ -2890,6 +2890,7 @@ window.FapLight = /*#__PURE__*/function () {
     value: function setLightState(position, currentLevel, newLevel) {
       $.ajax({
         type: 'GET',
+        timeout: 3000,
         data: {
           currentLevel: currentLevel,
           newLevel: newLevel,
@@ -2903,6 +2904,7 @@ window.FapLight = /*#__PURE__*/function () {
     value: function getLightState() {
       $.ajax({
         type: 'GET',
+        timeout: 3000,
         url: 'lights/get-state-assigned',
         success: function success(message) {
           $.each(message, function (position, attributes) {
@@ -3179,9 +3181,9 @@ window.FapSensor = /*#__PURE__*/function () {
     key: "loadEvents",
     value: function loadEvents() {
       $('.sensor-select').on('change', function () {
-        console.log('change');
         $.ajax({
           type: 'GET',
+          timeout: 3000,
           url: 'setup/sensors/assign',
           data: {
             id: $(this).attr('id'),
@@ -3196,6 +3198,7 @@ window.FapSensor = /*#__PURE__*/function () {
       $.ajax({
         type: 'GET',
         url: 'setup/sensors/get-assigned-sensors',
+        timeout: 3000,
         data: {
           type: type
         },
@@ -3239,14 +3242,35 @@ window.FapTemperature = /*#__PURE__*/function () {
         $this.loadTempScale();
       }
     }, 1000);
-    $(document).on('click', '.fap-zone-switcher', function () {
-      $('#fap-zone-switcher-box').find('.fap-button-active').removeClass('fap-button-active');
-      $(this).addClass('fap-button-active');
-      $this.loadTempScale();
-    });
+    this.loadEvents();
   }
 
   _createClass(FapTemperature, [{
+    key: "loadEvents",
+    value: function loadEvents() {
+      var $this = this;
+      $(document).on('click', '.fap-zone-switcher', function () {
+        $('#fap-zone-switcher-box').find('.fap-button-active').removeClass('fap-button-active');
+        $(this).addClass('fap-button-active');
+        $this.loadTempScale();
+      });
+      $(document).on('click', '.temperature-setter-button', function () {
+        if (!$(this).hasClass('fap-button-inactive')) {
+          var sensorId = $(this).find('.fap-arrow').data('sensor-id');
+          var mode = $(this).data('mode');
+          $.ajax({
+            type: 'GET',
+            data: {
+              mode: mode,
+              sensorId: sensorId
+            },
+            url: 'temperature/set-state',
+            timeout: 3000
+          });
+        }
+      });
+    }
+  }, {
     key: "loadTempScale",
     value: function loadTempScale() {
       var activeZoneButton = $('#fap-zone-switcher-box').find('.fap-button-active');
@@ -3256,6 +3280,7 @@ window.FapTemperature = /*#__PURE__*/function () {
       var activeZoneTarget = this.formatTemperature(activeZoneBlock.data('target'));
       $('#ball-temp').text(activeZoneTemp + '°C');
       $('.fap-box-title').first().text(activeZone);
+      $('.fap-arrow').data('sensor-id', activeZoneBlock.data('sensor-id'));
 
       if (activeZoneTarget === false) {
         $('.fap-display-box').text('-');
@@ -3309,6 +3334,7 @@ window.FapTemperature = /*#__PURE__*/function () {
       $.ajax({
         type: 'GET',
         url: 'temperature/get-state-assigned',
+        timeout: 3000,
         success: function success(message) {
           $.each(message, function (position, attributes) {
             var positionBlock = $('#temperature-' + position);
@@ -3316,6 +3342,7 @@ window.FapTemperature = /*#__PURE__*/function () {
             if (positionBlock.text() !== attributes.state) {
               positionBlock.text($this.formatTemperature(attributes.state));
               positionBlock.data('target', attributes.target);
+              positionBlock.data('sensor-id', attributes.sensor_id);
             }
           });
         }
@@ -3336,9 +3363,9 @@ window.FapTemperature = /*#__PURE__*/function () {
       temperature = temperature.toString();
 
       if (temperature.length === 4) {
-        return temperature.substring(0, 2) + '.' + temperature.substring(2, 1);
+        return temperature.substring(0, 2) + '.' + temperature.substring(3, 4);
       } else {
-        return temperature.substring(0, 1) + '.' + temperature.substring(1, 1);
+        return temperature.substring(0, 1) + '.' + temperature.substring(2, 3);
       }
     }
   }, {
