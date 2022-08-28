@@ -75,9 +75,19 @@ Route::group(
     }
 );
 
-Route::get('/admin/fap-control', [FapAdminControlController::class, 'index']);
-Route::get('/admin/fap-control/send-command', [FapAdminControlController::class, 'sendCommand']);
-Route::get('/admin/bridge-setup', [FapAdminBridgeController::class, 'index']);
-Route::get('/admin/screensaver', [FapAdminScreensaver::class, 'index']);
-Route::get('/admin/screensaver/change', [FapAdminScreensaver::class, 'changeScreensaver']);
+Route::group(
+    ['prefix' => 'admin'],
+    static function () {
+        Route::get('/fap-control', [FapAdminControlController::class, 'index']);
+        Route::get('/fap-control/send-command', [FapAdminControlController::class, 'sendCommand']);
+        Route::get('/bridge-setup', [FapAdminBridgeController::class, 'index']);
+        Route::get('/bridge-setup/pair', [FapAdminBridgeController::class, 'pairBridge']);
+        Route::get('/bridge-setup/delete', [FapAdminBridgeController::class, 'deleteBridge']);
+        Route::get('/bridge-setup/check-paired', [FapAdminBridgeController::class, 'checkPaired']);
+        Route::get('/screensaver', [FapAdminScreensaver::class, 'index']);
+        Route::get('/screensaver/change', [FapAdminScreensaver::class, 'changeScreensaver']);
+    }
+);
+
+
 

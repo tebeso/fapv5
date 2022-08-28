@@ -9,6 +9,7 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script>
         window.fapMain        = new FapMain();
+        window.fapAdmin       = new FapAdmin();
         window.fapAudio       = new FapAudio();
         window.fapLight       = new FapLight();
         window.fapSensor      = new FapSensor();

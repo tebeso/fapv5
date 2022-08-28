@@ -14,8 +14,6 @@ class FapSetupLightsController extends Controller
         $raspbee = new RaspbeeHelper();
 
         try {
-            $hue->getBridge();
-            $hue->getUser();
             $hueLights = $hue->getLights();
             $hueGroups = $hue->getGroups();
         } catch (Throwable $e) {
@@ -24,8 +22,6 @@ class FapSetupLightsController extends Controller
         }
 
         try {
-            $raspbee->getBridge();
-            $raspbee->getUser();
             $raspbeeLights = $raspbee->getLights();
             $raspbeeGroups = $raspbee->getGroups();
         } catch (Throwable $e) {

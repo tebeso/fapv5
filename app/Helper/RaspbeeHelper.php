@@ -30,7 +30,9 @@ class RaspbeeHelper implements HubInterface
 
     public function getUser()
     {
-        if (Env::get('RASPBEE_IP') === '') {
+        $bridge = $this->getBridge();
+
+        if ($bridge === '') {
             return null;
         }
 
@@ -39,7 +41,7 @@ class RaspbeeHelper implements HubInterface
         }
 
 
-        $response = Http::post(Env::get('RASPBEE_IP') . '/api', [
+        $response = Http::post($bridge . '/api', [
             'devicetype' => 'FAP',
         ]);
 

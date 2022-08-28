@@ -2483,6 +2483,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fap_sensor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fap_sensor__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _fap_temperature__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./fap/temperature */ "./resources/js/fap/temperature.js");
 /* harmony import */ var _fap_temperature__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fap_temperature__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _fap_admin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fap/admin */ "./resources/js/fap/admin.js");
+/* harmony import */ var _fap_admin__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fap_admin__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -2532,6 +2535,96 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+/***/ }),
+
+/***/ "./resources/js/fap/admin.js":
+/*!***********************************!*\
+  !*** ./resources/js/fap/admin.js ***!
+  \***********************************/
+/***/ (() => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+window.FapAdmin = /*#__PURE__*/function () {
+  function FapAdmin() {
+    _classCallCheck(this, FapAdmin);
+
+    var $this = this;
+    this.loadEvents();
+    setInterval(function () {
+      var title = $('#fap-page-title').text().trim();
+
+      if (title === 'BRIDGE SETUP') {
+        $this.checkPaired();
+      }
+    }, 1000);
+  }
+
+  _createClass(FapAdmin, [{
+    key: "loadEvents",
+    value: function loadEvents() {}
+  }, {
+    key: "deleteBridge",
+    value: function deleteBridge(bridge) {
+      $.ajax({
+        type: 'GET',
+        url: 'admin/bridge-setup/delete',
+        timeout: 3000,
+        data: {
+          bridge: bridge
+        },
+        success: function success() {
+          window.fapMain.showPopup('Bridge deleted.');
+        }
+      });
+    }
+  }, {
+    key: "pairBridge",
+    value: function pairBridge(bridge) {
+      var response = $.ajax({
+        type: 'GET',
+        url: 'admin/bridge-setup/pair',
+        timeout: 60000,
+        async: false,
+        data: {
+          bridge: bridge
+        }
+      });
+      window.fapMain.showPopup(response.responseText);
+    }
+  }, {
+    key: "checkPaired",
+    value: function checkPaired() {
+      var response = JSON.parse($.ajax({
+        type: 'GET',
+        url: 'admin/bridge-setup/check-paired',
+        timeout: 1000,
+        async: false
+      }).responseText);
+      var hueStatus = $('#hue-bridge-status');
+      var raspbeeStatus = $('#raspbee-bridge-status');
+
+      if (response.raspbeeUser === null) {
+        raspbeeStatus.addClass('red-text').removeClass('green-text').text('not paired');
+      } else {
+        raspbeeStatus.removeClass('red-text').addClass('green-text').text('paired');
+      }
+
+      if (response.hueUser === null) {
+        hueStatus.addClass('red-text').removeClass('green-text').text('not paired');
+      } else {
+        hueStatus.removeClass('red-text').addClass('green-text').text('paired');
+      }
+    }
+  }]);
+
+  return FapAdmin;
+}();
 
 /***/ }),
 
