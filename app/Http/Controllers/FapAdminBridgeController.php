@@ -12,7 +12,7 @@ class FapAdminBridgeController extends Controller
 {
     public function index()
     {
-        return view('admin/bridge-setup');
+        return view('admin/bridge-setup', ['serverIp' => $_SERVER['SERVER_ADDR']]);
     }
 
 
