@@ -1,0 +1,72 @@
+#fap-door-legend {
+    position : relative;
+    top      : 210px;
+    left     : 440px;
+    width    : 170px;
+}
+
+.fap-door-legend-label {
+    margin-left : 10px;
+}
+
+.fap-door-legend-row {
+    font-weight : 400;
+    height      : 40px;
+    margin-left : 25px;
+    margin-top  : 15px;
+    width       : 160px;
+}
+
+.slides-disarmed {
+    font-family : serif;
+    width       : 190px !important;
+    font-size   : 13px;
+}
+
+.slides-disarmed-left {
+    float : left;
+}
+
+.slides-disarmed-right {
+    float      : right;
+    text-align : right;
+}
+
+#door-label {
+    font-weight : bold;
+}
+
+#door-label div {
+    height   : 20px;
+    position : relative;
+    width    : 215px;
+}
+
+.door-left-label {
+    left : -225px;
+}
+
+.door-right-label {
+    left : 104px;
+}
+
+.door-open {
+    background-color : #E23232;
+    border           : solid 2px #000000;
+}
+
+.door-left-open {
+    left : 5px;
+}
+
+.door-right-open {
+    left : 89px;
+}
+
+.door-left-open-front-aft {
+    left : 10px;
+}
+
+.door-right-open-front-aft {
+    left : 82px;
+}

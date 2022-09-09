@@ -82,6 +82,7 @@ Route::group(
         Route::get('/fap-control/send-command', [FapAdminControlController::class, 'sendCommand']);
         Route::get('/bridge-setup', [FapAdminBridgeController::class, 'index']);
         Route::get('/bridge-setup/pair', [FapAdminBridgeController::class, 'pairBridge']);
+        Route::get('/bridge-setup/pair-device', [FapAdminBridgeController::class, 'pairRaspbeeDevices']);
         Route::get('/bridge-setup/delete', [FapAdminBridgeController::class, 'deleteBridge']);
         Route::get('/bridge-setup/check-paired', [FapAdminBridgeController::class, 'checkPaired']);
         Route::get('/screensaver', [FapAdminScreensaver::class, 'index']);

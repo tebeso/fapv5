@@ -8,11 +8,11 @@ window.FapMain = class FapMain {
     loadEvents() {
         let $this = this;
 
-        $(document).on('mousedown', '.fap-button-function', function(){
-            if(!$(this).hasClass('fap-button-active')){
+        $(document).on('mousedown', '.fap-button-function', function () {
+            if (!$(this).hasClass('fap-button-active')) {
                 $(this).addClass('fap-button-active');
             }
-        })
+        });
 
         window.addEventListener('mouseup', function () {
             $('.fap-button-function').removeClass('fap-button-active');
@@ -56,6 +56,20 @@ window.FapMain = class FapMain {
                 $(this).toggleClass('fap-button-active');
             });
         });
+
+        this.startWebsocketClient();
+    }
+
+    startWebsocketClient() {
+        let W3CWebSocket = require('websocket').w3cwebsocket;
+        let client       = new W3CWebSocket('ws://192.168.188.56:443/', 'echo-protocol');
+
+        client.onmessage = function (msg) {
+            let data = JSON.parse(msg.data);
+            if (typeof data.state !== 'undefined') {
+                console.log(data);
+            }
+        };
     }
 
     /**

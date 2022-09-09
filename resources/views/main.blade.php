@@ -14,6 +14,7 @@
         window.fapLight       = new FapLight();
         window.fapSensor      = new FapSensor();
         window.fapTemperature = new FapTemperature();
+        window.fapDoors       = new FapDoors();
 
         window.fapMain.getNavigationItems(1);
     </script>
@@ -83,7 +84,7 @@
 </div>
 
 <script>
-    fapMain.loadPageContent($('#fap-cabin-status'));
+    window.fapMain.loadPageContent($('#fap-cabin-status'));
 </script>
 </body>
 </html>

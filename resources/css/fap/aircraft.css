@@ -26,26 +26,12 @@
     border     : solid 2px #FFFFFF !important;
 }
 
-#door-label {
-    height   : 600px;
-    left     : -230px;
-    position : relative;
-    top      : -215px;
-    width    : 800px;
-}
-
-#door-label div {
-    height   : 20px;
-    position : relative;
-    width    : 215px;
-}
-
 .door-one {
     top : 70px;
 }
 
 .door-one-open {
-    top : 70px;
+    top : 47px;
 }
 
 #door-one-left {
@@ -84,7 +70,7 @@
 }
 
 .door-three-open {
-    top : 190px;
+    top : 270px;
 }
 
 #door-three-left {
@@ -100,7 +86,7 @@
 }
 
 .door-four-open {
-    top : 260px;
+    top : 378px;
 }
 
 #door-four-left {
@@ -116,7 +102,7 @@
 }
 
 .door-five-open {
-    top : 326px;
+    top : 489px;
 }
 
 #door-five-left {

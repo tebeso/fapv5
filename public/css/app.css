@@ -358,26 +358,12 @@ body {
     border     : solid 2px #FFFFFF !important;
 }
 
-#door-label {
-    height   : 600px;
-    left     : -230px;
-    position : relative;
-    top      : -215px;
-    width    : 800px;
-}
-
-#door-label div {
-    height   : 20px;
-    position : relative;
-    width    : 215px;
-}
-
 .door-one {
     top : 70px;
 }
 
 .door-one-open {
-    top : 70px;
+    top : 47px;
 }
 
 #door-one-left {
@@ -416,7 +402,7 @@ body {
 }
 
 .door-three-open {
-    top : 190px;
+    top : 270px;
 }
 
 #door-three-left {
@@ -432,7 +418,7 @@ body {
 }
 
 .door-four-open {
-    top : 260px;
+    top : 378px;
 }
 
 #door-four-left {
@@ -448,7 +434,7 @@ body {
 }
 
 .door-five-open {
-    top : 326px;
+    top : 489px;
 }
 
 #door-five-left {
@@ -847,5 +833,77 @@ body {
 
 .smoke-detected {
     background-color : #E23232 !important;
+}
+#fap-door-legend {
+    position : relative;
+    top      : 210px;
+    left     : 440px;
+    width    : 170px;
+}
+
+.fap-door-legend-label {
+    margin-left : 10px;
+}
+
+.fap-door-legend-row {
+    font-weight : 400;
+    height      : 40px;
+    margin-left : 25px;
+    margin-top  : 15px;
+    width       : 160px;
+}
+
+.slides-disarmed {
+    font-family : serif;
+    width       : 190px !important;
+    font-size   : 13px;
+}
+
+.slides-disarmed-left {
+    float : left;
+}
+
+.slides-disarmed-right {
+    float      : right;
+    text-align : right;
+}
+
+#door-label {
+    font-weight : bold;
+}
+
+#door-label div {
+    height   : 20px;
+    position : relative;
+    width    : 215px;
+}
+
+.door-left-label {
+    left : -225px;
+}
+
+.door-right-label {
+    left : 104px;
+}
+
+.door-open {
+    background-color : #E23232;
+    border           : solid 2px #000000;
+}
+
+.door-left-open {
+    left : 5px;
+}
+
+.door-right-open {
+    left : 89px;
+}
+
+.door-left-open-front-aft {
+    left : 10px;
+}
+
+.door-right-open-front-aft {
+    left : 82px;
 }
 

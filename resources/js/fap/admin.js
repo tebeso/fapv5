@@ -2,7 +2,6 @@ window.FapAdmin = class FapAdmin {
     constructor() {
         let $this = this;
         this.loadEvents();
-
         setInterval(
             function () {
                 let title = $('#fap-page-title').text().trim();
@@ -37,6 +36,17 @@ window.FapAdmin = class FapAdmin {
             timeout: 60000,
             async:   false,
             data:    {bridge: bridge},
+        });
+
+        window.fapMain.showPopup(response.responseText);
+    }
+
+    pairDevice() {
+        let response = $.ajax({
+            type:    'GET',
+            url:     'admin/bridge-setup/pair-device',
+            timeout: 60000,
+            async:   false,
         });
 
         window.fapMain.showPopup(response.responseText);

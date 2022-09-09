@@ -2485,6 +2485,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fap_temperature__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fap_temperature__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _fap_admin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./fap/admin */ "./resources/js/fap/admin.js");
 /* harmony import */ var _fap_admin__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fap_admin__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _fap_doors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./fap/doors */ "./resources/js/fap/doors.js");
+/* harmony import */ var _fap_doors__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_fap_doors__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -2594,6 +2597,17 @@ window.FapAdmin = /*#__PURE__*/function () {
         data: {
           bridge: bridge
         }
+      });
+      window.fapMain.showPopup(response.responseText);
+    }
+  }, {
+    key: "pairDevice",
+    value: function pairDevice() {
+      var response = $.ajax({
+        type: 'GET',
+        url: 'admin/bridge-setup/pair-device',
+        timeout: 60000,
+        async: false
       });
       window.fapMain.showPopup(response.responseText);
     }
@@ -2949,6 +2963,24 @@ window.FapAudio = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/fap/doors.js":
+/*!***********************************!*\
+  !*** ./resources/js/fap/doors.js ***!
+  \***********************************/
+/***/ (() => {
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+window.FapDoors = /*#__PURE__*/_createClass(function FapDoors() {
+  _classCallCheck(this, FapDoors);
+});
+
+/***/ }),
+
 /***/ "./resources/js/fap/light.js":
 /*!***********************************!*\
   !*** ./resources/js/fap/light.js ***!
@@ -3102,6 +3134,22 @@ window.FapMain = /*#__PURE__*/function () {
           $(this).toggleClass('fap-button-active');
         });
       });
+      this.startWebsocketClient();
+    }
+  }, {
+    key: "startWebsocketClient",
+    value: function startWebsocketClient() {
+      var W3CWebSocket = (__webpack_require__(/*! websocket */ "./node_modules/websocket/lib/browser.js").w3cwebsocket);
+
+      var client = new W3CWebSocket('ws://192.168.188.56:443/', 'echo-protocol');
+
+      client.onmessage = function (msg) {
+        var data = JSON.parse(msg.data);
+
+        if (typeof data.state !== 'undefined') {
+          console.log(data);
+        }
+      };
     }
     /**
      * Loads page content, sets button active and sets title.
@@ -5444,6 +5492,51 @@ function blitBuffer (src, dst, offset, length) {
 function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/es5-ext/global.js":
+/*!****************************************!*\
+  !*** ./node_modules/es5-ext/global.js ***!
+  \****************************************/
+/***/ ((module) => {
+
+var naiveFallback = function () {
+	if (typeof self === "object" && self) return self;
+	if (typeof window === "object" && window) return window;
+	throw new Error("Unable to resolve global `this`");
+};
+
+module.exports = (function () {
+	if (this) return this;
+
+	// Unexpected strict mode (may happen if e.g. bundled into ESM module)
+
+	// Fallback to standard globalThis if available
+	if (typeof globalThis === "object" && globalThis) return globalThis;
+
+	// Thanks @mathiasbynens -> https://mathiasbynens.be/notes/globalthis
+	// In all ES5+ engines global object inherits from Object.prototype
+	// (if you approached one that doesn't please report)
+	try {
+		Object.defineProperty(Object.prototype, "__global__", {
+			get: function () { return this; },
+			configurable: true
+		});
+	} catch (error) {
+		// Unfortunate case of updates to Object.prototype being restricted
+		// via preventExtensions, seal or freeze
+		return naiveFallback();
+	}
+	try {
+		// Safari case (window.__global__ works, but __global__ does not)
+		if (!__global__) return naiveFallback();
+		return __global__;
+	} finally {
+		delete Object.prototype.__global__;
+	}
+})();
 
 
 /***/ }),
@@ -33866,6 +33959,92 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+
+/***/ }),
+
+/***/ "./node_modules/websocket/lib/browser.js":
+/*!***********************************************!*\
+  !*** ./node_modules/websocket/lib/browser.js ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var _globalThis;
+if (typeof globalThis === 'object') {
+	_globalThis = globalThis;
+} else {
+	try {
+		_globalThis = __webpack_require__(/*! es5-ext/global */ "./node_modules/es5-ext/global.js");
+	} catch (error) {
+	} finally {
+		if (!_globalThis && typeof window !== 'undefined') { _globalThis = window; }
+		if (!_globalThis) { throw new Error('Could not determine global this'); }
+	}
+}
+
+var NativeWebSocket = _globalThis.WebSocket || _globalThis.MozWebSocket;
+var websocket_version = __webpack_require__(/*! ./version */ "./node_modules/websocket/lib/version.js");
+
+
+/**
+ * Expose a W3C WebSocket class with just one or two arguments.
+ */
+function W3CWebSocket(uri, protocols) {
+	var native_instance;
+
+	if (protocols) {
+		native_instance = new NativeWebSocket(uri, protocols);
+	}
+	else {
+		native_instance = new NativeWebSocket(uri);
+	}
+
+	/**
+	 * 'native_instance' is an instance of nativeWebSocket (the browser's WebSocket
+	 * class). Since it is an Object it will be returned as it is when creating an
+	 * instance of W3CWebSocket via 'new W3CWebSocket()'.
+	 *
+	 * ECMAScript 5: http://bclary.com/2004/11/07/#a-13.2.2
+	 */
+	return native_instance;
+}
+if (NativeWebSocket) {
+	['CONNECTING', 'OPEN', 'CLOSING', 'CLOSED'].forEach(function(prop) {
+		Object.defineProperty(W3CWebSocket, prop, {
+			get: function() { return NativeWebSocket[prop]; }
+		});
+	});
+}
+
+/**
+ * Module exports.
+ */
+module.exports = {
+    'w3cwebsocket' : NativeWebSocket ? W3CWebSocket : null,
+    'version'      : websocket_version
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/websocket/lib/version.js":
+/*!***********************************************!*\
+  !*** ./node_modules/websocket/lib/version.js ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__(/*! ../package.json */ "./node_modules/websocket/package.json").version;
+
+
+/***/ }),
+
+/***/ "./node_modules/websocket/package.json":
+/*!*********************************************!*\
+  !*** ./node_modules/websocket/package.json ***!
+  \*********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"name":"websocket","description":"Websocket Client & Server Library implementing the WebSocket protocol as specified in RFC 6455.","keywords":["websocket","websockets","socket","networking","comet","push","RFC-6455","realtime","server","client"],"author":"Brian McKelvey <theturtle32@gmail.com> (https://github.com/theturtle32)","contributors":["Iñaki Baz Castillo <ibc@aliax.net> (http://dev.sipdoc.net)"],"version":"1.0.34","repository":{"type":"git","url":"https://github.com/theturtle32/WebSocket-Node.git"},"homepage":"https://github.com/theturtle32/WebSocket-Node","engines":{"node":">=4.0.0"},"dependencies":{"bufferutil":"^4.0.1","debug":"^2.2.0","es5-ext":"^0.10.50","typedarray-to-buffer":"^3.1.5","utf-8-validate":"^5.0.2","yaeti":"^0.0.6"},"devDependencies":{"buffer-equal":"^1.0.0","gulp":"^4.0.2","gulp-jshint":"^2.0.4","jshint-stylish":"^2.2.1","jshint":"^2.0.0","tape":"^4.9.1"},"config":{"verbose":false},"scripts":{"test":"tape test/unit/*.js","gulp":"gulp"},"main":"index","directories":{"lib":"./lib"},"browser":"lib/browser.js","license":"Apache-2.0"}');
 
 /***/ })
 

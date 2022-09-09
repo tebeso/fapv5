@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Http;
 
@@ -165,5 +166,12 @@ class RaspbeeHelper implements HubInterface
             'bri'            => (int)$level,
             'transitiontime' => 0,
         ]);
+    }
+
+    public function getAllStates(): JsonResponse
+    {
+        $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER'));
+
+        return Response()->json($response);
     }
 }

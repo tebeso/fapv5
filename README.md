@@ -23,11 +23,11 @@
 # Notes
 - this project is using https://github.com/Lazer-Database/Lazer-Database as a database.
 - this project is using https://github.com/neoteknic/Phue for the philips hue connection.
+- this project is using https://www.npmjs.com/package/websocket for websocket connection.
 
 # TODO
 - Bootup check (are all env vars set correctly)
 - manual showing the bluetooth speaker connection
-- thermostats need this: https://github.com/dresden-elektronik/deconz-rest-plugin/blob/master/thermostat.cpp
 - add reinstall databases button
 - check every few minutes if hub still paired. If not, remove data from .env file and show message (be aware, could also just be no wifi)
 - test bluetooth speaker and device coupling

@@ -7,12 +7,23 @@ use App\Helper\HueHelper;
 use App\Helper\RaspbeeHelper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Env;
+use Illuminate\Support\Facades\Http;
 
 class FapAdminBridgeController extends Controller
 {
     public function index()
     {
         return view('admin/bridge-setup', ['serverIp' => $_SERVER['SERVER_ADDR']]);
+    }
+
+    public function pairRaspbeeDevices()
+    {
+        Http::put(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/config', [
+            'permitjoin' => 60,
+        ]);
+
+        return Response('Pairing Mode enabled. Please turn on the device you want to pair within 60 seconds.');
     }
 
 
@@ -57,7 +68,7 @@ class FapAdminBridgeController extends Controller
     public function pairRaspbeeBridge()
     {
         $raspbee = new RaspbeeHelper();
-        $user = $raspbee->getUser();
+        $user    = $raspbee->getUser();
 
         if ($user === null) {
             return Response('Couldnt pair bridge.', 500);
