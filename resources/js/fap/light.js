@@ -1,7 +1,7 @@
 window.FapLight = class FapLight {
     constructor() {
-
         let $this = this;
+
         setInterval(
             function () {
                 let title = $('#fap-page-title').text().trim();

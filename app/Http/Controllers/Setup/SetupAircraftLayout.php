@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Setup;
 
 use App\Helper\EnvHelper;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Lazer\Classes\Database as Lazer;
 use Lazer\Classes\LazerException;
 
-class FapSetupAircraftLayout extends Controller
+class SetupAircraftLayout extends Controller
 {
     public function index()
     {

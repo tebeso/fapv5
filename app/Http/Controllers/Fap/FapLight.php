@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Fap;
 
 use App\Helper\LightHelper;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 
-class FapLightsController extends Controller
+class FapLight extends Controller
 {
     public function index()
     {

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Setup;
 
 use App\Helper\HueHelper;
 use App\Helper\RaspbeeHelper;
+use App\Http\Controllers\Controller;
 use Throwable;
 
-class FapSetupLightsController extends Controller
+class SetupLights extends Controller
 {
     public function index()
     {

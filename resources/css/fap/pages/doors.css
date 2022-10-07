@@ -53,6 +53,7 @@
 .door-open {
     background-color : #E23232;
     border           : solid 2px #000000;
+    visibility       : hidden;
 }
 
 .door-left-open {
@@ -69,4 +70,10 @@
 
 .door-right-open-front-aft {
     left : 82px;
+}
+
+.door-select {
+    display  : block;
+    position : relative;
+    width    : 140px;
 }

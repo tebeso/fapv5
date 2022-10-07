@@ -9,7 +9,7 @@
         <div id="temperature-346-zone-3" class="temperature-block temperature-block-346" style="top:100px;">X.X</div>
         <div id="temperature-346-zone-4" class="temperature-block temperature-block-346" style="top:110px;">X.X</div>
 
-        <div class="temperature-select-box" style="top: -278px; left: 140px;">
+        <div class="select-box" style="top: -278px; left: 140px;">
             <label for="346-zone-1"></label>
             <select name="346-zone-1" id="346-zone-1" class="sensor-select">
                 <option></option>
@@ -19,7 +19,7 @@
             </select>
         </div>
 
-        <div class="temperature-select-box" style="top: -191px; left: 140px;">
+        <div class="select-box" style="top: -191px; left: 140px;">
             <label for="346-zone-2"></label>
             <select name="346-zone-2" id="346-zone-2" class="sensor-select">
                 <option></option>
@@ -29,7 +29,7 @@
             </select>
         </div>
 
-        <div class="temperature-select-box" style="top: -100px; left: 140px;">
+        <div class="select-box" style="top: -100px; left: 140px;">
             <label for="346-zone-3"></label>
             <select name="346-zone-3" id="346-zone-3" class="sensor-select">
                 <option></option>
@@ -39,7 +39,7 @@
             </select>
         </div>
 
-        <div class="temperature-select-box" style="top: -13px; left: 140px;">
+        <div class="select-box" style="top: -13px; left: 140px;">
             <label for="346-zone-4"></label>
             <select name="346-zone-4" id="346-zone-4" class="sensor-select">
                 <option></option>
@@ -48,8 +48,6 @@
                 @endforeach
             </select>
         </div>
-    @else
-        NO AIRCRAFT SELECTED
     @endif
 
     <script>

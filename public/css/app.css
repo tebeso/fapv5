@@ -128,6 +128,15 @@ body {
     -webkit-user-select   : none;
     user-select           : none;
 }
+
+.select-box {
+    position : relative;
+    display  : flex;
+}
+
+.select-box select {
+    width : 300px;
+}
 /**
  * FAP-Buttons
  */
@@ -373,7 +382,6 @@ body {
 
 #door-one-left-open {
     left       : 10px;
-    visibility : hidden;
 }
 
 #door-one-right {
@@ -444,7 +452,6 @@ body {
 
 #door-five-left-open {
     left       : 9px;
-    visibility : hidden;
 }
 
 #door-five-right {
@@ -454,7 +461,6 @@ body {
 
 #door-five-right-open {
     left       : 84px;
-    visibility : hidden;
 }
 .fap-arrow {
     border-top    : 15px solid transparent;
@@ -806,15 +812,6 @@ body {
     line-height : 280px;
 }
 
-.temperature-select-box {
-    position : relative;
-    display  : flex;
-}
-
-.temperature-select-box select {
-    width : 300px;
-}
-
 #temperature-scale {
     width : 60%;
 }
@@ -889,6 +886,7 @@ body {
 .door-open {
     background-color : #E23232;
     border           : solid 2px #000000;
+    visibility       : hidden;
 }
 
 .door-left-open {
@@ -905,5 +903,11 @@ body {
 
 .door-right-open-front-aft {
     left : 82px;
+}
+
+.door-select {
+    display  : block;
+    position : relative;
+    width    : 140px;
 }
 

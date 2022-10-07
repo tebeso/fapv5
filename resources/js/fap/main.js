@@ -63,10 +63,16 @@ window.FapMain = class FapMain {
     startWebsocketClient() {
         let W3CWebSocket = require('websocket').w3cwebsocket;
         let client       = new W3CWebSocket('ws://192.168.188.56:443/', 'echo-protocol');
-
         client.onmessage = function (msg) {
             let data = JSON.parse(msg.data);
-            if (typeof data.state !== 'undefined') {
+            if (typeof data.state !== 'undefined' && typeof data.state.fire !== 'undefined') {
+                if (data.state.fire === true) {
+                    
+                }
+            }
+
+            if (typeof data.state !== 'undefined' && typeof data.state.fire === 'undefined') {
+                console.log(false);
                 console.log(data);
             }
         };

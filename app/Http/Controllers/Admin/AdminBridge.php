@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Helper\EnvHelper;
 use App\Helper\HueHelper;
 use App\Helper\RaspbeeHelper;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Http;
 
-class FapAdminBridgeController extends Controller
+class AdminBridge extends Controller
 {
     public function index()
     {

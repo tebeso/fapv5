@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Fap;
 
 use App\Helper\RaspbeeHelper;
 use App\Helper\SensorHelper;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Http;
 use JsonException;
-use Lazer\Classes\LazerException;
 
-class FapTemperatureController extends Controller
+class FapTemperature extends Controller
 {
     public function index()
     {

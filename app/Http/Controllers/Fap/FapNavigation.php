@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Fap;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 
-class FapNavigationController extends Controller
+class FapNavigation extends Controller
 {
     /**
      * @var array|string[][]

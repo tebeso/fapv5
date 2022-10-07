@@ -41,7 +41,6 @@
 
 #door-one-left-open {
     left       : 10px;
-    visibility : hidden;
 }
 
 #door-one-right {
@@ -112,7 +111,6 @@
 
 #door-five-left-open {
     left       : 9px;
-    visibility : hidden;
 }
 
 #door-five-right {
@@ -122,5 +120,4 @@
 
 #door-five-right-open {
     left       : 84px;
-    visibility : hidden;
 }

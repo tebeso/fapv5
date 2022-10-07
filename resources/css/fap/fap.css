@@ -128,3 +128,12 @@ body {
     -webkit-user-select   : none;
     user-select           : none;
 }
+
+.select-box {
+    position : relative;
+    display  : flex;
+}
+
+.select-box select {
+    width : 300px;
+}

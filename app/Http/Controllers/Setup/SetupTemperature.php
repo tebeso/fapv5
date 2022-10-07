@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Setup;
 
 use App\Helper\HueHelper;
 use App\Helper\RaspbeeHelper;
+use App\Http\Controllers\Controller;
 
-class FapSetupTemperatureController extends Controller
+class SetupTemperature extends Controller
 {
     public function index()
     {

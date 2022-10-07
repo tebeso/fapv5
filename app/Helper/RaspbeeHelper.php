@@ -65,7 +65,7 @@ class RaspbeeHelper implements HubInterface
         $lights   = [];
 
         foreach ($response->json() as $id => $raspbeeLight) {
-            if ($raspbeeLight['modelid'] === 'RaspBee II') {
+            if ($raspbeeLight['type'] !== 'Extended color light') {
                 continue;
             }
 
@@ -109,17 +109,32 @@ class RaspbeeHelper implements HubInterface
         $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/sensors');
         $sensors  = [];
 
-
         foreach ($response->json() as $id => $sensor) {
-
             if ($type === 'temp' && ($sensor['type'] === 'ZHATemperature' || $sensor['type'] === 'ZHAThermostat')) {
                 $sensors[$id] = [
                     'sensor_id' => $id,
                     'name'      => '(FAP) ' . $sensor['name'] . ' (' . $sensor['manufacturername'] . ' ' . $sensor['modelid'] . ')',
-                    'type'      => 'temp',
+                    'type'      => $type,
                     'hub'       => 'raspbee',
                     'state'     => $sensor['state']['temperature'],
                     'target'    => isset($sensor['config']['heatsetpoint']) === true ? $sensor['config']['heatsetpoint'] : null,
+                ];
+            }
+            if ($type === 'door' && $sensor['type'] === 'ZHAOpenClose') {
+                $sensors[$id] = [
+                    'sensor_id' => $id,
+                    'name'      => '(FAP) ' . $sensor['name'] . ' (' . $sensor['manufacturername'] . ' ' . $sensor['modelid'] . ')',
+                    'type'      => $type,
+                    'hub'       => 'raspbee',
+                    'state'     => $sensor['state']['open'],
+                ];
+            }
+            if ($type === 'smoke' && $sensor['type'] === 'ZHAFire') {
+                $sensors[$id] = [
+                    'sensor_id' => $id,
+                    'name'      => '(FAP) ' . $sensor['name'] . ' (' . $sensor['manufacturername'] . ' ' . $sensor['modelid'] . ')',
+                    'hub'       => 'raspbee',
+                    'state'     => $sensor['state']['fire'],
                 ];
             }
         }

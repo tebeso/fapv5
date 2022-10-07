@@ -143,9 +143,6 @@
                 @endforeach
             </select>
         </div>
-
-    @else
-        NO AIRCRAFT SELECTED
     @endif
 
     <script>

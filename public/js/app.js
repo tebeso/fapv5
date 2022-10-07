@@ -2969,15 +2969,60 @@ window.FapAudio = /*#__PURE__*/function () {
   \***********************************/
 /***/ (() => {
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+window.FapDoors = /*#__PURE__*/function () {
+  function FapDoors() {
+    _classCallCheck(this, FapDoors);
 
-window.FapDoors = /*#__PURE__*/_createClass(function FapDoors() {
-  _classCallCheck(this, FapDoors);
-});
+    this.getDoorState();
+    var $this = this;
+    setInterval(function () {
+      var title = $('#fap-page-title').text().trim();
+
+      if (title === 'SETUP DOORS' || title === 'DOORS/SLIDES') {
+        $this.getDoorState();
+      }
+    }, 1000);
+  }
+
+  _createClass(FapDoors, [{
+    key: "getDoorState",
+    value: function getDoorState() {
+      var $this = this;
+      $.ajax({
+        type: 'GET',
+        url: 'doors-slides/get-state-assigned',
+        timeout: 3000,
+        success: function success(message) {
+          $.each(message, function (position, attributes) {
+            position = position.replace('select-', '');
+            var positionBlock = $('#' + position);
+            var positionBlockOpen = $('#' + position + '-open');
+            var labelBlock = $('#label-' + position);
+            var state = attributes.state;
+
+            if (state === true) {
+              positionBlockOpen.css('visibility', 'visible');
+              positionBlock.css('background', 'transparent');
+              labelBlock.css('visibility', 'hidden');
+            } else {
+              positionBlockOpen.css('visibility', 'hidden');
+              positionBlock.css('background', '#EAB05C');
+              labelBlock.css('visibility', 'visible');
+            }
+          });
+        }
+      });
+    }
+  }]);
+
+  return FapDoors;
+}();
 
 /***/ }),
 
@@ -3146,7 +3191,12 @@ window.FapMain = /*#__PURE__*/function () {
       client.onmessage = function (msg) {
         var data = JSON.parse(msg.data);
 
-        if (typeof data.state !== 'undefined') {
+        if (typeof data.state !== 'undefined' && typeof data.state.fire !== 'undefined') {
+          if (data.state.fire === true) {}
+        }
+
+        if (typeof data.state !== 'undefined' && typeof data.state.fire === 'undefined') {
+          console.log(false);
           console.log(data);
         }
       };

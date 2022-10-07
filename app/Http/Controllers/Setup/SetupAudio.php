@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Setup;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -11,7 +12,7 @@ use Lazer\Classes\Database as Lazer;
 use Storage;
 use Throwable;
 
-class FapSetupAudioController extends Controller
+class SetupAudio extends Controller
 {
     /**
      * @return Application|Factory|View
