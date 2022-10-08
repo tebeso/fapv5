@@ -14,7 +14,6 @@ use App\Http\Controllers\Fap\FapSmokeDetection;
 use App\Http\Controllers\Fap\FapSystemInfo;
 use App\Http\Controllers\Fap\FapTemperature;
 use App\Http\Controllers\Fap\FapWaterWaste;
-use App\Http\Controllers\Setup\Setup;
 use App\Http\Controllers\Setup\SetupAircraftLayout;
 use App\Http\Controllers\Setup\SetupAudio;
 use App\Http\Controllers\Setup\SetupDoorsSlides;
