@@ -11,6 +11,14 @@
     position    : absolute;
 }
 
+.aircraft-module-doors .door {
+    background-color : #EAB05C;
+}
+
+.aircraft-module-doors .door-open {
+    background-color : #E23232;
+}
+
 .door-overwing {
     height : 16px;
     width  : 5px;
@@ -40,7 +48,7 @@
 }
 
 #door-one-left-open {
-    left       : 10px;
+    left : 10px;
 }
 
 #door-one-right {
@@ -110,7 +118,7 @@
 }
 
 #door-five-left-open {
-    left       : 9px;
+    left : 9px;
 }
 
 #door-five-right {
@@ -119,5 +127,5 @@
 }
 
 #door-five-right-open {
-    left       : 84px;
+    left : 84px;
 }

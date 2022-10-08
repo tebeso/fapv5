@@ -15,6 +15,7 @@
         window.fapSensor      = new FapSensor();
         window.fapTemperature = new FapTemperature();
         window.fapDoors       = new FapDoors();
+        window.fapSmoke       = new FapSmoke();
 
         window.fapMain.getNavigationItems(1);
     </script>
@@ -70,7 +71,8 @@
         </div>
     </div>
     <div id="fap-navigation-additional-right">
-        <div id="fap-cabin-status" class="fap-button fap-button-active" data-menuid="cabin-status">
+        <div id="fap-cabin-status" class="fap-button fap-button-active" data-menuid="cabin-status"
+             data-title="CABIN STATUS">
             Cabin<br />Status
         </div>
     </div>

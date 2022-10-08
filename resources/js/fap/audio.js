@@ -1,7 +1,17 @@
 window.FapAudio = class FapAudio {
     constructor() {
-
         let $this = this;
+
+        setInterval(function () {
+            let title = $('#fap-page-title').text().trim();
+            if (title === 'AUDIO' || title === 'SETUP AUDIO') {
+                $this.setVolumeState();
+            }
+            if (title === 'CABIN STATUS') {
+                $this.setVolumeState();
+            }
+        }, 500);
+
 
         $(document).ready(function () {
 
@@ -42,8 +52,6 @@ window.FapAudio = class FapAudio {
                     $this.clearFile();
                 }
             });
-
-            //audio-current-file
         });
     }
 
@@ -240,7 +248,7 @@ window.FapAudio = class FapAudio {
     }
 
     setAudioDisplay(text) {
-        $('#audio-current-file').text(text.replace('audio-files/','').replace(/\.[^/.]+$/, ""));
+        $('#audio-current-file').text(text.replace('audio-files/', '').replace(/\.[^/.]+$/, ''));
     }
 
     play() {

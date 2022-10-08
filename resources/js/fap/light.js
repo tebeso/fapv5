@@ -6,7 +6,10 @@ window.FapLight = class FapLight {
             function () {
                 let title = $('#fap-page-title').text().trim();
 
-                if (title === 'LIGHTS' || title === 'SETUP LIGHTS' || title === 'CABIN STATUS') {
+                if (title === 'LIGHTS' || title === 'SETUP LIGHTS') {
+                    $this.getLightState();
+                }
+                if(title === 'CABIN STATUS'){
                     $this.getLightState();
                 }
             },

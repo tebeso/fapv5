@@ -1,22 +1,26 @@
 window.FapTemperature = class FapTemperature {
     constructor() {
-        this.getTemperatureState();
-
         let $this = this;
+
+        this.loadEvents();
 
         setInterval(
             function () {
                 let title = $('#fap-page-title').text().trim();
 
-                if (title === 'CABIN TEMPERATURE' || title === 'SETUP CABIN TEMPERATURE' || title === 'CABIN STATUS') {
+                if (title === 'CABIN TEMPERATURE' || title === 'SETUP CABIN TEMPERATURE') {
                     $this.getTemperatureState();
                     $this.loadTempScale();
+
+                    window.fapSensor.loadEvents();
+                    window.fapSensor.getAssignedSensors('temp');
+                }
+                if (title === 'CABIN STATUS') {
+                    $this.getTemperatureState();
                 }
             },
-            1000,
+            500,
         );
-
-        this.loadEvents();
     }
 
     loadEvents() {

@@ -16,6 +16,7 @@ class SensorHelper
      *
      * @return JsonResponse
      * @throws JsonException
+     * @throws LazerException
      */
     public static function getStateAssigned(string $type): JsonResponse
     {

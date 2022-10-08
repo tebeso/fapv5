@@ -162,6 +162,7 @@ body {
 }
 
 .fap-button-group-3-horizontal {
+    position: absolute;
     width  : 165px;
     height : 55px;
 }
@@ -352,6 +353,14 @@ body {
     position    : absolute;
 }
 
+.aircraft-module-doors .door {
+    background-color : #EAB05C;
+}
+
+.aircraft-module-doors .door-open {
+    background-color : #E23232;
+}
+
 .door-overwing {
     height : 16px;
     width  : 5px;
@@ -381,7 +390,7 @@ body {
 }
 
 #door-one-left-open {
-    left       : 10px;
+    left : 10px;
 }
 
 #door-one-right {
@@ -451,7 +460,7 @@ body {
 }
 
 #door-five-left-open {
-    left       : 9px;
+    left : 9px;
 }
 
 #door-five-right {
@@ -460,7 +469,7 @@ body {
 }
 
 #door-five-right-open {
-    left       : 84px;
+    left : 84px;
 }
 .fap-arrow {
     border-top    : 15px solid transparent;
@@ -767,18 +776,14 @@ body {
 }
 
 .lights-select-box {
-    width    : 400px;
     position : relative;
     display  : flex;
-}
-
-.lights-select-box label {
-    width : 150px;
 }
 
 .lights-select {
     display  : block;
     position : relative;
+    width    : 210px;
 }
 
 .lights-dim2 {
@@ -821,10 +826,10 @@ body {
 }
 .smoke-detector {
     border           : solid 1px #000000;
-    position         : relative;
     height           : 10px;
     width            : 10px;
     background-color : #C2C7CA;
+    position         : absolute;
 }
 
 
@@ -832,9 +837,9 @@ body {
     background-color : #E23232 !important;
 }
 #fap-door-legend {
-    position : relative;
-    top      : 210px;
-    left     : 440px;
+    position : absolute;
+    top      : 500px;
+    left     : 755px;
     width    : 170px;
 }
 

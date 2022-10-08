@@ -1,7 +1,6 @@
 window.FapAdmin = class FapAdmin {
     constructor() {
         let $this = this;
-        this.loadEvents();
         setInterval(
             function () {
                 let title = $('#fap-page-title').text().trim();
@@ -12,9 +11,6 @@ window.FapAdmin = class FapAdmin {
             },
             1000,
         );
-    }
-
-    loadEvents() {
     }
 
     deleteBridge(bridge) {

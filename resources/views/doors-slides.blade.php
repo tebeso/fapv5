@@ -1,10 +1,11 @@
-@extends('general.aircraft')
+<div class="aircraft-module-doors">
+    @include('general.aircraft-doors-slides')
 
-@section('module')
-    @if(\Illuminate\Support\Env::get('AIRCRAFT') === 'A320')
+    <div id="door-label" style="position: absolute; top:80px; left:370px;">
 
-    @elseif(\Illuminate\Support\Env::get('AIRCRAFT') === 'A346')
-        <div id="door-label">
+        @if(\Illuminate\Support\Env::get('AIRCRAFT') === 'A320')
+
+        @elseif(\Illuminate\Support\Env::get('AIRCRAFT') === 'A346')
             <div id="label-door-one-left" class="door-left-label" style="top:72px;">
                 <div class="slides-disarmed slides-disarmed-left yellow-text">SLIDE DISARMED</div>
                 1L
@@ -46,23 +47,8 @@
                 <div class="slides-disarmed slides-disarmed-right yellow-text">SLIDE DISARMED</div>
                 5R
             </div>
-        </div>
-
-        <div class="open-doors">
-            <div id="door-one-left-open" class="door door-generic door-open door-one-open door-left-open-front-aft"></div>
-            <div id="door-two-left-open" class="door door-generic door-open door-two-open door-left-open"></div>
-            <div id="door-three-left-open" class="door door-overwing door-open door-three-open door-left-open"></div>
-            <div id="door-four-left-open" class="door door-generic door-open door-four-open door-left-open"></div>
-            <div id="door-five-left-open" class="door door-generic door-open door-five-open door-left-open-front-aft"></div>
-            <div id="door-one-right-open" class="door door-generic door-open door-one-open door-right-open-front-aft"></div>
-            <div id="door-two-right-open" class="door door-generic door-open door-two-open door-right-open"></div>
-            <div id="door-three-right-open" class="door door-overwing door-open door-three-open door-right-open"></div>
-            <div id="door-four-right-open" class="door door-generic door-open door-four-open door-right-open"></div>
-            <div id="door-five-right-open" class="door door-generic door-open door-five-open door-right-open-front-aft"></div>
-        </div>
-    @else
-        NO AIRCRAFT SELECTED
-    @endif
+        @endif
+    </div>
 
     <div id="fap-door-legend" class="fap-content-box">
         <div class="fap-box-title" style="font-size: 17px !important;">LEGEND</div>
@@ -75,19 +61,9 @@
             <div class="fap-door-legend-label">DOOR OPEN</div>
         </div>
     </div>
-@endsection
 
-@section('module-js')
     <script>
-        $('.fap-aircraft').css('left', '325px');
+        $('.fap-aircraft').css('left', '320px');
         $('.door').addClass('yellow-bg');
-
-        function getAssignedSensors() {
-
-        }
-
-        $(document).ready(function () {
-            getAssignedSensors();
-        });
     </script>
-@endsection
+</div>

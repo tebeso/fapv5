@@ -1,16 +1,5 @@
-@extends('general.aircraft')
+@include('general.aircraft-smoke-detection')
 
-@section('module')
-    <div class="smoke-detector" style="top:58px; left:16px;"></div>
-    <div class="smoke-detector" style="top:150px; left:10px;"></div>
-    <div class="smoke-detector" style="top:253px; left:10px;"></div>
-    <div class="smoke-detector" style="top:351px; left:10px;"></div>
-    <div class="smoke-detector" style="top:449px; left:16px;"></div>
-@endsection
-
-@section('module-js')
-    <script>
-        $('.fap-aircraft').css('left', '420px');
-    </script>
-@endsection
-
+<script>
+    $('.fap-aircraft').css('left', '425px');
+</script>

@@ -2,7 +2,7 @@
 
 @section('audio-upload-form')
     <form action="setup/audio/upload" class="fap-content-box fap-box-small"
-          style="top:330px; left: 115px; height:100px; line-height:50px; padding-left:10px; width:195px;" method="post"
+          style="top:390px; left: 146px; height:100px; line-height:50px; padding-left:10px; width:195px;" method="post"
           enctype="multipart/form-data" id="upload-audio-form">
         @csrf
         <input type="file" id="audio-file" name="audio-file"

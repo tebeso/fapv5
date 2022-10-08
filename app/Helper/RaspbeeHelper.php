@@ -133,6 +133,7 @@ class RaspbeeHelper implements HubInterface
                 $sensors[$id] = [
                     'sensor_id' => $id,
                     'name'      => '(FAP) ' . $sensor['name'] . ' (' . $sensor['manufacturername'] . ' ' . $sensor['modelid'] . ')',
+                    'type'      => $type,
                     'hub'       => 'raspbee',
                     'state'     => $sensor['state']['fire'],
                 ];

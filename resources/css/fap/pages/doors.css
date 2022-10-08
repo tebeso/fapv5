@@ -1,7 +1,7 @@
 #fap-door-legend {
-    position : relative;
-    top      : 210px;
-    left     : 440px;
+    position : absolute;
+    top      : 500px;
+    left     : 755px;
     width    : 170px;
 }
 

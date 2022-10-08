@@ -49,6 +49,7 @@ Route::get('/temperature/set-state', [FapTemperature::class, 'setState']);
 Route::get('/temperature/get-state-assigned', [FapTemperature::class, 'getStateAssigned']);
 Route::get('/water-waste', [FapWaterWaste::class, 'index']);
 Route::get('/smoke-detection', [FapSmokeDetection::class, 'index']);
+Route::get('/smoke-detection/get-state-assigned', [FapSmokeDetection::class, 'getStateAssigned']);
 Route::get('/system-info', [FapSystemInfo::class, 'index']);
 Route::get('/cabin-status', [FapCabinStatus::class, 'index']);
 

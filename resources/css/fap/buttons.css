@@ -23,6 +23,7 @@
 }
 
 .fap-button-group-3-horizontal {
+    position: absolute;
     width  : 165px;
     height : 55px;
 }

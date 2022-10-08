@@ -89,18 +89,14 @@
 }
 
 .lights-select-box {
-    width    : 400px;
     position : relative;
     display  : flex;
-}
-
-.lights-select-box label {
-    width : 150px;
 }
 
 .lights-select {
     display  : block;
     position : relative;
+    width    : 210px;
 }
 
 .lights-dim2 {

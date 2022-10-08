@@ -6,3 +6,4 @@ import './fap/sensor';
 import './fap/temperature';
 import './fap/admin';
 import './fap/doors';
+import './fap/smoke';

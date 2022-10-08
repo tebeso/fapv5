@@ -1,7 +1,5 @@
 window.FapDoors = class FapDoors {
     constructor() {
-        this.getDoorState();
-
         let $this = this;
 
         setInterval(
@@ -11,14 +9,15 @@ window.FapDoors = class FapDoors {
                 if (title === 'SETUP DOORS' || title === 'DOORS/SLIDES') {
                     $this.getDoorState();
                 }
+                if (title === 'CABIN STATUS') {
+                    $this.getDoorState();
+                }
             },
-            1000,
+            500,
         );
     }
 
     getDoorState() {
-        let $this = this;
-
         $.ajax({
             type:    'GET',
             url:     'doors-slides/get-state-assigned',
@@ -26,10 +25,9 @@ window.FapDoors = class FapDoors {
             success: function (message) {
                 $.each(message, function (position, attributes) {
                     position = position.replace('select-', '');
-
-                    let positionBlock     = $('#' + position);
-                    let positionBlockOpen = $('#' + position + '-open');
-                    let labelBlock        = $('#label-' + position);
+                    let positionBlock     = $('.aircraft-module-doors #' + position);
+                    let positionBlockOpen = $('.aircraft-module-doors #' + position + '-open');
+                    let labelBlock        = $('.aircraft-module-doors #label-' + position);
                     let state             = attributes.state;
 
                     if (state === true) {

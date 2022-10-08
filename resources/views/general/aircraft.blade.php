@@ -20,7 +20,7 @@
         <div id="door-five-left" class="door door-five door-front-rear "></div>
         <div id="door-five-right" class="door door-five door-front-rear"></div>
     @endif
-    @yield('module')
+    {{ $slot }}
 </div>
 
 @yield('module-js')
