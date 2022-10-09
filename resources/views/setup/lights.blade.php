@@ -42,7 +42,7 @@
         </div>
 
     @elseif(\Illuminate\Support\Env::get('AIRCRAFT') === 'A346')
-        <div class="lights-select-box" style="top: 193px; left: 49px;">
+        <div class="lights-select-box" style="top: 192px; left: 49px;">
             <label for="320-346-fwd-entry"></label>
             <select name="320-346-fwd-entry" id="320-346-fwd-entry" class="lights-select">
                 <option></option>
@@ -52,7 +52,7 @@
             </select>
         </div>
 
-        <div class="lights-select-box" style="top: 315px; left: 49px;">
+        <div class="lights-select-box" style="top: 337px; left: 49px;">
             <label for="346-first"></label>
             <select name="346-first" id="346-first" class="lights-select">
                 <option></option>
@@ -62,7 +62,7 @@
             </select>
         </div>
 
-        <div class="lights-select-box" style="top: 438px; left: 49px;">
+        <div class="lights-select-box" style="top: 482px; left: 49px;">
             <label for="346-business"></label>
             <select name="346-business" id="346-business" class="lights-select">
                 <option></option>
@@ -72,7 +72,7 @@
             </select>
         </div>
 
-        <div class="lights-select-box" style="top: 561px; left: 49px;">
+        <div class="lights-select-box" style="top: 627px; left: 49px;">
             <label for="346-fwd-economy"></label>
             <select name="346-fwd-economy" id="346-fwd-economy"
                     class="lights-select">
@@ -83,7 +83,7 @@
             </select>
         </div>
 
-        <div class="lights-select-box" style="top: 255px; left: 545px;">
+        <div class="lights-select-box" style="top: 342px; left: 545px;">
             <label for="346-rear-economy"></label>
             <select name="346-rear-economy" id="346-rear-economy" class="lights-select">
                 <option></option>
@@ -93,7 +93,7 @@
             </select>
         </div>
 
-        <div class="lights-select-box" style="top: 377px; left: 545px;">
+        <div class="lights-select-box" style="top: 488px; left: 545px;">
             <label for="346-fwd-galley"></label>
             <select name="346-fwd-galley" id="346-fwd-galley" class="lights-select">
                 <option></option>
@@ -103,7 +103,7 @@
             </select>
         </div>
 
-        <div class="lights-select-box" style="top: 355px; left: 779px;">
+        <div class="lights-select-box" style="top: 488px; left: 779px;">
             <label for="346-aft-galley"></label>
             <select name="346-aft-galley" id="346-aft-galley" class="lights-select">
                 <option></option>
@@ -113,7 +113,7 @@
             </select>
         </div>
 
-        <div class="lights-select-box" style="top: 478px; left: 545px;">
+        <div class="lights-select-box" style="top: 632px; left: 545px;">
             <label for="320-346-aft-entry"></label>
             <select name="320-346-aft-entry" id="320-346-aft-entry" class="lights-select">
                 <option></option>

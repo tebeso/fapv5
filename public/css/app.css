@@ -776,7 +776,7 @@ body {
 }
 
 .lights-select-box {
-    position : relative;
+    position : absolute;
     display  : flex;
 }
 
