@@ -53,7 +53,7 @@
     <div id="fap-door-legend" class="fap-content-box">
         <div class="fap-box-title" style="font-size: 17px !important;">LEGEND</div>
         <div class="fap-door-legend-row">
-            <div class="door door-generic green-bg" style="float:left;"></div>
+            <div class="door door-generic green-bg" style="float:left; background-color: #68B13C !important;"></div>
             <div class="fap-door-legend-label">DOOR CLOSED &amp; ARMED</div>
         </div>
         <div class="fap-door-legend-row">
