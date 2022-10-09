@@ -5,7 +5,7 @@
         <div class="fap-button fap-control fap-button-function" data-file="screensaver-airberlin.png">AB</div>
         <div class="fap-button fap-control fap-button-function" data-file="screensaver-ltu.png">LTU</div>
     </div>
-    <div class="fap-button-group-3-horizontal">
+    <div class="fap-button-group-3-horizontal" style="top:75px;">
         <div class="fap-button fap-control fap-button-function" data-file="screensaver-airbus.png">Airbus</div>
         <div class="fap-button fap-button-inactive"></div>
         <div class="fap-button fap-button-inactive"></div>
