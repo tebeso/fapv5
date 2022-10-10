@@ -120,6 +120,16 @@ body {
     line-height : 20px;
 }
 
+#smoke-detected-popup {
+    z-index  : 999;
+    position : absolute;
+    top      : 380px;
+    right    : 0;
+
+    height   : 180px;
+    width    : 110px;
+}
+
 .no-select {
     -khtml-user-select    : none;
     -moz-user-select      : none;
@@ -144,7 +154,7 @@ body {
     background     : url(/images/buttons/button.png) no-repeat;
     color          : #000000;
     display        : table-cell;
-    font-size      : 11px;
+    font-size      : 10px;
     height         : 55px;
     position       : relative;
     text-align     : center;
@@ -813,8 +823,8 @@ body {
 }
 
 .temperature-block-320 {
-    height      : 280px;
-    line-height : 280px;
+    height      : 200px;
+    line-height : 200px;
 }
 
 #temperature-scale {

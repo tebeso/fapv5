@@ -2,17 +2,17 @@
 
 @if(\Illuminate\Support\Env::get('AIRCRAFT') === 'A320')
     <div id="fap-zone-switcher-box"
-         style="position: absolute; top:80px; left:513px; width: 460px; height:550px;">
-        <div class="fap-button fap-zone-switcher fap-button-active" style="top:100px; left:130px;"
-             data-zone="Zone 1">Zone 1
+         style="position: absolute; top:152px; left:513px; width: 460px; height:550px;">
+        <div class="fap-button fap-zone-switcher fap-button-active" style="top:82px; left:130px;" data-zone="FWD">
+            FWD
         </div>
-        <div class="fap-button fap-zone-switcher" style="top:215px; left:240px;" data-zone="Zone 2">Zone 2</div>
+        <div class="fap-button fap-zone-switcher" style="top:302px; left:237px;" data-zone="AFT">AFT</div>
     </div>
 @elseif(\Illuminate\Support\Env::get('AIRCRAFT') === 'A346')
     <div id="fap-zone-switcher-box"
          style="position: absolute; top:80px; left:513px; width: 460px; height:550px;">
-        <div class="fap-button fap-zone-switcher fap-button-active" style="top:100px; left:130px;"
-             data-zone="Zone 1">Zone 1
+        <div class="fap-button fap-zone-switcher fap-button-active" style="top:100px; left:130px;" data-zone="Zone 1">
+            Zone 1
         </div>
         <div class="fap-button fap-zone-switcher" style="top:215px; left:240px;" data-zone="Zone 2">Zone 2</div>
         <div class="fap-button fap-zone-switcher" style="top:322px; left: 21px;" data-zone="Zone 3">Zone 3</div>

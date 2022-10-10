@@ -4,7 +4,7 @@
              style="top:80px;">X.X
         </div>
         <div id="temperature-320-zone-2" data-zone="AFT" class="temperature-block temperature-block-320"
-             style="top:110px;">X.X
+             style="top:100px;">X.X
         </div>
     @elseif(\Illuminate\Support\Env::get('AIRCRAFT') === 'A346')
         <div id="temperature-346-zone-1" data-zone="Zone 1" class="temperature-block temperature-block-346"

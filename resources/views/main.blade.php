@@ -78,6 +78,16 @@
     </div>
 </div>
 
+<div id="smoke-detected-popup" class="fap-content-box" style="display:none;">
+    <div style="text-align: center;">
+        <div class="smoke-detector red-bg" style="position: absolute; left:50%; top:20px;"></div>
+    </div>
+    <div style="position: absolute; top:50px; line-height: 30px; background-color: #ff0000; color: #fff; text-align: center; width:92%;">
+        SMOKE<br />DETECTED
+    </div>
+    <div class="fap-button" style="top:115px; left:50%;">SMOKE<br />RESET</div>
+</div>
+
 <div id="message-popup" class="fap-content-box" style="display: none;">
     <div id="message">
 

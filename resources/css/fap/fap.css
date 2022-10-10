@@ -120,6 +120,16 @@ body {
     line-height : 20px;
 }
 
+#smoke-detected-popup {
+    z-index  : 999;
+    position : absolute;
+    top      : 380px;
+    right    : 0;
+
+    height   : 180px;
+    width    : 110px;
+}
+
 .no-select {
     -khtml-user-select    : none;
     -moz-user-select      : none;

@@ -53,6 +53,7 @@ window.FapTemperature = class FapTemperature {
         let activeZoneBlock  = $('.temperature-block[data-zone="' + activeZone + '"]');
         let activeZoneTemp   = activeZoneBlock.text().trim();
         let activeZoneTarget = this.formatTemperature(activeZoneBlock.data('target'));
+
         $('#ball-temp').text(activeZoneTemp + '°C');
         $('.fap-box-title').first().text(activeZone);
         $('.fap-arrow').data('sensor-id', activeZoneBlock.data('sensor-id'));
@@ -68,8 +69,8 @@ window.FapTemperature = class FapTemperature {
         }
 
         let scaleTemp = this.revertFormatTemperature(activeZoneTemp);
-
         let scaleValue = 246;
+
         if (scaleTemp === 1700) {
             scaleValue = 215;
         } else if (scaleTemp === 1800) {
