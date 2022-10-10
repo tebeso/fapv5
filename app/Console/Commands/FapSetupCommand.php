@@ -17,7 +17,17 @@ class FapSetupCommand extends Command
         try {
             try {
                 Lazer::remove('audio-storage');
+            } catch (Throwable $e) {
+                echo $e->getMessage();
+            }
+
+            try {
                 Lazer::remove('lights-storage');
+            } catch (Throwable $e) {
+                echo $e->getMessage();
+            }
+
+            try {
                 Lazer::remove('sensors-storage');
             } catch (Throwable $e) {
                 echo $e->getMessage();
