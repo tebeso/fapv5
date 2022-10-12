@@ -9,7 +9,6 @@ use Throwable;
 
 class RaspbeeHelper implements HubInterface
 {
-
     /**
      * @return null|string
      */
