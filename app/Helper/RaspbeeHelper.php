@@ -30,7 +30,11 @@ class RaspbeeHelper implements HubInterface
         return $bridgeIpAddress;
     }
 
-    public function getUser()
+
+    /**
+     * @return mixed|null
+     */
+    public function getUser(): mixed
     {
         $bridge = $this->getBridge();
 
@@ -81,6 +85,10 @@ class RaspbeeHelper implements HubInterface
         return $lights;
     }
 
+
+    /**
+     * @return array
+     */
     public function getGroups(): array
     {
         $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/groups');
@@ -105,7 +113,12 @@ class RaspbeeHelper implements HubInterface
     }
 
 
-    public function getSensors($type = 'temp'): array
+    /**
+     * @param string $type
+     *
+     * @return array
+     */
+    public function getSensors(string $type = 'temp'): array
     {
         $sensors = [];
 
@@ -153,9 +166,13 @@ class RaspbeeHelper implements HubInterface
         return $sensors;
     }
 
-    public function getClient()
+
+    /**
+     * @return bool
+     */
+    public function getClient(): bool
     {
-        // TODO: Implement getClient() method.
+        return false;
     }
 
 
