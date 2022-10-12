@@ -6,18 +6,30 @@ use App\Helper\EnvHelper;
 use App\Helper\HueHelper;
 use App\Helper\RaspbeeHelper;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Http;
 
 class AdminBridge extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         return view('admin/bridge-setup', ['serverIp' => $_SERVER['SERVER_ADDR']]);
     }
 
+
+    /**
+     * @return Application|ResponseFactory|Response
+     */
     public function pairRaspbeeDevices()
     {
         Http::put(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/config', [
@@ -28,6 +40,11 @@ class AdminBridge extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     *
+     * @return void
+     */
     public function deleteBridge(Request $request): void
     {
         $bridge = $request->get('bridge');
@@ -42,6 +59,11 @@ class AdminBridge extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     *
+     * @return Application|ResponseFactory|Response
+     */
     public function pairBridge(Request $request)
     {
         $bridge = $request->get('bridge');
@@ -53,6 +75,9 @@ class AdminBridge extends Controller
     }
 
 
+    /**
+     * @return Application|ResponseFactory|Response
+     */
     public function pairHueBridge()
     {
         $hue = new HueHelper();
@@ -66,6 +91,10 @@ class AdminBridge extends Controller
         return Response('Bridge paired successfully.');
     }
 
+
+    /**
+     * @return Application|ResponseFactory|Response
+     */
     public function pairRaspbeeBridge()
     {
         $raspbee = new RaspbeeHelper();
@@ -79,14 +108,30 @@ class AdminBridge extends Controller
     }
 
 
+    /**
+     * @return JsonResponse
+     */
     public function checkPaired(): JsonResponse
     {
         $raspbee     = new RaspbeeHelper();
         $raspbeeUser = $raspbee->getUser();
 
+        $raspbeePing      = shell_exec('ping -c 1 ' . Env::get('RASPBEE_IP'));
+        $raspbeeConnected = str_contains($raspbeePing, '1 received');
+
         $hue     = new HueHelper();
         $hueUser = $hue->getUser();
 
-        return Response()->json(['raspbeeUser' => $raspbeeUser, 'hueUser' => $hueUser]);
+        $huePing      = shell_exec('ping -c 1 ' . Env::get('HUE_IP'));
+        $hueConnected = str_contains($huePing, '1 received');
+
+        return Response()->json(
+            [
+                'raspbeeUser'      => $raspbeeUser,
+                'raspbeeConnected' => $raspbeeConnected,
+                'hueUser'          => $hueUser,
+                'hueConnected'     => $hueConnected,
+            ]
+        );
     }
 }

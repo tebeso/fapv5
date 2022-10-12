@@ -62,13 +62,21 @@ window.FapAdmin = class FapAdmin {
         if (response.raspbeeUser === null) {
             raspbeeStatus.addClass('red-text').removeClass('green-text').text('not paired');
         } else {
-            raspbeeStatus.removeClass('red-text').addClass('green-text').text('paired');
+            if (response.raspbeeConnected === true) {
+                raspbeeStatus.removeClass('red-text').addClass('green-text').text('paired');
+            } else {
+                raspbeeStatus.addClass('red-text').removeClass('green-text').text('not connected');
+            }
         }
 
         if (response.hueUser === null) {
             hueStatus.addClass('red-text').removeClass('green-text').text('not paired');
         } else {
-            hueStatus.removeClass('red-text').addClass('green-text').text('paired');
+            if (response.hueConnected === true) {
+                hueStatus.removeClass('red-text').addClass('green-text').text('paired');
+            } else {
+                hueStatus.addClass('red-text').removeClass('green-text').text('not connected');
+            }
         }
     }
 };
