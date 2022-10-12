@@ -5,6 +5,7 @@ namespace App\Helper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Http;
+use Throwable;
 
 class RaspbeeHelper implements HubInterface
 {
@@ -106,10 +107,15 @@ class RaspbeeHelper implements HubInterface
 
     public function getSensors($type = 'temp'): array
     {
-        $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/sensors');
-        $sensors  = [];
+        $sensors = [];
 
-        if ($response->json() === null) {
+        try {
+            $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/sensors');
+        } catch (Throwable $e) {
+            return $sensors;
+        }
+
+        if ($this->checkConnection() || $response->json() === null) {
             return [];
         }
 
@@ -152,11 +158,27 @@ class RaspbeeHelper implements HubInterface
         // TODO: Implement getClient() method.
     }
 
-    public function checkConnection()
+
+    /**
+     * @return bool
+     */
+    public function checkConnection(): bool
     {
-        // TODO: Implement checkConnection() method.
+        $raspbeePing      = shell_exec('ping -c 1 ' . Env::get('RASPBEE_IP'));
+        $raspbeeConnected = str_contains($raspbeePing, '1 received');
+
+        return !(Env::get('HUE_IP') === '' || Env::get('HUE_USER') === '' || $raspbeeConnected === false);
     }
 
+
+    /**
+     * @param string $id
+     * @param string $type
+     * @param string $level
+     * @param bool   $on
+     *
+     * @return void
+     */
     public function setState(string $id, string $type, string $level, bool $on): void
     {
         if ($type === 'raspbee-group') {

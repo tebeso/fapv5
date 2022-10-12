@@ -113,17 +113,14 @@ class AdminBridge extends Controller
      */
     public function checkPaired(): JsonResponse
     {
-        $raspbee     = new RaspbeeHelper();
-        $raspbeeUser = $raspbee->getUser();
+        $raspbee          = new RaspbeeHelper();
+        $raspbeeUser      = $raspbee->getUser();
+        $raspbeeConnected = $raspbee->checkConnection();
 
-        $raspbeePing      = shell_exec('ping -c 1 ' . Env::get('RASPBEE_IP'));
-        $raspbeeConnected = str_contains($raspbeePing, '1 received');
 
-        $hue     = new HueHelper();
-        $hueUser = $hue->getUser();
-
-        $huePing      = shell_exec('ping -c 1 ' . Env::get('HUE_IP'));
-        $hueConnected = str_contains($huePing, '1 received');
+        $hue          = new HueHelper();
+        $hueUser      = $hue->getUser();
+        $hueConnected = $hue->checkConnection();
 
         return Response()->json(
             [

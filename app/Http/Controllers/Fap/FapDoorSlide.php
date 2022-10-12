@@ -6,6 +6,7 @@ use App\Helper\SensorHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use JsonException;
+use Lazer\Classes\LazerException;
 
 class FapDoorSlide extends Controller
 {
@@ -15,7 +16,7 @@ class FapDoorSlide extends Controller
     }
 
     /**
-     * @throws JsonException
+     * @throws JsonException|LazerException
      */
     public function getStateAssigned(): JsonResponse
     {

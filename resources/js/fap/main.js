@@ -64,16 +64,20 @@ window.FapMain = class FapMain {
         let W3CWebSocket = require('websocket').w3cwebsocket;
         let client       = new W3CWebSocket('ws://192.168.188.56:443/', 'echo-protocol');
         client.onmessage = function (msg) {
-            let data = JSON.parse(msg.data);
+            let data                = JSON.parse(msg.data);
+            let title               = $('#fap-page-title').text().trim();
+            let smokeDetectionPopup = $('#smoke-detected-popup');
+
+
             if (typeof data.state !== 'undefined' && typeof data.state.fire !== 'undefined') {
                 if (data.state.fire === true) {
-                    
+                    smokeDetectionPopup.css('display', 'block');
+                    // No functionality yet. Should show the tab.
+                } else {
+                    smokeDetectionPopup.css('display', 'hide');
                 }
-            }
-
-            if (typeof data.state !== 'undefined' && typeof data.state.fire === 'undefined') {
-                console.log(false);
-                console.log(data);
+            } else {
+                smokeDetectionPopup.css('display', 'hide');
             }
         };
     }

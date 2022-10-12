@@ -188,6 +188,13 @@ class HueHelper implements HubInterface
      */
     public function checkConnection(): bool
     {
+        $huePing      = shell_exec('ping -c 1 ' . Env::get('HUE_IP'));
+        $hueConnected = str_contains($huePing, '1 received');
+
+        if ($hueConnected === false) {
+            return false;
+        }
+
         return !($this->getClient() === null || Env::get('HUE_IP') === '' || Env::get('HUE_USER') === '');
     }
 
