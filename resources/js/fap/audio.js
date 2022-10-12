@@ -77,7 +77,13 @@ window.FapAudio = class FapAudio {
 
         $(window.fileList).each(function (_index, filename) {
             $('#audio-file-list').append('<li class="audio-file-list-item" id="audio-file-list-' + _index + '" data-id="' + _index + '">' + filename + '</li>');
+
         });
+
+        let visibleItems  = $('#audio-file-list li:visible');
+
+        visibleItems.first().css('border-top', 'none');
+        visibleItems.last().css('border-bottom', 'none');
 
         this.selectFileListItem(audioFileList.children(':first'));
     }
@@ -104,7 +110,7 @@ window.FapAudio = class FapAudio {
             let hiddenItemId      = $(_data).data('id');
             let lastVisibleItemId = visibleItems.last().data('id');
 
-            if (hiddenItemId > lastVisibleItemId && nextPageItems.length < 6) {
+            if (hiddenItemId > lastVisibleItemId && nextPageItems.length < 5) {
                 nextPageItems.push(_data);
             }
         });
@@ -116,6 +122,9 @@ window.FapAudio = class FapAudio {
                 $(_data).show();
             });
         }
+
+        visibleItems.first().css('border-top', 'none');
+        visibleItems.last().css('border-bottom', 'none');
     }
 
     prevFileListItemPage() {
@@ -139,6 +148,9 @@ window.FapAudio = class FapAudio {
                 $(_data).show();
             });
         }
+
+        visibleItems.first().css('border-top', 'none');
+        visibleItems.last().css('border-bottom', 'none');
     }
 
     keypadWrite(string) {

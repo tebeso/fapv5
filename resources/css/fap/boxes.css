@@ -45,7 +45,9 @@
     background-color : #D9E9F9;
 }
 
-.fap-list-box li:nth-child(5) {
+
+
+.fap-list-box li:not([style*='display:none']):last-child {
     border-bottom : none;
 }
 
