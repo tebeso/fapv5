@@ -97,6 +97,11 @@
 
 <script>
     window.fapMain.loadPageContent($('#fap-cabin-status'));
+    window.fapAudio.volumeDown();
+    window.fapAudio.volumeDown();
+    window.fapAudio.volumeDown();
+    window.fapAudio.volumeDown();
+    window.fapAudio.volumeDown();
 </script>
 </body>
 </html>

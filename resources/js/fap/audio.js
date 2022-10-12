@@ -295,9 +295,9 @@ window.FapAudio = class FapAudio {
         }
     }
 
-    volumeUp() {
+    volumeUp(step = 0.1) {
         let audioPlayer = $('#fap-audio');
-        let newVolume   = audioPlayer.prop('volume') + 0.1;
+        let newVolume   = audioPlayer.prop('volume') + step;
 
         if (newVolume > 1.0) {
             newVolume = 1.0;
@@ -306,9 +306,9 @@ window.FapAudio = class FapAudio {
         audioPlayer.prop('volume', newVolume);
     }
 
-    volumeDown() {
+    volumeDown(step = 0.1) {
         let audioPlayer = $('#fap-audio');
-        let newVolume   = audioPlayer.prop('volume') - 0.1;
+        let newVolume   = audioPlayer.prop('volume') - step;
 
         if (newVolume < 0.0) {
             newVolume = 0.0;

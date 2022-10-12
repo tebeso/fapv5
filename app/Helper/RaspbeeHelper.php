@@ -109,6 +109,10 @@ class RaspbeeHelper implements HubInterface
         $response = Http::get(Env::get('RASPBEE_IP') . '/api/' . Env::get('RASPBEE_USER') . '/sensors');
         $sensors  = [];
 
+        if ($response->json() === null) {
+            return [];
+        }
+
         foreach ($response->json() as $id => $sensor) {
             if ($type === 'temp' && ($sensor['type'] === 'ZHATemperature' || $sensor['type'] === 'ZHAThermostat')) {
                 $sensors[$id] = [
