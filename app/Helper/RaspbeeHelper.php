@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\Interfaces\HubInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Http;
@@ -127,7 +128,7 @@ class RaspbeeHelper implements HubInterface
             return $sensors;
         }
 
-        if ($this->checkConnection() || $response->json() === null) {
+        if ($this->checkConnection() === false || $response->json() === null) {
             return [];
         }
 

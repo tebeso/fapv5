@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\Interfaces\HubInterface;
 use Illuminate\Support\Env;
 use Phue\Client;
 use Throwable;
