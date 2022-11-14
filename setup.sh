@@ -1,3 +1,5 @@
+chown root:root . &&
+chown root:root * -R
 apt install -y apache2 git curl &&
 apt install -y htop &&
 wget -qO /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg &&
@@ -16,14 +18,12 @@ curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
 apt update &&
 apt install -y nodejs &&
 cd fapv5 &&
-composer install --no-interactio &&
-composer update --no-interactio &&
+composer install --no-interaction &&
+composer update --no-interaction &&
 npm install &&
 npm run dev &&
 cp .env.example .env &&
 php artisan key:generate &&
-php artisan fap:setup &&
-chown tebin:tebin * -R &&
 systemctl disable deconz-gui &&
 systemctl stop deconz-gui &&
 systemctl enable deconz &&
@@ -35,4 +35,7 @@ cp setup/apache2/ports.conf /etc/apache2/ports.conf &&
 cp setup/apache2/sites-enabled.conf /etc/apache2/sites-enabled/000-default.conf &&
 cp setup/lightdm/lightdm.conf /etc/lightdm/lightdm.conf &&
 cp setup/xdg/autostart /etc/xdg/lxsession/LXDE-pi/autostart &&
+php artisan fap:setup &&
+chown tebin:tebin * -R &&
+chown tebin:tebin . &&
 reboot
