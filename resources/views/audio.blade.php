@@ -38,7 +38,7 @@
         <div class="fap-button-group fap-button-group-4-vertical" style="top: 143px; left:230px;">
             <div class="fap-button-group">
                 <div id="audio-file-list-up" class="fap-button fap-button-inactive" style="font-size: 19px;">
-                    <div class="fap-arrow fap-up-arrow fap-arrow-inactive"></div>
+                    <div class="fap-arrow fap-up-arrow"></div>
                 </div>
                 <div id="audio-file-clear-file" class="fap-button fap-button-inactive" style="float:left;">
                     <div style="position: relative; top:16px;">Clear<br />File</div>
@@ -48,7 +48,7 @@
                 </div>
                 <div id="audio-file-list-down" class="fap-button fap-button-inactive"
                      style="font-size: 19px;line-height: 55px;">
-                    <div class="fap-arrow fap-down-arrow fap-arrow-inactive"></div>
+                    <div class="fap-arrow fap-down-arrow"></div>
                 </div>
             </div>
         </div>

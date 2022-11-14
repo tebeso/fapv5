@@ -46,9 +46,5 @@
         audioStorageBox.find('.fap-button-inactive').each(function () {
             $(this).removeClass('fap-button-inactive');
         });
-
-        audioStorageBox.find('.fap-arrow-inactive').each(function () {
-            $(this).removeClass('fap-arrow-inactive');
-        });
     </script>
 @endsection
