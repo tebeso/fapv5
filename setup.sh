@@ -7,7 +7,7 @@ apt install -y php8.1-common php8.1-cli libapache2-mod-php8.1 libapache2-mod-php
 apt install -y php8.1-curl curl php8.1-dom php8.1-xml &&
 a2enmod php8.1 &&
 a2enmod rewrite &&
-apache2 restart &&
+service apache2 restart &&
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer &&
 rm -rf composer-setup.php &&
