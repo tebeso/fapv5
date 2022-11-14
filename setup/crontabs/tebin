@@ -24,4 +24,8 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-* * * * * pactl -- set-sink-volume 2 30%
+#* * * * * pactl -- set-sink-volume 0 40%
+#* * * * * pactl -- set-sink-volume 1 40%
+#* * * * * pactl -- set-sink-volume 2 40%
+@reboot sleep 15 && pactl -- set-sink-volume 2 40%
+@reboot cd /var/www/html/fapv5 && npm run dev

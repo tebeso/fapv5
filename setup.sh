@@ -1,3 +1,7 @@
+# Make sure FAPv5 is cloned into /var/www/html/fapv5.
+# Then chmod +x setup.sh and run this script with sudo.
+# After installation, dont forget to pair the bluetooth speaker.
+
 chown root:root . &&
 chown root:root * -R
 apt install -y apache2 git curl &&
@@ -18,10 +22,9 @@ curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
 apt update &&
 apt install -y nodejs &&
 cd fapv5 &&
-composer install --no-interaction &&
-composer update --no-interaction &&
+export COMPOSER_ALLOW_SUPERUSER=1; composer install &&
+export COMPOSER_ALLOW_SUPERUSER=1; composer update &&
 npm install &&
-npm run dev &&
 cp .env.example .env &&
 php artisan key:generate &&
 systemctl disable deconz-gui &&
