@@ -24,4 +24,4 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-* * * * * pactl -- set-sink-volume 2 50%
+* * * * * pactl -- set-sink-volume 2 30%
