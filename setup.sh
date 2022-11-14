@@ -15,10 +15,9 @@ cd /var/www/html &&
 curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
 apt update &&
 apt install -y nodejs &&
-chown tebin:tebin fapv5 -R &&
 cd fapv5 &&
-composer install &&
-composer update &&
+composer install --no-interactio &&
+composer update --no-interactio &&
 npm install &&
 npm run dev &&
 cp .env.example .env &&
