@@ -12,7 +12,6 @@ window.FapAudio = class FapAudio {
             }
         }, 500);
 
-
         $(document).ready(function () {
 
             $(document).on('click', '#audio-file-list li', function () {

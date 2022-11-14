@@ -92,6 +92,6 @@
 @yield('audio-upload-form')
 
 <script>
-
+    window.fapAudio.getFileList();
 </script>
 
